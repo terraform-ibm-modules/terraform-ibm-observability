@@ -70,7 +70,7 @@ You can install pre-coomit tool using
 ```
 pip install pre-commit
 ```
-or   
+or
 ```
 pip3 install pre-commit
 ```
