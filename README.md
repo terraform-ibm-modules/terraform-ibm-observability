@@ -5,7 +5,7 @@ This is a collection of modules that make it easier to provision observability s
 * [monitoring-sysdig](modules/monitoring-sysdig)
 * [activity-tracker-logdna](modules/activity-tracker-logdna)
 
-## Compatibility
+## Compatibility 
 
 This module is meant for use with Terraform 0.13. 
 
