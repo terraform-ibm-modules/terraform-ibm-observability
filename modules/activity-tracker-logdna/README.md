@@ -1,4 +1,4 @@
-# Module activity_tracker 
+# Module activity_tracker
 
 This module is used to provision a activity tracker as a service
 
@@ -13,7 +13,7 @@ data "ibm_resource_group" "res_group" {
 
 module "activity-tracker_instance" {
   source            = "terraform-ibm-modules/observability/ibm//modules/activity-tracker-logdna"
-  
+
   service_name        = var.service_name
   plan                = var.plan
   region              = var.region

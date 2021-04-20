@@ -42,10 +42,10 @@ Fetch sysdig iam token
 
 data external monitor_api_key {
   program = [
-    "bash",                                                                                  # Run with bash
-    "${path.module}/scripts/monitor-api-key.sh",                                              # Script to run
-    data.ibm_iam_auth_token.tokendata.iam_access_token,                                       # IBM Cloud access token
-    data.ibm_resource_instance.test_resource_instance.guid                                    # sysdig instance ID  
+    "bash",                                                # Run with bash
+    "${path.module}/scripts/monitor-api-key.sh",           # Script to run
+    data.ibm_iam_auth_token.tokendata.iam_access_token,    # IBM Cloud access token
+    data.ibm_resource_instance.test_resource_instance.guid # sysdig instance ID
   ]
 }
 
@@ -54,7 +54,7 @@ Sysdig provider
 **************************************************************/
 
 provider "sysdig" {
-  sysdig_monitor_api_token = data.external.monitor_api_key.result["api_key"] 
+  sysdig_monitor_api_token = data.external.monitor_api_key.result["api_key"]
   sysdig_monitor_url       = data.ibm_resource_key.resource_key.credentials["Sysdig Endpoint"]
 }
 

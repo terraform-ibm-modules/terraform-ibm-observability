@@ -10,29 +10,29 @@ variable "bind_resource_key" {
 }
 
 variable "resource_group_id" {
-    description = "ID of the resource group"
-    type        = string
+  description = "ID of the resource group"
+  type        = string
 }
 
 variable "service_name" {
-    description = "Name of the instance"
-    type        = string
+  description = "Name of the instance"
+  type        = string
 }
 
 variable "plan" {
-    description = "plan type"
-    type        = string
+  description = "plan type"
+  type        = string
 }
 
 variable "region" {
-    description = "Provisioning Region"
-    type        = string
+  description = "Provisioning Region"
+  type        = string
 }
 
 variable "service_endpoints" {
-    description = "Types of the service endpoints. Possible values are 'public', 'private', 'public-and-private'."
-    type        = string
-    default     = null
+  description = "Types of the service endpoints. Possible values are 'public', 'private', 'public-and-private'."
+  type        = string
+  default     = null
 }
 
 variable "tags" {
@@ -42,13 +42,13 @@ variable "tags" {
 }
 
 variable "resource_key_name" {
-    description = "Name of the instance key"
-    type        = string
+  description = "Name of the instance key"
+  type        = string
 }
 
 variable "role" {
-    description = "plan type"
-    type        = string
+  description = "plan type"
+  type        = string
 }
 
 variable "resource_key_tags" {

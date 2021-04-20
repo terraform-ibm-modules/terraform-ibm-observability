@@ -1,4 +1,4 @@
-# Module sysdig monitor instance 
+# Module sysdig monitor instance
 
 This module is used to grant a user or service ID permissions to work with the IBM Cloud Monitoring with Sysdig service:
 
