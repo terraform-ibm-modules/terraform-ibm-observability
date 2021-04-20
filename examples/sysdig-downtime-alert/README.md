@@ -5,7 +5,7 @@ This example demonstarte how to create a sydig provider downtime alert
 ## Example Usage
 ```
 provider "sysdig" {
-  sysdig_monitor_api_token = data.external.monitor_api_key.result["api_key"] 
+  sysdig_monitor_api_token = data.external.monitor_api_key.result["api_key"]
   sysdig_monitor_url       = data.ibm_resource_key.resource_key.credentials["Sysdig Endpoint"]
 }
 

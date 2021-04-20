@@ -4,14 +4,14 @@
 #####################################################
 
 variable "name" {
-    description = "Name of the access group"
-    type        = string
+  description = "Name of the access group"
+  type        = string
 }
 
 variable "description" {
-    description = "Description to access group"
-    type        = string
-    default     = null
+  description = "Description to access group"
+  type        = string
+  default     = null
 }
 
 variable "ag_tags" {
@@ -21,8 +21,8 @@ variable "ag_tags" {
 }
 
 variable "roles" {
-    description = "list of roles"
-    type        = list(string)
+  description = "list of roles"
+  type        = list(string)
 }
 
 variable "ag_policy_tags" {
@@ -32,21 +32,21 @@ variable "ag_policy_tags" {
 }
 
 variable "account_management" {
-    description = "Enter true if you want give access to all account management services"
-    type        = bool
-    default     = false
+  description = "Enter true if you want give access to all account management services"
+  type        = bool
+  default     = false
 }
 
 variable "resources" {
-    type = list(any)
-    description = "A nested block describes the resource of this policy."
-    default     = null
+  type        = list(any)
+  description = "A nested block describes the resource of this policy."
+  default     = null
 }
 
 variable "ibm_ids" {
-    description = "A list of IBM IDs that you want to add to or remove from the access group."
-    type        = list(string)
-    default     = null
+  description = "A list of IBM IDs that you want to add to or remove from the access group."
+  type        = list(string)
+  default     = null
 }
 
 variable "service_ids" {
