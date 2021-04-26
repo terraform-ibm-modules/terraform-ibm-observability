@@ -65,11 +65,12 @@ Run the following command to execute the pre-commit hooks defined in .pre-commit
 ```
 pre-commit run -a
 ```
-We can install pre-coomit tool using
+You can install pre-coomit tool using
+
 ```
 pip install pre-commit
 ```
-      or
+or   
 ```
 pip3 install pre-commit
 ```
@@ -88,8 +89,8 @@ To destroy the VPC and all related resources
 ```
 terraform destroy -var-file=./input.tfvars
 ```
-All optional parameters, by default, will be set to null in respective example's varaible.tf file. If user can override these optional parameters.
 
 ## Note
 
-All optional fields should be given value `null` in respective resource varaible.tf file.  User can configure the same by overwriting with appropriate values.
+All optional parameters, by default, will be set to `null` in respective example's varaible.tf file. You can also override these optional parameters.
+
