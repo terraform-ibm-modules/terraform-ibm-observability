@@ -1,4 +1,4 @@
-# README covers sevral examples across multiple services like activity tracker, logging and sysdig-monitor
+# README covers several examples across multiple services like activity tracker, logging and sysdig-monitor
 
 |   Service         |         How To                     |        Action                           |     Document             |
 |-------------------|------------------------------------|-----------------------------------------|--------------------------|
