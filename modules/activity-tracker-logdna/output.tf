@@ -4,7 +4,7 @@
 #####################################################
 
 output "tracker_id" {
-  description = "activity tracker id"
+  description = "Activity tracker id"
   value       = ibm_resource_instance.at_instance.id
 }
 

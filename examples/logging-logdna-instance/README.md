@@ -12,19 +12,22 @@ data "ibm_resource_group" "logdna" {
 }
 
 module "logdna_instance" {
-  source  = "terraform-ibm-modules/observability/ibm//modules/logging-logdna"
+  source = "terraform-ibm-modules/observability/ibm//modules/logging-logdna"
 
-
-  bind_resource_key   = var.bind_resource_key
-  service_name        = var.service_name
-  resource_group_id   = data.ibm_resource_group.logdna.id
-  plan                = var.plan
-  region              = var.region
-  service_endpoints   = var.service_endpoints
-  tags                = var.tags
-  resource_key_name   = var.resource_key_name
-  role                = var.role
-  resource_key_tags   = var.resource_key_tags
+  bind_resource_key = var.bind_resource_key
+  service_name      = var.service_name
+  resource_group_id = data.ibm_resource_group.logdna.id
+  plan              = var.plan
+  region            = var.region
+  service_endpoints = var.service_endpoints
+  parameters        = var.parameters
+  tags              = var.tags
+  create_timeout    = var.create_timeout
+  update_timeout    = var.update_timeout
+  delete_timeout    = var.delete_timeout
+  resource_key_name = var.resource_key_name
+  role              = var.role
+  resource_key_tags = var.resource_key_tags
 }
 ```
 
@@ -44,4 +47,10 @@ module "logdna_instance" {
 | service\_endpoints | Possible values are 'public', 'private', 'public-and-private'.   | string       | n/a     | no       |
 | tags               | Tags that should be applied to the service                       | list(string) | n/a     | no       |
 | resource_key_tags  | Tags that should be applied to the resource key                  | list(string) | n/a     | no       |
+| parameters         | Arbitrary parameters to pass                                     | map(string)  | n/a     | no       |
+| create_timeout     | Timeout duration for create                                      | string       | n/a     | no       |
+| update_timeout     | Timeout duration for update                                      | string       | n/a     | no       |
+| delete_timeout     | Timeout duration for delete                                      | string       | n/a     | no       |
 
+
+NOTE: We can set the create, update and delete timeouts as string. For e.g say we want to set 15 minutes timeout then the value should be "15m".

@@ -23,6 +23,30 @@ variable "resource_group_id" {
   description = "ID of the Resource group where the cluster has been provisioned."
 }
 
+variable "create_timeout" {
+  type        = string
+  description = "Timeout duration for create."
+  default     = null
+}
+
+variable "update_timeout" {
+  type        = string
+  description = "Timeout duration for update."
+  default     = null
+}
+
+variable "delete_timeout" {
+  type        = string
+  description = "Timeout duration for delete."
+  default     = null
+}
+
+variable "parameters" {
+  type        = map(string)
+  description = "Arbitrary parameters to pass"
+  default     = null
+}
+
 variable "tags" {
   type        = list(string)
   description = "Tags that should be applied to the service"
