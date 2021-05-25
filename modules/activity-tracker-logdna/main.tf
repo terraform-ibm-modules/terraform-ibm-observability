@@ -10,10 +10,11 @@ resource "ibm_resource_instance" "at_instance" {
   location          = var.region
   resource_group_id = (var.resource_group_id != null ? var.resource_group_id : null)
   tags              = (var.tags != null ? var.tags : null)
+  parameters        = (var.parameters != null ? var.parameters : null)
 
   timeouts {
-    create = "15m"
-    update = "15m"
-    delete = "15m"
+    create = (var.create_timeout != null ? var.create_timeout : null)
+    update = (var.update_timeout != null ? var.update_timeout : null)
+    delete = (var.delete_timeout != null ? var.delete_timeout : null)
   }
 }

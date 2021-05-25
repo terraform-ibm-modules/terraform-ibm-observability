@@ -19,7 +19,11 @@ module "sysdig_instance" {
   plan              = var.plan
   region            = var.region
   service_endpoints = var.service_endpoints
+  parameters        = var.parameters
   tags              = var.tags
+  create_timeout    = var.create_timeout
+  update_timeout    = var.update_timeout
+  delete_timeout    = var.delete_timeout
   resource_key_name = var.resource_key_name
   role              = var.role
   resource_key_tags = var.resource_key_tags

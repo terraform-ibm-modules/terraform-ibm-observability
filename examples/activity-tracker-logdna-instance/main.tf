@@ -17,5 +17,10 @@ module "activity-tracker_instance" {
   plan              = var.plan
   region            = var.region
   resource_group_id = data.ibm_resource_group.res_group.id
+  parameters        = var.parameters
   tags              = var.tags
+  create_timeout    = var.create_timeout
+  update_timeout    = var.update_timeout
+  delete_timeout    = var.delete_timeout
+
 }
