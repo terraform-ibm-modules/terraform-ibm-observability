@@ -14,7 +14,7 @@ variable "service_name" {
 }
 
 variable "plan" {
-  description = "plan type"
+  description = "plan type (14-day, 30-day, 7-day, hipaa-30-day and lite)"
   type        = string
 }
 

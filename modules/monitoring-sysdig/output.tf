@@ -5,7 +5,7 @@
 
 output "sysdig_key_id" {
   description = "The ID of the sysdig key"
-  value       = ibm_resource_key.sysdigKey[0].id
+  value       = concat(ibm_resource_key.sysdigKey.*.id, [""])[0]
 }
 
 output "sysdig_guid" {

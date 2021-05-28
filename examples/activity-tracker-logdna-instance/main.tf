@@ -11,8 +11,10 @@ data "ibm_resource_group" "res_group" {
 }
 
 module "activity-tracker_instance" {
-  source = "terraform-ibm-modules/observability/ibm//modules/activity-tracker-logdna"
+  //Uncomment the following line to point the source to registry level
+  //source = "terraform-ibm-modules/observability/ibm//modules/activity-tracker-logdna"
 
+  source            = "../../modules/activity-tracker-logdna"
   service_name      = var.service_name
   plan              = var.plan
   region            = var.region

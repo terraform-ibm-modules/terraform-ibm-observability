@@ -1,6 +1,6 @@
 # IBM Cloud Observability - Terraform Module
 
-This is a collection of modules that make it easier to provision Observability services like logging, monitor and activity tracker on IBM Cloud Platform:
+This is a collection of modules that make it easier to provision observability services like logging, monitor and activity tracker on IBM Cloud Platform:
 * [logging-logdna](modules/logging-logdna)
 * [monitoring-sysdig](modules/monitoring-sysdig)
 * [activity-tracker-logdna](modules/activity-tracker-logdna)

@@ -15,5 +15,5 @@ output "logdna_instance_guid" {
 
 output "logdna_instance_key_id" {
   description = "The ID of the logdna instance key"
-  value       = ibm_resource_key.logdnaKey[0].id
+  value       = concat(ibm_resource_key.logdnaKey.*.id, [""])[0]
 }
