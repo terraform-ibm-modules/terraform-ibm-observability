@@ -14,7 +14,7 @@ variable "service_name" {
 }
 
 variable "plan" {
-  description = "plan type"
+  description = "plan type (graduated-tier, graduated-tier-sysdig-secure-plus-monitor and lite)"
   type        = string
 }
 
