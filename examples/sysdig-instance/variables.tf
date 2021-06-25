@@ -4,8 +4,9 @@
 #####################################################
 
 variable "bind_resource_key" {
-  description = "Enable this to bind key to logdna instance (true/false)"
+  description = "Enable this to bind key to sysdig instance (true/false)"
   type        = bool
+  default     = false
 }
 
 variable "service_name" {
@@ -67,11 +68,13 @@ variable "tags" {
 variable "resource_key_name" {
   description = "Name of the instance key"
   type        = string
+  default     = ""
 }
 
 variable "role" {
-  description = "plan type"
+  description = "Role type"
   type        = string
+  default     = ""
 }
 
 

@@ -3,6 +3,7 @@
 # Copyright 2020 IBM
 #####################################################
 
+############ access group ###########################
 variable "name" {
   description = "Name of the access group"
   type        = string
@@ -14,34 +15,19 @@ variable "description" {
   default     = null
 }
 
-variable "ag_tags" {
+variable "tags" {
   type        = list(string)
   description = "Tags that should be applied to the service"
   default     = null
 }
 
-variable "roles" {
-  description = "list of roles"
-  type        = list(string)
-}
-
-variable "ag_policy_tags" {
-  type        = list(string)
-  description = "Tags that should be applied to the service"
-  default     = null
-}
-
-variable "account_management" {
-  description = "Enter true if you want give access to all account management services"
+variable "provision" {
   type        = bool
-  default     = false
+  description = "Would you like to provision a new access group (true/false)"
+  default     = true
 }
 
-variable "resources" {
-  type        = list(any)
-  description = "A nested block describes the resource of this policy."
-  default     = null
-}
+############ access group memeber ####################
 
 variable "ibm_ids" {
   description = "A list of IBM IDs that you want to add to or remove from the access group."
@@ -53,4 +39,18 @@ variable "service_ids" {
   type        = list(string)
   description = "A list of service IDS that you want to add to or remove from the access group."
   default     = null
+}
+
+############ access group policy ####################
+
+variable "policies" {
+  description = "list of policies"
+  type        = map(any)
+}
+
+############ access group dynamic rule ##################
+
+variable "dynamic_rules" {
+  description = "list of dynamic rules"
+  type        = map(any)
 }

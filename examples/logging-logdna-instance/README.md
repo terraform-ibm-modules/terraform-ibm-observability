@@ -53,4 +53,20 @@ module "logdna_instance" {
 | delete_timeout     | Timeout duration for delete                                      | string       | n/a     | no       |
 
 
-NOTE: We can set the create, update and delete timeouts as string. For e.g say we want to set 15 minutes timeout then the value should be "15m".
+## NOTE:
+
+We can set the create, update and delete timeouts as string. For e.g say we want to set 15 minutes timeout then the value should be "15m".
+
+## NOTE
+
+To attach a key to logdna instance enable it by setting `bind_resource_key` argument to true (which is by default false). And set the `resource_key_name` and `role` parameters accordingly (which are by deafult empty) in variables.tf file.
+
+## Usage
+
+To create an infrastructure run the following command
+
+  `terraform apply -var-file="input.tfvars"`
+
+Similarly to remove an infrastructure run the following command
+
+   `terraform destroy -var-file="input.tfvars"`
