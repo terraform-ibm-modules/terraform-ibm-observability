@@ -45,3 +45,16 @@ module "logdna_instance" {
 | tags               | Tags that should be applied to the service                       | list(string) | n/a     | no       |
 | resource_key_tags  | Tags that should be applied to the resource key                  | list(string) | n/a     | no       |
 
+## NOTE
+
+To attach a key to logdna instance enable it by setting `bind_resource_key` argument to true (which is by default false). And set the `resource_key_name` and `role` parameters accordingly (which are by deafult empty) in variables.tf file.
+
+## Usage
+
+To create an infrastructure run the following command
+
+  `terraform apply`
+
+Similarly to remove an infrastructure run the following command
+
+   `terraform destroy`

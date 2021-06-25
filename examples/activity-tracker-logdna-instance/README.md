@@ -46,4 +46,12 @@ module "activity-tracker_instance" {
 
 NOTE: We can set the create, update and delete timeouts as string. For e.g say we want to set 15 minutes timeout then the value should be "15m".
 
+## Usage
 
+To create an infrastructure run the following command
+
+  `terraform apply -var-file="input.tfvars"`
+
+Similarly to remove an infrastructure run the following command
+
+   `terraform destroy -var-file="input.tfvars"`

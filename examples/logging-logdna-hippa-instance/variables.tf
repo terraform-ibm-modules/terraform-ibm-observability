@@ -4,8 +4,9 @@
 #####################################################
 
 variable "bind_resource_key" {
-  description = "Bool(0/1) Flag indicating that logdna instance key should be bind to logdna instance"
+  description = "Flag indicating that key should be bind to logdna hippa instance"
   type        = bool
+  default     = false
 }
 
 variable "service_name" {
@@ -45,11 +46,13 @@ variable "resource_key_tags" {
 variable "resource_key_name" {
   description = "Name of the instance key"
   type        = string
+  default     = ""
 }
 
 variable "role" {
-  description = "plan type"
+  description = "Type of role"
   type        = string
+  default     = ""
 }
 
 variable "resource_group" {
