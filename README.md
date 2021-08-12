@@ -68,6 +68,8 @@ To provision monitoring instance
 # Copyright 2020 IBM
 #####################################################
 
+
+```hcl
 provider "ibm" {
 }
 
