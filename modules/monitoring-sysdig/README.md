@@ -54,8 +54,10 @@ module "sysdig_instance" {
 
 ## Outputs
 
-| Name                    | Description                            |
-|-------------------------|----------------------------------------|
-| sysdig_key_id           | ID of the sysdig key                   |
-| sysdig_guid             | GUID of the sysdig instance            |
-| sysdig_id               | ID of the sysdig instance              |
+| Name            | Description                            |
+|-----------------|----------------------------------------|
+| id              | ID of the sysdig instance              |
+| guid            | GUID of the sysdig instance            |
+| key_id          | ID of the sysdig instance key          |
+| key_guid        | ID of the sysdig instance key          |
+| key_credentials | ID of the sysdig instance key          |

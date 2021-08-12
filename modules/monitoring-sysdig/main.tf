@@ -3,12 +3,18 @@
 # Copyright 2020 IBM
 #####################################################
 
-locals {
-  bind = var.bind_resource_key
+data "ibm_resource_instance" "sysdig" {
+  count = var.provision ? 0 : 1
+
+  name              = var.service_name
+  location          = var.region
+  resource_group_id = var.resource_group_id
+  service           = "sysdig-monitor"
 }
 
-
 resource "ibm_resource_instance" "sysdig_instance" {
+
+  count = var.provision ? 1 : 0
 
   name              = var.service_name
   service           = "sysdig-monitor"
@@ -27,10 +33,10 @@ resource "ibm_resource_instance" "sysdig_instance" {
 }
 
 resource "ibm_resource_key" "sysdigKey" {
-  count                = local.bind ? 1 : 0
+  count                = var.bind_key ? 1 : 0
   name                 = var.resource_key_name
   role                 = var.role
-  resource_instance_id = ibm_resource_instance.sysdig_instance.id
+  resource_instance_id = var.provision ? ibm_resource_instance.sysdig_instance[0].id : data.ibm_resource_instance.sysdig[0].id
   tags                 = (var.resource_key_tags != null ? var.resource_key_tags : [])
 }
 

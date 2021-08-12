@@ -3,17 +3,27 @@
 # Copyright 2020 IBM
 #####################################################
 
-output "logdna_instance_id" {
+output "id" {
   description = "The ID of the logdna instance"
-  value       = ibm_resource_instance.logdna_instance.id
+  value       = var.provision ? concat(ibm_resource_instance.logdna_instance.*.id, [""])[0] : concat(data.ibm_resource_instance.logdna.*.id, [""])[0]
 }
 
-output "logdna_instance_guid" {
+output "guid" {
   description = "The GUID of the logdna instance"
-  value       = ibm_resource_instance.logdna_instance.guid
+  value       = var.provision ? concat(ibm_resource_instance.logdna_instance.*.guid, [""])[0] : concat(data.ibm_resource_instance.logdna.*.guid, [""])[0]
 }
 
-output "logdna_instance_key_id" {
-  description = "The ID of the logdna instance key"
+output "key_id" {
+  description = "ID of the logdna instance key"
   value       = concat(ibm_resource_key.logdnaKey.*.id, [""])[0]
+}
+
+output "key_guid" {
+  description = "logdna key guid"
+  value       = concat(ibm_resource_key.logdnaKey.*.guid, [""])[0]
+}
+
+output "key_credentials" {
+  description = "logdna key credentials"
+  value       = concat(ibm_resource_key.logdnaKey.*.credentials, [""])[0]
 }

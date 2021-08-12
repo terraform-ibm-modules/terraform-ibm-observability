@@ -3,8 +3,14 @@
 # Copyright 2020 IBM
 #####################################################
 
-variable "bind_resource_key" {
-  description = "Flag indicating that key should be bind to logdna instance"
+variable "provision" {
+  type        = bool
+  description = "Disable this to read the existing activity tracker instance"
+  default     = true
+}
+
+variable "bind_key" {
+  description = "Flag indicating that key should be bind to logdna hippa instance"
   type        = bool
   default     = false
 }

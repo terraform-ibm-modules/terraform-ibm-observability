@@ -9,11 +9,11 @@ tags = ["T1", "T2"]
 
 ########### Access group memeber ########
 
-ibm_ids = ["anilkumar@in.ibm.com"]
+ibm_ids = ["abc@in.ibm.com"]
 
 //service_ids = ["ServiceId-1", "ServiceId-2"]
 
-service_ids = ["ServiceId-8543541f-41ef-4e4d-a87f-ff50b2728cce", "ServiceId-cfc92f97-a2f5-49ab-b3ed-5fe6728bd004"]
+service_ids = ["ServiceId-8543541f-41ef-4e4d-a87f-ffcce", "ServiceId-cfc92f97-a2f5-49ab-b3ed-5f004"]
 
 ########### Access group policy ########
 

@@ -65,14 +65,29 @@ variable "tags" {
   default     = null
 }
 
+variable "provision" {
+  type        = bool
+  description = "Disable this to read the existing activity trcaker instance"
+  default     = true
+}
+
+variable "bind_key" {
+  description = "Enable this to bind key to instance (true/false)"
+  type        = bool
+  default     = false
+}
+
+
 variable "resource_key_name" {
   description = "Name of the instance key"
   type        = string
+  default     = ""
 }
 
 variable "role" {
-  description = "plan type"
+  description = "role type"
   type        = string
+  default     = ""
 }
 
 variable "resource_key_tags" {

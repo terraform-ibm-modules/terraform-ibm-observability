@@ -52,13 +52,14 @@ module "sysdig_instance" {
 | update_timeout     | Timeout duration for update                                      | string       | n/a     | no       |
 | delete_timeout     | Timeout duration for delete                                      | string       | n/a     | no       |
 
-## NOTE:
+## NOTE
+
+To read an existing activity tracker, configure `provision` argument as `false` and give default value as empty string ("") for `plan` argument.
+
+To attach a key to logdna instance enable it by setting `bind_key` argument to true (which is by default false). And set the `resource_key_name` and `role` parameters accordingly (which are by deafult empty) in variables.tf file.
 
 We can set the create, update and delete timeouts as string. For e.g say we want to set 15 minutes timeout then the value should be "15m".
 
-## NOTE
-
-To attach a key to logdna instance enable it by setting `bind_resource_key` argument to true (which is by default false). And set the `resource_key_name` and `role` parameters accordingly (which are by deafult empty) in variables.tf file.
 
 ## Usage
 

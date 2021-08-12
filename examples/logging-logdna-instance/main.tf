@@ -15,7 +15,8 @@ module "logdna_instance" {
   //source = "terraform-ibm-modules/observability/ibm//modules/logging-logdna"
 
   source            = "../../modules/logging-logdna"
-  bind_resource_key = var.bind_resource_key
+  provision         = var.provision
+  bind_key          = var.bind_key
   service_name      = var.service_name
   resource_group_id = data.ibm_resource_group.logdna.id
   plan              = var.plan

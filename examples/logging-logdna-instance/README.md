@@ -14,7 +14,7 @@ data "ibm_resource_group" "logdna" {
 module "logdna_instance" {
   source = "terraform-ibm-modules/observability/ibm//modules/logging-logdna"
 
-  bind_resource_key = var.bind_resource_key
+  bind_key = var.bind_key
   service_name      = var.service_name
   resource_group_id = data.ibm_resource_group.logdna.id
   plan              = var.plan
@@ -38,7 +38,7 @@ module "logdna_instance" {
 | Name               | Description                                                      | Type         | Default | Required |
 |--------------------|------------------------------------------------------------------|:-------------|:------- |:---------|
 | service\_name      | A descriptive name used to identify the resource instance        | string       | n/a     | yes      |
-| bind_resource_key  | Indicating that instance key should be bind to logdna instance   | bool         | n/a     | no       |
+| bind_key           | Indicating that instance key should be bind to logdna instance   | bool         | n/a     | no       |
 | resource\_key\_name| A descriptive name used to identify the resource key             | string       | n/a     | yes      |
 | role               | Name of the user role.                                           | string       | n/a     | yes      |
 | plan               | The name of the plan type supported by service.                  | string       | n/a     | yes      |
@@ -52,14 +52,17 @@ module "logdna_instance" {
 | update_timeout     | Timeout duration for update                                      | string       | n/a     | no       |
 | delete_timeout     | Timeout duration for delete                                      | string       | n/a     | no       |
 
+## NOTE
 
-## NOTE:
+To read an existing activity tracker, configure `provision` argument as `false` and give default value as empty string ("") for `plan` argument.
+
+To attach a key to logdna instance enable it by setting `bind_key` argument to true (which is by default false). And set the `resource_key_name` and `role` parameters accordingly (which are by deafult empty) in variables.tf file.
 
 We can set the create, update and delete timeouts as string. For e.g say we want to set 15 minutes timeout then the value should be "15m".
 
 ## NOTE
 
-To attach a key to logdna instance enable it by setting `bind_resource_key` argument to true (which is by default false). And set the `resource_key_name` and `role` parameters accordingly (which are by deafult empty) in variables.tf file.
+To attach a key to logdna instance enable it by setting `bind_key` argument to true (which is by default false). And set the `resource_key_name` and `role` parameters accordingly (which are by deafult empty) in variables.tf file.
 
 ## Usage
 
