@@ -1,27 +1,32 @@
 #####################################################
-# Logging-logdna  Instance
+# Activity Tracker as a service
 # Copyright 2020 IBM
 #####################################################
 
-variable "bind_resource_key" {
-  description = "Flag indicating that key should be bind to logdna instance"
-  type        = bool
-  default     = false
-}
-
 variable "service_name" {
-  description = "Name of the instance"
   type        = string
+  description = "The name for the service"
 }
 
 variable "plan" {
-  description = "plan type (14-day, 30-day, 7-day, hipaa-30-day and lite)"
   type        = string
+  description = "The type of plan the service instance should run under (lite, 7-day, 14-day, or 30-day)"
 }
 
 variable "region" {
-  description = "Provisioning Region"
   type        = string
+  description = "Geographic location of the resource (e.g. us-south, us-east)"
+}
+
+variable "provision" {
+  type        = bool
+  description = "Disable this to read the existing activity trcaker instance"
+  default     = true
+}
+
+variable "resource_group_id" {
+  type        = string
+  description = "ID of the Resource group where the cluster has been provisioned."
 }
 
 variable "create_timeout" {
@@ -48,23 +53,16 @@ variable "parameters" {
   default     = null
 }
 
-
-variable "service_endpoints" {
-  description = "Types of the service endpoints. Possible values are 'public', 'private', 'public-and-private'."
-  type        = string
-  default     = null
-}
-
 variable "tags" {
   type        = list(string)
   description = "Tags that should be applied to the service"
   default     = null
 }
 
-variable "resource_key_tags" {
-  type        = list(string)
-  description = "Tags that should be applied to the key"
-  default     = null
+variable "bind_key" {
+  description = "Enable this to bind key to instance (true/false)"
+  type        = bool
+  default     = false
 }
 
 variable "resource_key_name" {
@@ -74,15 +72,14 @@ variable "resource_key_name" {
 }
 
 variable "role" {
-  description = "Type of role"
+  description = "role type (Writer, Reader, Manager, Administrator, Operator, Viewer, and Editor)"
   type        = string
   default     = ""
 }
 
-variable "resource_group" {
-  type        = string
-  description = "Name of the resource group"
+variable "resource_key_tags" {
+  type        = list(string)
+  description = "Tags that should be applied to the service"
+  default     = null
 }
-
-
 

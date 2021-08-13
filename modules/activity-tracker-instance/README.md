@@ -29,8 +29,8 @@ module "activity-tracker_instance" {
 ```
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
-## Inputs
 
+## Inputs
 
 | Name            | Description                                                      | Type         | Default | Required |
 |-----------------|------------------------------------------------------------------|:-------------|---------|----------|
@@ -44,14 +44,21 @@ module "activity-tracker_instance" {
 | update_timeout  | Timeout duration for update                                      | string       | n/a     | no       |
 | delete_timeout  | Timeout duration for delete                                      | string       | n/a     | no       |
 
-NOTE: We can set the create, update and delete timeouts as string. For e.g say we want to set 15 minutes timeout then the value should be "15m".
+## Outputs
 
-## Usage
+<<<<<<< HEAD
+| Name            | Description                                                      | Type         |
+|-----------------|------------------------------------------------------------------|:-------------|
+| tracker_id      | ID of the activity tracker provisioned                           | string       |
+| tracker_guid    | GUID of the activity tracker                                     | string       |
 
-To create an infrastructure run the following command
+=======
+| Name            | Description                            |
+|-----------------|----------------------------------------|
+| id              | ID of the activity tracker instance    |
+| guid            | GUID of the activity tracker instance  |
+| key_id          | ID of the activity tracker instance key|
+| key_guid        | ID of the activity tracker instance key|
+| key_credentials | ID of the activity tracker instance key|
+>>>>>>> Ob root module (#10)
 
-  `terraform apply -var-file="input.tfvars"`
-
-Similarly to remove an infrastructure run the following command
-
-   `terraform destroy -var-file="input.tfvars"`

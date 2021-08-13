@@ -1,22 +1,22 @@
-# Module sysdig monitor instance
+# Module logging-logdna
 
-This module is used to create sysdig monitor instance.
+This module is used to create a logging-logdna service on IBM Cloud.
 
 ## Example Usage
 ```
 provider "ibm" {
 }
 
-data "ibm_resource_group" "sysdig" {
+data "ibm_resource_group" "logdna" {
   name = var.resource_group
 }
 
-module "sysdig_instance" {
-  source = "terraform-ibm-modules/observability/ibm//modules/monitoring-sysdig"
+module "logdna_instance" {
+  source = "terraform-ibm-modules/observability/ibm//modules/logging-logdna"
 
   bind_resource_key = var.bind_resource_key
   service_name      = var.service_name
-  resource_group_id = data.ibm_resource_group.sysdig.id
+  resource_group_id = data.ibm_resource_group.logdna.id
   plan              = var.plan
   region            = var.region
   service_endpoints = var.service_endpoints
@@ -46,26 +46,26 @@ module "sysdig_instance" {
 | resource\_group    | Name of the resource group                                       | string       | n/a     | yes      |
 | service\_endpoints | Possible values are 'public', 'private', 'public-and-private'.   | string       | n/a     | no       |
 | tags               | Tags that should be applied to the service                       | list(string) | n/a     | no       |
-| resource_key_tags  | Tags that should be applied to the service key                   | list(string) | n/a     | no       |
+| resource_key_tags  | Tags that should be applied to the resource key                  | list(string) | n/a     | no       |
 | parameters         | Arbitrary parameters to pass                                     | map(string)  | n/a     | no       |
 | create_timeout     | Timeout duration for create                                      | string       | n/a     | no       |
 | update_timeout     | Timeout duration for update                                      | string       | n/a     | no       |
 | delete_timeout     | Timeout duration for delete                                      | string       | n/a     | no       |
 
-## NOTE:
+## Outputs
 
-We can set the create, update and delete timeouts as string. For e.g say we want to set 15 minutes timeout then the value should be "15m".
-
-## NOTE
-
-To attach a key to logdna instance enable it by setting `bind_resource_key` argument to true (which is by default false). And set the `resource_key_name` and `role` parameters accordingly (which are by deafult empty) in variables.tf file.
-
-## Usage
-
-To create an infrastructure run the following command
-
-  `terraform apply -var-file="input.tfvars"`
-
-Similarly to remove an infrastructure run the following command
-
-   `terraform destroy -var-file="input.tfvars"`
+<<<<<<< HEAD
+| Name                    | Description                            |
+|-------------------------|----------------------------------------|
+| logdna_instance_id      | ID of the Logdna instance              |
+| logdna_instance_guid    | GUID of the Logdna instance            |
+| logdna_instance_key_id  | ID of the logdna instance key          |
+=======
+| Name            | Description                            |
+|-----------------|----------------------------------------|
+| id              | ID of the Logdna instance              |
+| guid            | GUID of the Logdna instance            |
+| key_id          | ID of the logdna instance key          |
+| key_guid        | ID of the logdna instance key          |
+| key_credentials | ID of the logdna instance key          |
+>>>>>>> Ob root module (#10)

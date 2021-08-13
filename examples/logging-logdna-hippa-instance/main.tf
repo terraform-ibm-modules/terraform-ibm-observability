@@ -1,8 +1,3 @@
-#####################################################
-# logdna HIPPA instance provision
-# Copyright 2020 IBM
-#####################################################
-
 provider "ibm" {
 }
 
@@ -10,19 +5,22 @@ data "ibm_resource_group" "logdna" {
   name = var.resource_group
 }
 
-module "logdna_instance" {
-  //Uncomment the following line to point the source to registry level
-  //source = "terraform-ibm-modules/observability/ibm//modules/logging-logdna"
+module "logging_instance" {
 
-  source            = "../../modules/logging-logdna"
-  bind_resource_key = var.bind_resource_key
-  service_name      = var.service_name
-  resource_group_id = data.ibm_resource_group.logdna.id
-  plan              = var.plan
-  region            = var.region
-  service_endpoints = var.service_endpoints
-  tags              = var.tags
-  resource_key_name = var.resource_key_name
-  role              = var.role
-  resource_key_tags = var.resource_key_tags
+  source               = "./../../modules/logging-instance"
+  provision            = var.provision
+  is_sts_instance      = false
+  bind_key             = var.bind_key
+  name                 = var.name
+  resource_group_id    = data.ibm_resource_group.logdna.id
+  plan                 = "hipaa-30-day"
+  region               = var.region
+  service_endpoints    = var.service_endpoints
+  enable_platform_logs = var.enable_platform_logs
+  tags                 = var.tags
+  create_timeout       = var.create_timeout
+  update_timeout       = var.update_timeout
+  delete_timeout       = var.delete_timeout
+  key_name             = var.key_name
+  key_tags             = var.key_tags
 }
