@@ -54,8 +54,18 @@ module "logdna_instance" {
 
 ## Outputs
 
+<<<<<<< HEAD
 | Name                    | Description                            |
 |-------------------------|----------------------------------------|
 | logdna_instance_id      | ID of the Logdna instance              |
 | logdna_instance_guid    | GUID of the Logdna instance            |
 | logdna_instance_key_id  | ID of the logdna instance key          |
+=======
+| Name            | Description                            |
+|-----------------|----------------------------------------|
+| id              | ID of the Logdna instance              |
+| guid            | GUID of the Logdna instance            |
+| key_id          | ID of the logdna instance key          |
+| key_guid        | ID of the logdna instance key          |
+| key_credentials | ID of the logdna instance key          |
+>>>>>>> Ob root module (#10)

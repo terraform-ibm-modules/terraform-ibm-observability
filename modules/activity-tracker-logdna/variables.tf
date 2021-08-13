@@ -18,6 +18,12 @@ variable "region" {
   description = "Geographic location of the resource (e.g. us-south, us-east)"
 }
 
+variable "provision" {
+  type        = bool
+  description = "Disable this to read the existing activity trcaker instance"
+  default     = true
+}
+
 variable "resource_group_id" {
   type        = string
   description = "ID of the Resource group where the cluster has been provisioned."
@@ -48,6 +54,30 @@ variable "parameters" {
 }
 
 variable "tags" {
+  type        = list(string)
+  description = "Tags that should be applied to the service"
+  default     = null
+}
+
+variable "bind_key" {
+  description = "Enable this to bind key to instance (true/false)"
+  type        = bool
+  default     = false
+}
+
+variable "resource_key_name" {
+  description = "Name of the instance key"
+  type        = string
+  default     = ""
+}
+
+variable "role" {
+  description = "role type (Writer, Reader, Manager, Administrator, Operator, Viewer, and Editor)"
+  type        = string
+  default     = ""
+}
+
+variable "resource_key_tags" {
   type        = list(string)
   description = "Tags that should be applied to the service"
   default     = null

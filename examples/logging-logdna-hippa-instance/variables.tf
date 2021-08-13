@@ -3,26 +3,63 @@
 # Copyright 2020 IBM
 #####################################################
 
-variable "bind_resource_key" {
+variable "provision" {
+  type        = bool
+  description = "Disable this to read the existing activity tracker instance"
+  default     = true
+}
+
+variable "bind_key" {
   description = "Flag indicating that key should be bind to logdna hippa instance"
   type        = bool
   default     = false
 }
 
-variable "service_name" {
+variable "is_sts_instance" {
+  description = "Set this to provision (STS) logging instance"
+  type        = bool
+  default     = false
+}
+
+variable "name" {
   description = "Name of the instance"
   type        = string
 }
 
 variable "plan" {
-  description = "plan type"
+  description = "plan type (14-day, 30-day, 7-day, hipaa-30-day and lite)"
   type        = string
   default     = "hipaa-30-day"
+}
+
+variable "enable_platform_logs" {
+  type        = bool
+  description = "Receive platform logs in LogDNA"
+  default     = true
 }
 
 variable "region" {
   description = "Provisioning Region"
   type        = string
+  default = "us-south"
+}
+
+variable "create_timeout" {
+  type        = string
+  description = "Timeout duration for create."
+  default     = null
+}
+
+variable "update_timeout" {
+  type        = string
+  description = "Timeout duration for update."
+  default     = null
+}
+
+variable "delete_timeout" {
+  type        = string
+  description = "Timeout duration for delete."
+  default     = null
 }
 
 variable "service_endpoints" {
@@ -37,22 +74,16 @@ variable "tags" {
   default     = null
 }
 
-variable "resource_key_tags" {
+variable "key_tags" {
   type        = list(string)
   description = "Tags that should be applied to the key"
   default     = null
 }
 
-variable "resource_key_name" {
+variable "key_name" {
   description = "Name of the instance key"
   type        = string
-  default     = ""
-}
-
-variable "role" {
-  description = "Type of role"
-  type        = string
-  default     = ""
+  default     = null
 }
 
 variable "resource_group" {

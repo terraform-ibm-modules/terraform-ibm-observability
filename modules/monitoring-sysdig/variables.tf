@@ -3,8 +3,14 @@
 # Copyright 2020 IBM
 #####################################################
 
-variable "bind_resource_key" {
-  description = "Enable this to bind key to logdna instance (true/false)"
+variable "provision" {
+  type        = bool
+  description = "Disable this to read the existing activity trcaker instance"
+  default     = true
+}
+
+variable "bind_key" {
+  description = "Enable this to bind key to instance (true/false)"
   type        = bool
   default     = false
 }
@@ -71,7 +77,11 @@ variable "resource_group_id" {
 }
 
 variable "role" {
+<<<<<<< HEAD
   description = "plan type"
+=======
+  description = "role type"
+>>>>>>> Ob root module (#10)
   type        = string
 }
 

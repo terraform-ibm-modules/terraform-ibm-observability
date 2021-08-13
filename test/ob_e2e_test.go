@@ -7,26 +7,21 @@ import (
 )
 
 // An example of how to test the Terraform module to create cos instance in examples/instance using Terratest.
-func TestAccIBMLogdna(t *testing.T) {
+func TestAccIBMObComplete(t *testing.T) {
 	t.Parallel()
 
 	// Construct the terraform options with default retryable errors to handle the most common retryable errors in
 	// terraform testing.
 	terraformOptions := terraform.WithDefaultRetryableErrors(t, &terraform.Options{
 		// The path to where our Terraform code is located
-		TerraformDir: "../examples/logging-logdna-instance",
+		TerraformDir: "../examples/obervability-complete",
 
 		// Variables to pass to our Terraform code using -var options
 		Vars: map[string]interface{}{
-			"service_name":      "loggingLogdna",
-			"plan":              "7-day",
-			"region":            "us-south",
-			"resource_group":    "default",
-			"tags":              []string{"T1", "T2"},
-			"bind_resource_key": false,
-			"resource_key_name": "key",
-			"resource_key_tags": []string{"T3", "T4"},
-			"role":              "Manager",
+			"logging_name":          "logging",
+			"activity_tracker_name": "at",
+			"monitoring_name":       "sysdig",
+			"resource_group":        "default",
 		},
 	})
 
