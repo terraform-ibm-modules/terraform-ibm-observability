@@ -3,58 +3,109 @@
 # Copyright 2020 IBM
 #####################################################
 
-/****************************************************
-Configuration Examples
+########### Access group ########
 
-tags = ["T1","T2"]
+tags = ["T1", "T2"]
 
-roles = ["Manager","Viewer","Editor"]
+########### Access group memeber ########
 
+ibm_ids = ["abc@in.ibm.com"]
 
-configure the argument "resources" as follows
+//service_ids = ["ServiceId-1", "ServiceId-2"]
 
-resources = [{
-    region = "us-south"
-    service = "sysdig-monitor"
-    resource_instance_id = "crn:v1:bluemix:public:containers-kubernetes:us-south:a/fcdb764102154c7ea8e1b79d3a64afe0:btgbsard0ss76j8snblg::"
-    resource_type = null
-    resource = null
-    resource_group_id = "19e34037c9fe41e5aa9d682c9089b044"
-    attributes = null
-    },
-]
- 
-NOTE : Do not specify arguments "account_management" and "resources" at the same time as both conflict with each other.
+service_ids = ["ServiceId-8543541f-41ef-4e4d-a87f-ffcce", "ServiceId-cfc92f97-a2f5-49ab-b3ed-5f004"]
 
-If you dont want to configure any optional parameter, assign a `null` value to that argument. E.g: 
-Say we dont want to configure the "account_management", make it null as follows
+########### Access group policy ########
 
-     account_management = null
+/***************************************
+Following 3 arguments conflict with each other
+  * resources
+  * resource_attributes and
+  * account_management
+Hence while configuring one at a time, unset the other
+Following configuration defines 3 policies for Admin, Viewer and Editor
+For Admin we set the resources argument and unset the account_management and resource_attributes
+For Viewer, we set resource_attributes and unset the account_management and resources
+and finally for Editor, we set account_management and unset resource_attributes and resources
+****************************************/
 
-******************************************************/
+policies = {
+  admin = {
+    roles              = ["Manager", "Viewer", "Editor"]
+    account_management = null
+    tags               = ["T1", "T2"]
+    resources = [{
+      region               = "us-south"
+      service              = "containers-kubernetes"
+      resource_instance_id = "crn:v1:bluemix:public:containers-kubernetes:us-south:a/fcdb764102154c7ea8e1b79d3a64afe0:btgbsard0ss76j8snblg::"
+      resource_type        = null
+      resource             = null
+      resource_group_id    = "19e34037c9fe41e5aa9d682c9089b044"
+      attributes = {
+        "namespace" = "default"
+      }
+      },
+    ]
+    resource_attributes = []
+  }
 
+  Viewer = {
+    roles              = ["Viewer"]
+    account_management = null
+    tags               = ["T3", "T4"]
 
-resources = [{
-    region               = "us-south"
-    service              = "sysdig-monitor"
-    resource_instance_id = "crn:v1:bluemix:public:containers-kubernetes:us-south:a/fcdb764102154c7ea8e1b79d3a64afe0:btgbsard0ss76j8snblg::"
-    resource_group_id    = "19e34037c9fe41e5aa9d682c9089b044"
-    resource_type        = null
-    resource             = null
-    attributes           = null
-    },
-]
+    resources = []
 
-account_management = null
+    resource_attributes = [{
+      name     = "resource"
+      value    = "test123*"
+      operator = "stringMatch"
+      },
+      {
+        name     = "serviceName"
+        value    = "messagehub"
+        operator = null
+      },
+    ]
+  }
 
+  Editor = {
+    roles               = ["Viewer"]
+    account_management  = false
+    tags                = ["T5", "T6"]
+    resources           = []
+    resource_attributes = []
+  }
 
-tags = ["T1","T2"]
+}
 
-roles = ["Manager","Viewer","Editor"]
+########### Access group dynamic rule ########
 
-ibm_ids     = ["example@in.ibm.com"]
+dynamic_rules = {
+  rule1 = {
+    expiration        = 2
+    identity_provider = "test-idp.com"
+    rule_conditions = [{
+      claim    = "blueGroups"
+      operator = "CONTAINS"
+      value    = "test-bluegroup-saml"
+      },
+      {
+        claim    = "blueGroups"
+        operator = "EQUALS"
+        value    = "test-bluegroup-saml"
+      },
+    ]
+  }
 
-service_ids = ["ServiceId-1","ServiceId-2"]
-
-
-
+  rule2 = {
+    expiration        = 1
+    identity_provider = "test-idp.com"
+    rule_conditions = [{
+      claim    = "blueGroups"
+      operator = "EQUALS"
+      value    = "test-bluegroup-saml"
+      },
+    ]
+  }
+}

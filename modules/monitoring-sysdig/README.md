@@ -1,4 +1,4 @@
-# Module sysdig monitor instance 
+# Module sysdig monitor instance
 
 This module is used to create sysdig monitor instance.
 
@@ -12,18 +12,22 @@ data "ibm_resource_group" "sysdig" {
 }
 
 module "sysdig_instance" {
-  source                  = "terraform-ibm-modules/observability/ibm//modules/monitoring-sysdig"
+  source = "terraform-ibm-modules/observability/ibm//modules/monitoring-sysdig"
 
-  bind_resource_key       = var.bind_resource_key
-  service_name            = var.service_name
-  resource_group_id       = data.ibm_resource_group.sysdig.id
-  plan                    = var.plan
-  region                  = var.region
-  service_endpoints       = var.service_endpoints
-  tags                    = var.tags
-  resource_key_name       = var.resource_key_name
-  role                    = var.role
-  resource_key_tags       = var.resource_key_tags
+  bind_resource_key = var.bind_resource_key
+  service_name      = var.service_name
+  resource_group_id = data.ibm_resource_group.sysdig.id
+  plan              = var.plan
+  region            = var.region
+  service_endpoints = var.service_endpoints
+  parameters        = var.parameters
+  tags              = var.tags
+  create_timeout    = var.create_timeout
+  update_timeout    = var.update_timeout
+  delete_timeout    = var.delete_timeout
+  resource_key_name = var.resource_key_name
+  role              = var.role
+  resource_key_tags = var.resource_key_tags
 }
 ```
 
@@ -43,3 +47,17 @@ module "sysdig_instance" {
 | service\_endpoints | Possible values are 'public', 'private', 'public-and-private'.   | string       | n/a     | no       |
 | tags               | Tags that should be applied to the service                       | list(string) | n/a     | no       |
 | resource_key_tags  | Tags that should be applied to the service key                   | list(string) | n/a     | no       |
+| parameters         | Arbitrary parameters to pass                                     | map(string)  | n/a     | no       |
+| create_timeout     | Timeout duration for create                                      | string       | n/a     | no       |
+| update_timeout     | Timeout duration for update                                      | string       | n/a     | no       |
+| delete_timeout     | Timeout duration for delete                                      | string       | n/a     | no       |
+
+## Outputs
+
+| Name            | Description                            |
+|-----------------|----------------------------------------|
+| id              | ID of the sysdig instance              |
+| guid            | GUID of the sysdig instance            |
+| key_id          | ID of the sysdig instance key          |
+| key_guid        | ID of the sysdig instance key          |
+| key_credentials | ID of the sysdig instance key          |

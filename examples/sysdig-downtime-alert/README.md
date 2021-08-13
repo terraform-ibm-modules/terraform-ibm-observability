@@ -5,7 +5,7 @@ This example demonstarte how to create a sydig provider downtime alert
 ## Example Usage
 ```
 provider "sysdig" {
-  sysdig_monitor_api_token = data.external.monitor_api_key.result["api_key"] 
+  sysdig_monitor_api_token = data.external.monitor_api_key.result["api_key"]
   sysdig_monitor_url       = data.ibm_resource_key.resource_key.credentials["Sysdig Endpoint"]
 }
 
@@ -39,14 +39,16 @@ resource "sysdig_monitor_alert_downtime" "sample" {
 | trigger_time        | Threshold of time for status to stabilize until alert is fired.  | number       | n/a     | yes      |
 | pct                 | Below of this percentage of downtime the alert will be triggered.| number       | 100     | no       |
 
-## To Create
-
-terraform apply -var-file="input.tfvars"
-
-## To Destroy
-
-terraform destroy -var-file="input.tfvars"
-
 ## Note
 
 All optional fields are given value `null` in varaible.tf file. User can configure the same by overwriting with appropriate values.
+
+## Usage
+
+To create an infrastructure run the following command
+
+  `terraform apply -var-file="input.tfvars"`
+
+Similarly to remove an infrastructure run the following command
+
+   `terraform destroy -var-file="input.tfvars"`

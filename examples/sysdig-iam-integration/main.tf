@@ -7,25 +7,22 @@ provider "ibm" {
 }
 
 module "access_group" {
-  source       = "terraform-ibm-modules/iam/ibm//modules/access-group"
+  // Uncomment following line to point the source to registry level module
+  source = "terraform-ibm-modules/iam/ibm//modules/access-group"
 
-  name         = var.name
-  tags         = var.ag_tags
-  description  = var.description
-}
+  ######### access group ######################
+  name        = var.name
+  tags        = var.tags
+  description = var.description
+  provision   = var.provision
 
-module "access_group_policy" {
-  source               = "terraform-ibm-modules/iam/ibm//modules/access-group-policy"
-  access_group_id      = module.access_group.access_group_id
-  roles                = var.roles
-  tags                 = var.ag_policy_tags
-  resources            = var.resources
-  account_management   = var.account_management
-}
+  ######### access group members ##############
+  ibm_ids     = var.ibm_ids
+  service_ids = var.service_ids
 
-module "access_group_members" {
-  source            = "terraform-ibm-modules/iam/ibm//modules/access-group-members"
-  access_group_id   = module.access_group.access_group_id
-  ibm_ids           = var.ibm_ids
-  service_ids       = var.service_ids
+  ######### access group policy ###############
+  policies = var.policies
+
+  ######### access group dynamic rule #########
+  dynamic_rules = var.dynamic_rules
 }

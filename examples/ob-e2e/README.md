@@ -1,20 +1,9 @@
-# IBM Cloud Observability - Terraform Module
+# Module - Configure cluster with observability service
 
-This is a collection of modules that make it easier to provision observability services like logging, monitor and activity tracker on IBM Cloud Platform:
+This module is used to create observability services and configure then to an existing cluster.
 
-* logging-logdna
-* monitoring-sysdig
-* activity-tracker-logdna
-
-## Compatibility 
-
-This module is meant for use with Terraform 0.13 (and higher).
-
-## Usage
-
-Full examples are in the [examples](./examples/) folder, but basic usage is as follows for creation of logdna instance & key:
-
-```hcl
+## Example Usage
+```
 provider "ibm" {
 }
 
@@ -72,6 +61,7 @@ module "sysdig_instance" {
 }
 
 ```
+
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Inputs
 
@@ -112,94 +102,53 @@ module "sysdig_instance" {
 | update_timeout         | Timeout duration for update                                      | string       | n/a     | no       |
 | delete_timeout         | Timeout duration for delete                                      | string       | n/a     | no       |
 
-## Requirements
+## Usage
 
-### Terraform plugins
+To create an infrastructure run the following command
 
-- [Terraform](https://www.terraform.io/downloads.html) 0.13 (or later)
-- [terraform-provider-ibm](https://github.com/IBM-Cloud/terraform-provider-ibm)
+  `terraform apply -var-file="input.tfvars"`
 
-## Install
+Similarly to remove an infrastructure run the following command
 
-### Terraform
-
-Be sure you have the correct Terraform version (>= 0.13), you can choose the binary here:
-- https://releases.hashicorp.com/terraform/
-
-### Terraform plugins
-
-Be sure you have the compiled plugins on $HOME/.terraform.d/plugins/
-
-- [terraform-provider-ibm](https://github.com/IBM-Cloud/terraform-provider-ibm)
-
-### Pre-commit hooks
-
-Run the following command to execute the pre-commit hooks defined in .pre-commit-config.yaml file
-```
-pre-commit run -a
-```
-You can install pre-coomit tool using
-
-```
-pip install pre-commit
-```
-or
-```
-pip3 install pre-commit
-```
-## How to input varaible values through a file
-
-To review the plan for the configuration defined (no resources actually provisioned)
-```
-terraform plan -var-file=./input.tfvars
-```
-To execute and start building the configuration defined in the plan (provisions resources)
-```
-terraform apply -var-file=./input.tfvars
-```
-
-To destroy the VPC and all related resources
-```
-terraform destroy -var-file=./input.tfvars
-```
+   `terraform destroy -var-file="input.tfvars"`
 
 ## Timeout block
 
-Same set of timeout values (create, update & delete) are applicable to all the observability resources present in root module. For example, say we configure create timeout as 90 mins then for all 3 resources (sysdig, logdna and activity tracker) create time out will be 90 mins for each.
+Same set of timeout values (create, update & delete) are applicable to all the observability resources present in root module. For example, say we configure create timeout as 90 mins then for sysdig, logdna and activity tracker create time out will be 90 mins for each.
 
-## Note
+We can set the create, update and delete timeouts as string. For e.g say we want to set 15 minutes timeout then the value should be "15m".
+
+
+## NOTE
 
 Functionality of adding a key to any observability instance (logdna, sysdig and activity tracker) is by default `false`, i.e, by default module will not attach a key to respective instance. To enable this functionality, configure the following arguments
 
 ```
 To enable key attach on activity tracker
 
-at_bind_key              : configure it to true
+at_bind_key              : configure it to true (deafult false)
 
-at_resource_key_name     : configure the name of the key
+at_resource_key_name     : configure the name of the key by (deafult empty)
 
-at_role                  : configure the user role
+at_role                  : configure the user role (deafult empty)
 ```
 ```
 To enable key attach on logdna
 
-logdna_bind_key          : configure it to true
+logdna_bind_key          : configure it to true (deafult false)
 
-logdna_resource_key_name : configure the name of the key
+logdna_resource_key_name : configure the name of the key (deafult empty)
 
-logdna_role              : configure the user role
+logdna_role              : configure the user role (deafult empty)
 
 ```
 ```
 To enable key attach on sysdig monitoring
 
-sysdig_bind_key          : configure it to true
+sysdig_bind_key          : configure it to true (deafult false)
 
-sysdig_resource_key_name : configure the name of the key
+sysdig_resource_key_name : configure the name of the key (deafult empty)
 
-sysdig_role              : configure the user role
+sysdig_role              : configure the user role (deafult empty)
 
 ```
-
-All optional parameters, by default, will be set to `null` in respective example's varaible.tf file. You can also override these optional parameters.
-
