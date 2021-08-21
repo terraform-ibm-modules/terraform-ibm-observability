@@ -3,9 +3,21 @@
 # Copyright 2020 IBM
 #####################################################
 
-variable "service_name" {
+variable "provision" {
+  type        = bool
+  description = "Disable this to read the existing activity trcaker instance"
+  default     = true
+}
+
+variable "is_ats_instance" {
+  type        = bool
+  description = "Set this to provison ATS instance"
+  default     = true
+}
+
+variable "name" {
   type        = string
-  description = "The name for the service"
+  description = "Enter The name of the activity tracker ATS instance"
 }
 
 variable "plan" {
@@ -16,12 +28,6 @@ variable "plan" {
 variable "region" {
   type        = string
   description = "Geographic location of the resource (e.g. us-south, us-east)"
-}
-
-variable "provision" {
-  type        = bool
-  description = "Disable this to read the existing activity trcaker instance"
-  default     = true
 }
 
 variable "resource_group_id" {
@@ -47,10 +53,28 @@ variable "delete_timeout" {
   default     = null
 }
 
-variable "parameters" {
-  type        = map(string)
-  description = "Arbitrary parameters to pass"
+variable "service_supertenant" {
+  type        = string
+  description = "Name of your supertenant service"
   default     = null
+}
+
+variable "associated_logging_crn" {
+  type        = string
+  description = "CRN associated logging logdna"
+  default     = null
+}
+
+variable "provision_key" {
+  type        = string
+  description = "Provision key"
+  default     = null
+}
+
+variable "make_default_receiver" {
+  type        = bool
+  description = "Enable this to make this instance as default receiver"
+  default     = true
 }
 
 variable "tags" {
@@ -65,21 +89,20 @@ variable "bind_key" {
   default     = false
 }
 
-variable "resource_key_name" {
+variable "key_name" {
   description = "Name of the instance key"
   type        = string
   default     = ""
 }
 
-variable "role" {
-  description = "role type (Writer, Reader, Manager, Administrator, Operator, Viewer, and Editor)"
-  type        = string
-  default     = ""
-}
-
-variable "resource_key_tags" {
+variable "key_tags" {
   type        = list(string)
   description = "Tags that should be applied to the service"
   default     = null
 }
+
+
+
+
+
 

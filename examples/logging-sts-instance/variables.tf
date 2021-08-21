@@ -1,18 +1,24 @@
 #####################################################
-# Sysdig monitor Key Instance
+# Set up a Logging Super Tenant Sender (STS) instance
 # Copyright 2020 IBM
 #####################################################
 
 variable "provision" {
   type        = bool
-  description = "Disable this to read the existing activity trcaker instance"
+  description = "Disable this to read the existing logging sts instance"
   default     = true
 }
 
 variable "bind_key" {
-  description = "Enable this to bind key to instance (true/false)"
+  description = "Flag indicating that key should be bind to logdna hippa instance"
   type        = bool
   default     = false
+}
+
+variable "is_sts_instance" {
+  description = "Set this to provision (STS) logging instance"
+  type        = bool
+  default     = true
 }
 
 variable "name" {
@@ -21,8 +27,33 @@ variable "name" {
 }
 
 variable "plan" {
-  description = "plan type"
+  description = "plan type (14-day, 30-day, 7-day, hipaa-30-day and lite)"
   type        = string
+  default = "7-day"
+}
+
+variable "service_supertenant" {
+  type        = string
+  description = "Name of your supertenant service"
+  default     = "" //provide valid value here
+}
+
+variable "provision_key" {
+  type        = string
+  description = "Provision key"
+  default     = "" //provide valid value here
+}
+
+variable "enable_platform_logs" {
+  type        = bool
+  description = "Receive platform logs in LogDNA"
+  default     = true
+}
+
+variable "region" {
+  description = "Provisioning Region"
+  type        = string
+  default = "us-south"
 }
 
 variable "create_timeout" {
@@ -43,17 +74,6 @@ variable "delete_timeout" {
   default     = null
 }
 
-variable "enable_platform_metrics" {
-  type        = bool
-  description = "Receive platform metrics in Sysdig"
-  default     = true
-}
-
-variable "region" {
-  description = "Provisioning Region"
-  type        = string
-}
-
 variable "service_endpoints" {
   description = "Types of the service endpoints. Possible values are 'public', 'private', 'public-and-private'."
   type        = string
@@ -66,32 +86,22 @@ variable "tags" {
   default     = null
 }
 
+variable "key_tags" {
+  type        = list(string)
+  description = "Tags that should be applied to the key"
+  default     = null
+}
+
 variable "key_name" {
   description = "Name of the instance key"
   type        = string
-}
-
-variable "resource_group_id" {
-  description = "ID of the resource group"
-  type        = string
-}
-
-<<<<<<< HEAD
-variable "role" {
-<<<<<<< HEAD
-  description = "plan type"
-=======
-  description = "role type"
->>>>>>> Ob root module (#10)
-  type        = string
-}
-
-variable "resource_key_tags" {
-=======
-variable "key_tags" {
->>>>>>> Observability: Root module implementation
-  type        = list(string)
-  description = "Tags that should be applied to the service"
   default     = null
 }
+
+variable "resource_group" {
+  type        = string
+  description = "Name of the resource group"
+}
+
+
 

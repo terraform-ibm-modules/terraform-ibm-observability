@@ -1,5 +1,5 @@
 #####################################################
-# Sysdig monitor Key Instance
+# Logging-logdna  Instance
 # Copyright 2020 IBM
 #####################################################
 
@@ -9,8 +9,8 @@ variable "provision" {
   default     = true
 }
 
-variable "bind_key" {
-  description = "Enable this to bind key to instance (true/false)"
+variable "is_sts_instance" {
+  description = "Set this to provision (STS) logging instance"
   type        = bool
   default     = false
 }
@@ -20,9 +20,28 @@ variable "name" {
   type        = string
 }
 
+variable "enable_platform_logs" {
+  type        = bool
+  description = "Receive platform logs in LogDNA"
+  default     = true
+}
+
+
 variable "plan" {
   description = "plan type"
   type        = string
+}
+
+variable "service_supertenant" {
+  type        = string
+  description = "Name of your supertenant service"
+  default     = null
+}
+
+variable "provision_key" {
+  type        = string
+  description = "Provision key"
+  default     = null
 }
 
 variable "create_timeout" {
@@ -43,12 +62,6 @@ variable "delete_timeout" {
   default     = null
 }
 
-variable "enable_platform_metrics" {
-  type        = bool
-  description = "Receive platform metrics in Sysdig"
-  default     = true
-}
-
 variable "region" {
   description = "Provisioning Region"
   type        = string
@@ -66,9 +79,41 @@ variable "tags" {
   default     = null
 }
 
+variable "bind_key" {
+  description = "Enable this to bind key to instance (true/false)"
+  type        = bool
+  default     = false
+}
+
+
 variable "key_name" {
   description = "Name of the instance key"
   type        = string
+<<<<<<< HEAD
+}
+
+variable "role" {
+  description = "plan type"
+  type        = string
+=======
+  default     = ""
+}
+
+<<<<<<< HEAD:modules/logging-logdna/variables.tf
+variable "role" {
+  description = "role type"
+  type        = string
+  default     = ""
+>>>>>>> Ob root module (#10)
+}
+
+variable "resource_key_tags" {
+=======
+variable "key_tags" {
+>>>>>>> Observability: Root module implementation:modules/logging-instance/variables.tf
+  type        = list(string)
+  description = "Tags that should be applied to the service"
+  default     = null
 }
 
 variable "resource_group_id" {
@@ -76,22 +121,5 @@ variable "resource_group_id" {
   type        = string
 }
 
-<<<<<<< HEAD
-variable "role" {
-<<<<<<< HEAD
-  description = "plan type"
-=======
-  description = "role type"
->>>>>>> Ob root module (#10)
-  type        = string
-}
 
-variable "resource_key_tags" {
-=======
-variable "key_tags" {
->>>>>>> Observability: Root module implementation
-  type        = list(string)
-  description = "Tags that should be applied to the service"
-  default     = null
-}
 

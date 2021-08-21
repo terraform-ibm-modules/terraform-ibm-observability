@@ -12,7 +12,7 @@ data "ibm_resource_instance" "sysdig" {
   count = var.provision ? 0 : 1
 >>>>>>> Ob root module (#10)
 
-  name              = var.service_name
+  name              = var.name
   location          = var.region
   resource_group_id = var.resource_group_id
   service           = "sysdig-monitor"
@@ -24,15 +24,21 @@ resource "ibm_resource_instance" "sysdig_instance" {
 =======
   count = var.provision ? 1 : 0
 
+<<<<<<< HEAD
 >>>>>>> Ob root module (#10)
   name              = var.service_name
+=======
+  name              = var.name
+>>>>>>> Observability: Root module implementation
   service           = "sysdig-monitor"
   plan              = var.plan
   location          = var.region
   resource_group_id = var.resource_group_id
   tags              = (var.tags != null ? var.tags : [])
   service_endpoints = (var.service_endpoints != "" ? var.service_endpoints : null)
-  parameters        = (var.parameters != null ? var.parameters : null)
+  parameters = {
+    "default_receiver" = var.enable_platform_metrics
+  }
 
   timeouts {
     create = (var.create_timeout != null ? var.create_timeout : null)
@@ -49,10 +55,14 @@ resource "ibm_resource_key" "sysdigKey" {
   resource_instance_id = ibm_resource_instance.sysdig_instance.id
 =======
   count                = var.bind_key ? 1 : 0
-  name                 = var.resource_key_name
-  role                 = var.role
+  name                 = var.key_name
+  role                 = "Manager"
   resource_instance_id = var.provision ? ibm_resource_instance.sysdig_instance[0].id : data.ibm_resource_instance.sysdig[0].id
+<<<<<<< HEAD
 >>>>>>> Ob root module (#10)
   tags                 = (var.resource_key_tags != null ? var.resource_key_tags : [])
+=======
+  tags                 = (var.key_tags != null ? var.key_tags : [])
+>>>>>>> Observability: Root module implementation
 }
 

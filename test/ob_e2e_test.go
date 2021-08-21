@@ -21,7 +21,11 @@ func TestAccIBMObComplete(t *testing.T) {
 			"logging_name":          "logging",
 			"activity_tracker_name": "at",
 			"monitoring_name":       "sysdig",
+<<<<<<< HEAD
 			"resource_group":        "default",
+=======
+			"resource_group":        "Default",
+>>>>>>> Observability: Root module implementation
 		},
 	})
 
