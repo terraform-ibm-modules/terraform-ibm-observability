@@ -1,6 +1,6 @@
 # Module logging-logdna
 
-This module is used to create both logging-logdna instance and logging STS instance on IBM Cloud.
+This module is used to create a logging-logdna service on IBM Cloud.
 
 ## Example Usage
 ```
@@ -11,19 +11,21 @@ data "ibm_resource_group" "logdna" {
   name = var.resource_group
 }
 
-module "logging_sts_instance" {
+module "logging_instance" {
+  //Uncomment the following line to point the source to registry level
+  //source = "terraform-ibm-modules/observability/ibm//modules/logging-logdna"
 
   source            = "./../../modules/logging-instance"
   provision         = var.provision
-  is_sts_instance   = true
+  is_sts_instance   = false
   bind_key          = var.bind_key
   name              = var.name
   resource_group_id = data.ibm_resource_group.logdna.id
   plan              = var.plan
   region            = var.region
   service_endpoints = var.service_endpoints
-  service_supertenant    = var.service_supertenant
-  provision_key          = var.provision_key
+  service_supertenant    = ""
+  provision_key          = ""
   enable_platform_logs = var.enable_platform_logs
   tags              = var.tags
   create_timeout    = var.create_timeout
@@ -36,6 +38,7 @@ module "logging_sts_instance" {
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Inputs
+
 
 | Name               | Description                                                      | Type         | Default | Required |
 |--------------------|------------------------------------------------------------------|:-------------|:------- |:---------|
@@ -83,5 +86,4 @@ To create an infrastructure run the following command
 Similarly to remove an infrastructure run the following command
 
    `terraform destroy -var-file="input.tfvars"`
-
-
+>>>>>>> Observability: Root module implementation:examples/logging-str-instance/README.md

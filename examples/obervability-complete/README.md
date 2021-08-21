@@ -1,7 +1,6 @@
 # Module - Support for Observability Service.
 
-
-This module is used to provision following observability instances
+This template is used to provision following observability instances
 
 * Activity Tracker Super Tenant Receiver (ATR)
 * Activity Tracker Super Tenant Sender (ATS)
@@ -47,7 +46,7 @@ This module is used to provision following observability instances
 ```
   str_provision = true
 ```
-## Provision Logging STS instance
+## Provison Logging STS instance
 ```
   sts_provision           = true
   sts_service_supertenant = <sts_service_supertenant>

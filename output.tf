@@ -3,86 +3,137 @@
 # activity tracker
 ######################################################
 
-output "at_id" {
+output "atr_id" {
   description = "Activity tracker id"
-  value       = concat(ibm_resource_instance.at_instance.*.id, [""])[0]
+  value       = concat(module.activity-tracker-atr-instance.*.id, [""])[0]
 }
 
-output "at_guid" {
+output "ats_id" {
+  description = "Activity tracker id"
+  value       = concat(module.activity-tracker-ats-instance.*.id, [""])[0]
+}
+
+output "atr_guid" {
   description = "The GUID of the activity tracker"
-  value       = concat(ibm_resource_instance.at_instance.*.guid, [""])[0]
+  value       = concat(module.activity-tracker-atr-instance.*.guid, [""])[0]
 }
 
-output "at_key_id" {
+output "ats_guid" {
+  description = "The GUID of the activity tracker"
+  value       = concat(module.activity-tracker-ats-instance.*.guid, [""])[0]
+}
+
+
+output "atr_key_id" {
   description = "Activity tracker key id"
-  value       = concat(ibm_resource_key.activity_tracker_key.*.id, [""])[0]
+  value       = concat(module.activity-tracker-atr-instance.*.key_id, [""])[0]
 }
 
-output "at_key_guid" {
+output "ats_key_id" {
+  description = "Activity tracker key id"
+  value       = concat(module.activity-tracker-ats-instance.*.key_id, [""])[0]
+}
+
+output "atr_key_guid" {
   description = "Activity tracker key guid"
-  value       = concat(ibm_resource_key.activity_tracker_key.*.guid, [""])[0]
+  value       = concat(module.activity-tracker-atr-instance.*.key_guid, [""])[0]
 }
 
-output "at_key_credentials" {
+output "ats_key_guid" {
+  description = "Activity tracker key guid"
+  value       = concat(module.activity-tracker-ats-instance.*.key_guid, [""])[0]
+}
+
+output "atr_key_credentials" {
   description = "Activity tracker key credentials"
-  value       = concat(ibm_resource_key.activity_tracker_key.*.credentials, [""])[0]
+  value       = concat(module.activity-tracker-atr-instance.*.key_credentials, [""])[0]
+}
+
+output "ats_key_credentials" {
+  description = "Activity tracker key credentials"
+  value       = concat(module.activity-tracker-ats-instance.*.key_credentials, [""])[0]
 }
 
 
 ######################################################
-# Logdna
+# Logging
 ######################################################
 
-output "logdna_id" {
+output "str_logdna_id" {
   description = "logdna id"
-  value       = concat(ibm_resource_instance.logdna_instance.*.id, [""])[0]
+  value       = concat(module.logging_str_instance.*.id, [""])[0]
 }
 
-output "logdna_guid" {
+output "sts_logdna_id" {
+  description = "logdna id"
+  value       = concat(module.logging_sts_instance.*.id, [""])[0]
+}
+
+output "str_logdna_guid" {
   description = "The GUID of the logdna"
-  value       = concat(ibm_resource_instance.logdna_instance.*.guid, [""])[0]
+  value       = concat(module.logging_str_instance.*.guid, [""])[0]
 }
 
-output "logdna_key_id" {
+output "sts_logdna_guid" {
+  description = "The GUID of the logdna"
+  value       = concat(module.logging_sts_instance.*.guid, [""])[0]
+}
+
+output "str_logdna_key_id" {
   description = "logdna key id"
-  value       = concat(ibm_resource_key.logdnaKey.*.id, [""])[0]
+  value       = concat(module.logging_str_instance.*.key_id, [""])[0]
 }
 
-output "logdna_key_guid" {
+output "sts_logdna_key_id" {
+  description = "logdna key id"
+  value       = concat(module.logging_sts_instance.*.key_id, [""])[0]
+}
+
+output "str_logdna_key_guid" {
   description = "logdna key guid"
-  value       = concat(ibm_resource_key.logdnaKey.*.guid, [""])[0]
+  value       = concat(module.logging_str_instance.*.key_guid, [""])[0]
 }
 
-output "logdna_key_credentials" {
+output "sts_logdna_key_guid" {
+  description = "logdna key guid"
+  value       = concat(module.logging_sts_instance.*.key_guid, [""])[0]
+}
+
+output "str_logdna_key_credentials" {
   description = "logdna key credentials"
-  value       = concat(ibm_resource_key.logdnaKey.*.credentials, [""])[0]
+  value       = concat(module.logging_str_instance.*.key_credentials, [""])[0]
+}
+
+output "sts_logdna_key_credentials" {
+  description = "logdna key credentials"
+  value       = concat(module.logging_sts_instance.*.key_credentials, [""])[0]
 }
 
 ######################################################
-# sysdig monitoring
+#  monitoring
 ######################################################
 
-output "sysdig_id" {
-  description = "sysdig id"
-  value       = concat(ibm_resource_instance.sysdig_instance.*.id, [""])[0]
+output "monitoring_id" {
+  description = "monitoring id"
+  value       = concat(module.monitoring_instance.*.id, [""])[0]
 }
 
-output "sysdig_guid" {
-  description = "The GUID of the sysdig"
-  value       = concat(ibm_resource_instance.sysdig_instance.*.guid, [""])[0]
+output "monitoring_guid" {
+  description = "The GUID of the monitoring"
+  value       = concat(module.monitoring_instance.*.guid, [""])[0]
 }
 
-output "sysdig_key_id" {
-  description = "sysdig key id"
-  value       = concat(ibm_resource_key.sysdigKey.*.id, [""])[0]
+output "monitoring_key_id" {
+  description = "monitoring key id"
+  value       = concat(module.monitoring_instance.*.key_id, [""])[0]
 }
 
-output "sysdig_key_guid" {
-  description = "sysdig key guid"
-  value       = concat(ibm_resource_key.sysdigKey.*.guid, [""])[0]
+output "monitoring_key_guid" {
+  description = "monitoring key guid"
+  value       = concat(module.monitoring_instance.*.key_guid, [""])[0]
 }
 
-output "sysdig_key_credentials" {
-  description = "sysdig key credentials"
-  value       = concat(ibm_resource_key.sysdigKey.*.credentials, [""])[0]
+output "monitoring_key_credentials" {
+  description = "monitoring key credentials"
+  value       = concat(module.monitoring_instance.*.key_credentials, [""])[0]
 }

@@ -3,36 +3,39 @@
 # Copyright 2020 IBM
 #####################################################
 
-variable "provision" {
-  type        = bool
-  description = "Disable this to read the existing activity trcaker instance"
-  default     = true
-}
-
-variable "is_ats_instance" {
-  type        = bool
-  description = "Set this to provison ATS instance"
-  default     = true
-}
-
 variable "name" {
   type        = string
-  description = "Enter The name of the activity tracker ATS instance"
+  description = "Enter The name for the service"
 }
 
 variable "plan" {
   type        = string
   description = "The type of plan the service instance should run under (lite, 7-day, 14-day, or 30-day)"
+  default     = "7-day"
+}
+
+variable "make_default_receiver" {
+  type        = bool
+  description = "Enable this to make this instance as default receiver"
+  default     = true
+}
+
+
+variable "provision" {
+  type        = bool
+  description = "Disable this to read the existing activity tracker instance"
+  default     = true
 }
 
 variable "region" {
   type        = string
   description = "Geographic location of the resource (e.g. us-south, us-east)"
+  default     = "us-south"
 }
 
-variable "resource_group_id" {
+variable "resource_group" {
   type        = string
-  description = "ID of the Resource group where the cluster has been provisioned."
+  description = "Enter the name of the Resource group ."
 }
 
 variable "create_timeout" {
@@ -53,30 +56,6 @@ variable "delete_timeout" {
   default     = null
 }
 
-variable "service_supertenant" {
-  type        = string
-  description = "Name of your supertenant service"
-  default     = null
-}
-
-variable "associated_logging_crn" {
-  type        = string
-  description = "CRN associated logging logdna"
-  default     = null
-}
-
-variable "provision_key" {
-  type        = string
-  description = "Provision key"
-  default     = null
-}
-
-variable "make_default_receiver" {
-  type        = bool
-  description = "Enable this to make this instance as default receiver"
-  default     = true
-}
-
 variable "tags" {
   type        = list(string)
   description = "Tags that should be applied to the service"
@@ -92,17 +71,11 @@ variable "bind_key" {
 variable "key_name" {
   description = "Name of the instance key"
   type        = string
-  default     = ""
+  default     = null
 }
 
 variable "key_tags" {
   type        = list(string)
-  description = "Tags that should be applied to the service"
+  description = "Tags that should be applied to the key"
   default     = null
 }
-
-
-
-
-
-

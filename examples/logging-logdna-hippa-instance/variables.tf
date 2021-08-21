@@ -3,7 +3,6 @@
 # Copyright 2020 IBM
 #####################################################
 
-
 variable "provision" {
   type        = bool
   description = "Disable this to read the existing activity tracker instance"
@@ -42,7 +41,7 @@ variable "enable_platform_logs" {
 variable "region" {
   description = "Provisioning Region"
   type        = string
-  default = "us-south"
+  default     = "us-south"
 }
 
 variable "create_timeout" {

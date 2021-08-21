@@ -46,13 +46,6 @@ module "activity-tracker_instance" {
 
 ## Outputs
 
-<<<<<<< HEAD
-| Name            | Description                                                      | Type         |
-|-----------------|------------------------------------------------------------------|:-------------|
-| tracker_id      | ID of the activity tracker provisioned                           | string       |
-| tracker_guid    | GUID of the activity tracker                                     | string       |
-
-=======
 | Name            | Description                            |
 |-----------------|----------------------------------------|
 | id              | ID of the activity tracker instance    |
@@ -60,5 +53,4 @@ module "activity-tracker_instance" {
 | key_id          | ID of the activity tracker instance key|
 | key_guid        | ID of the activity tracker instance key|
 | key_credentials | ID of the activity tracker instance key|
->>>>>>> Ob root module (#10)
 
