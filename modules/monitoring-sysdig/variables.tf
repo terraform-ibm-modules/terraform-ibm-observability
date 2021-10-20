@@ -3,13 +3,19 @@
 # Copyright 2020 IBM
 #####################################################
 
-variable "bind_resource_key" {
-  description = "Enable this to bind key to logdna instance (true/false)"
+variable "provision" {
+  type        = bool
+  description = "Disable this to read the existing activity trcaker instance"
+  default     = true
+}
+
+variable "bind_key" {
+  description = "Enable this to bind key to instance (true/false)"
   type        = bool
   default     = false
 }
 
-variable "service_name" {
+variable "name" {
   description = "Name of the instance"
   type        = string
 }
@@ -37,10 +43,10 @@ variable "delete_timeout" {
   default     = null
 }
 
-variable "parameters" {
-  type        = map(string)
-  description = "Arbitrary parameters to pass"
-  default     = null
+variable "enable_platform_metrics" {
+  type        = bool
+  description = "Receive platform metrics in Sysdig"
+  default     = true
 }
 
 variable "region" {
@@ -60,7 +66,7 @@ variable "tags" {
   default     = null
 }
 
-variable "resource_key_name" {
+variable "key_name" {
   description = "Name of the instance key"
   type        = string
 }
@@ -70,12 +76,7 @@ variable "resource_group_id" {
   type        = string
 }
 
-variable "role" {
-  description = "plan type"
-  type        = string
-}
-
-variable "resource_key_tags" {
+variable "key_tags" {
   type        = list(string)
   description = "Tags that should be applied to the service"
   default     = null

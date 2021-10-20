@@ -1,5 +1,5 @@
 #####################################################
-# activity tracker as a service
+# logdna resource Key attach
 # Copyright 2020 IBM
 #####################################################
 
@@ -14,12 +14,8 @@ terraform {
       version = "1.20.0"
     }
   }
-
-
 }
-
 If we dont configure the version parameter, it fetched latest provider version.
-
 ****************************************************/
 
 terraform {

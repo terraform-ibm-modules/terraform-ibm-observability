@@ -1,5 +1,5 @@
 #####################################################
-# logdna HIPPA instance provision
+# logdna resource Key attach
 # Copyright 2020 IBM
 #####################################################
 
@@ -18,7 +18,7 @@ module "logging_instance" {
   bind_key             = var.bind_key
   name                 = var.name
   resource_group_id    = data.ibm_resource_group.logdna.id
-  plan                 = "hipaa-30-day"
+  plan                 = var.plan
   region               = var.region
   service_endpoints    = var.service_endpoints
   enable_platform_logs = var.enable_platform_logs

@@ -1,5 +1,5 @@
 #####################################################
-# activity tracker as a service
+# Activity Tracker as a service
 # Copyright 2020 IBM
 #####################################################
 
@@ -14,12 +14,8 @@ terraform {
       version = "1.20.0"
     }
   }
-
-
 }
-
 If we dont configure the version parameter, it fetched latest provider version.
-
 ****************************************************/
 
 terraform {
