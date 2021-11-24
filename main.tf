@@ -4,7 +4,7 @@
 
 module "logging_str_instance" {
   //Uncomment the following line to point the source to registry level
-  //source = "terraform-ibm-modules/observability/ibm//modules/logging-sts-instance"
+  //source  = "terraform-ibm-modules/observability/ibm//modules/logging-instance"
 
   count  = var.str_provision ? 1 : 0
   source = "./modules/logging-instance"
@@ -32,7 +32,7 @@ module "logging_str_instance" {
 
 module "logging_sts_instance" {
   //Uncomment the following line to point the source to registry level
-  //source = "terraform-ibm-modules/observability/ibm//modules/logging-sts-instance"
+  //source  = "terraform-ibm-modules/observability/ibm//modules/logging-instance"
 
   count     = (var.sts_provision || (var.ats_provision && var.use_existing_sts_crn == false)) ? 1 : 0
   source    = "./modules/logging-instance"
@@ -64,7 +64,7 @@ module "logging_sts_instance" {
 
 module "activity-tracker-atr-instance" {
   //Uncomment the following line to point the source to registry level
-  //source = "terraform-ibm-modules/observability/ibm//modules/activity-tracker-logdna"
+  //source  = "terraform-ibm-modules/observability/ibm//modules/activity-tracker-instance"
 
   count = var.atr_provision ? 1 : 0
 
@@ -91,7 +91,7 @@ module "activity-tracker-atr-instance" {
 
 module "activity-tracker-ats-instance" {
   //Uncomment the following line to point the source to registry level
-  //source = "terraform-ibm-modules/observability/ibm//modules/activity-tracker-logdna"
+  //source  = "terraform-ibm-modules/observability/ibm//modules/activity-tracker-instance"
 
   count = var.ats_provision ? 1 : 0
 
