@@ -1,4 +1,10 @@
-# Module - Support for Observability Service.
+# Module Support for Observability Service.
+
+Observability services - gives you the visibility into the performance and health of your resources on IBM Cloud.  You can use these services to troubleshoot your apps and services, identify threats, detect performance issues, trigger alerts and more.  IBM Cloud offers the following observabilty services, to solve you logging and monitoring needs:
+
+* _IBM Cloud Activity Tracker_ - to gain insights on actions that change the state of a service in the IBM Cloud.
+* _IBM Log Analysis_ - to gain insights into your system and application logs.
+* _IBM Cloud Monitoring_ - to monitor the health of services and applications in IBM Cloud.
 
 This module is used to provision following observability instances
 
@@ -16,7 +22,11 @@ This module is used to provision following observability instances
 | ATR             | Activity Tracker Super Tenant Receiver  |
 | STS             | Logging Super Tenant Sender             |
 | STR             | Logging Super Tenant Receiver           |
-| OB              | Observability                           |
+| OB              | Observability
+
+
+The following diagram illustrates the deployment architecture used by this automation.
+![Observability design](diagrams/observability.png)                          |
 
 ## Provision activity tracker ATR instance
 
