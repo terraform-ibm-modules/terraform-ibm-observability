@@ -1,11 +1,11 @@
 #####################################################
-# Logging-logdna  Instance
+# Set up a Logging Super Tenant Sender (STS) instance
 # Copyright 2020 IBM
 #####################################################
 
 variable "provision" {
   type        = bool
-  description = "Disable this to read the existing activity tracker instance"
+  description = "Disable this to read the existing logging sts instance"
   default     = true
 }
 
@@ -18,7 +18,7 @@ variable "bind_key" {
 variable "is_sts_instance" {
   description = "Set this to provision (STS) logging instance"
   type        = bool
-  default     = false
+  default     = true
 }
 
 variable "name" {
@@ -29,7 +29,19 @@ variable "name" {
 variable "plan" {
   description = "plan type (14-day, 30-day, 7-day, hipaa-30-day and lite)"
   type        = string
-  default     = "hipaa-30-day"
+  default     = "7-day"
+}
+
+variable "service_supertenant" {
+  type        = string
+  description = "Name of your supertenant service"
+  default     = "" //provide valid value here
+}
+
+variable "provision_key" {
+  type        = string
+  description = "Provision key"
+  default     = "" //provide valid value here
 }
 
 variable "enable_platform_logs" {

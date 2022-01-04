@@ -1,12 +1,6 @@
-# Module Support for Observability Service.
+# Module - Support for Observability Service.
 
-Observability services - gives you the visibility into the performance and health of your resources on IBM Cloud.  You can use these services to troubleshoot your apps and services, identify threats, detect performance issues, trigger alerts and more.  IBM Cloud offers the following observabilty services, to solve you logging and monitoring needs:
-
-* _IBM Cloud Activity Tracker_ - to gain insights on actions that change the state of a service in the IBM Cloud.
-* _IBM Log Analysis_ - to gain insights into your system and application logs.
-* _IBM Cloud Monitoring_ - to monitor the health of services and applications in IBM Cloud.
-
-This module is used to provision following observability instances
+This template is used to provision following observability instances
 
 * Activity Tracker Super Tenant Receiver (ATR)
 * Activity Tracker Super Tenant Sender (ATS)
@@ -22,11 +16,7 @@ This module is used to provision following observability instances
 | ATR             | Activity Tracker Super Tenant Receiver  |
 | STS             | Logging Super Tenant Sender             |
 | STR             | Logging Super Tenant Receiver           |
-| OB              | Observability
-
-
-The following diagram illustrates the deployment architecture used by this automation.
-![Observability design](diagrams/observability.png)                          |
+| OB              | Observability                           |
 
 ## Provision activity tracker ATR instance
 
@@ -56,7 +46,7 @@ The following diagram illustrates the deployment architecture used by this autom
 ```
   str_provision = true
 ```
-## Provision Logging STS instance
+## Provison Logging STS instance
 ```
   sts_provision           = true
   sts_service_supertenant = <sts_service_supertenant>
@@ -78,9 +68,6 @@ To provision monitoring instance
 # Copyright 2020 IBM
 #####################################################
 
-
-
-```hcl
 provider "ibm" {
 }
 
@@ -200,7 +187,7 @@ module "observability" {
 | activity_tracker_name     | Used as prefix to observability instances                        | string       | n/a     | yes      |
 | ats_plan                  | Plan type                                                        | string       | n/a     | yes      |
 | ats_region                | Location to create the activity tracker instance.                | string       | n/a     | yes      |
-| resource_group_id            | ID of the resource group                                       | string       | n/a     | yes      |
+| resource_group            | Name of the resource group                                       | string       | n/a     | yes      |
 | ats_bind_key              | Indicating that instance key should be bind to activity tracker  | bool         | false   | no       |
 |ats_key_name               | Name used to identify activity tracker resource key              | string       | empty   | no       |
 | ats_tags                  | Tags that should be applied to the activity tracker              | list(string) | n/a     | no       |
@@ -264,32 +251,6 @@ To create an infrastructure run the following command
 Similarly to remove an infrastructure run the following command
 
    `terraform destroy -var-file="input.tfvars"`
-
-### Detect Secret hook
-
-Used to detect secrets within a code base.
-
-To create a secret baseline file run following command
-
-```
-detect-secrets scan --update .secrets.baseline
-```
-
-While running the pre-commit hook, if you encounter an error like
-
-```
-WARNING: You are running an outdated version of detect-secrets.
-Your version: 0.13.1+ibm.27.dss
-Latest version: 0.13.1+ibm.46.dss
-See upgrade guide at https://ibm.biz/detect-secrets-how-to-upgrade
-```
-
-run below command
-
-```
-pre-commit autoupdate
-```
-which upgrades all the pre-commit hooks present in .pre-commit.yaml file.
 
 ## Timeout block
 
