@@ -16,8 +16,8 @@ module "logging_instance" {
   //source = "terraform-ibm-modules/observability/ibm//modules/logging-logdna"
 
   source            = "./../../modules/logging-instance"
-  provision         = var.provision
-  is_sts_instance   = false
+  is_provision_logging         = var.is_provision_logging
+  is_supertenant_logging   = false
   bind_key          = var.bind_key
   name              = var.name
   resource_group_id = data.ibm_resource_group.logdna.id
@@ -42,8 +42,10 @@ module "logging_instance" {
 
 | Name                 | Description                                                      | Type         | Default | Required |
 |----------------------|------------------------------------------------------------------|:-------------|:------- |:---------|
+| is_provision_logging | Disable this to read the existing logging instance               | bool         | true    | no       |
+| is_supertenant_logging | Set this to provision (STS) logging instance                   | bool         | false   | no       |
 | name                 | A descriptive name used to identify the resource instance        | string       | n/a     | yes      |
-| bind_key             | Indicating that instance key should be bind to logging instance  | bool         | n/a     | no       |
+| is_bind_key          | Indicating that instance key should be bind to logging instance  | bool         | n/a     | no      |
 | key_name             | A descriptive name used to identify the resource key             | string       | n/a     | yes      |
 | plan                 | The name of the plan type supported by service.                  | string       | n/a     | yes      |
 | region               | Target location or environment to create the resource instance.  | string       | n/a     | yes      |

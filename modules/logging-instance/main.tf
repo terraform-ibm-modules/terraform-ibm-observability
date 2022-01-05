@@ -6,29 +6,29 @@
 locals {
 
   //logging sts instance validation - 'service_supertenant' and 'provision_key' variables must be passed when 'provision = true'
-  logging_sts_validate_condition = (var.is_sts_instance == true && (var.service_supertenant == null || var.provision_key == null))
-  logging_sts_validate_msg       = "Values for 'service_supertenant' and 'provision_key' variables must be passed when 'is_sts_instance = true'"
+  logging_sts_validate_condition = (var.is_supertenant_logging == true && (var.service_supertenant == null || var.provision_key == null))
+  logging_sts_validate_msg       = "Values for 'service_supertenant' and 'provision_key' variables must be passed when 'is_supertenant_logging = true'"
   logging_sts_validate_check     = regex("^${local.logging_sts_validate_msg}$", (! local.logging_sts_validate_condition ? local.logging_sts_validate_msg : ""))
 
   //bind key validation - 'key_name' variable must be passed when 'bind_key = true
-  bindkey_validate_condition = var.bind_key == true && (var.key_name == null)
+  bindkey_validate_condition = var.is_bind_key == true && (var.key_name == null)
   bindkey_validate_msg       = "Value for 'key_name' variable must be passed when 'bind_key = true'"
   bindkey_validate_check     = regex("^${local.bindkey_validate_msg}$", (! local.bindkey_validate_condition ? local.bindkey_validate_msg : ""))
 
   //parameters for STS logging instance
-  sts_parameters = {
+  supertenant_logging_parameters = {
     "service_supertenant" = var.service_supertenant
     "provision_key"       = var.provision_key
   }
 
   //parameters for STR logging instance
-  str_parameters = {
+  logging_parameters = {
     "default_receiver" = var.enable_platform_logs
   }
 }
 
 data "ibm_resource_instance" "logging_instance" {
-  count = var.provision ? 0 : 1
+  count = var.is_provision_logging ? 0 : 1
 
   name              = var.name
   location          = var.region
@@ -37,7 +37,7 @@ data "ibm_resource_instance" "logging_instance" {
 }
 
 resource "ibm_resource_instance" "logging_instance" {
-  count = var.provision ? 1 : 0
+  count = var.is_provision_logging ? 1 : 0
 
   name              = var.name
   service           = "logdna"
@@ -45,8 +45,8 @@ resource "ibm_resource_instance" "logging_instance" {
   location          = var.region
   resource_group_id = var.resource_group_id
   tags              = (var.tags != null ? var.tags : null)
-  service_endpoints = (var.service_endpoints != null ? var.service_endpoints : null)
-  parameters        = var.is_sts_instance ? local.sts_parameters : local.str_parameters
+  service_endpoints = (var.visibility != null ? var.visibility : null)
+  parameters        = var.is_supertenant_logging ? local.supertenant_logging_parameters : local.logging_parameters
 
   timeouts {
     create = (var.create_timeout != null ? var.create_timeout : null)
@@ -61,9 +61,9 @@ resource "ibm_resource_instance" "logging_instance" {
 }
 
 resource "ibm_resource_key" "logging_key" {
-  count                = var.bind_key ? 1 : 0
+  count                = var.is_bind_key ? 1 : 0
   name                 = var.key_name
   role                 = "Manager"
-  resource_instance_id = var.provision ? ibm_resource_instance.logging_instance[0].id : data.ibm_resource_instance.logging_instance[0].id
+  resource_instance_id = var.is_provision_logging ? ibm_resource_instance.logging_instance[0].id : data.ibm_resource_instance.logging_instance[0].id
   tags                 = (var.key_tags != null ? var.key_tags : null)
 }

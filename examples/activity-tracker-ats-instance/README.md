@@ -52,7 +52,7 @@ data "ibm_resource_group" "res_group" {
 module "logging_sts_instance" {
   //Uncomment the following line to point the source to registry level
   //source = "terraform-ibm-modules/observability/ibm//modules/logging-logdna"
-  count             = (var.is_ats_instance && var.use_existing_sts_crn == false) ? 1 : 0
+  count             = (var.is_supertenant_activity_tracker && var.use_existing_sts_crn == false) ? 1 : 0
   source            = "./../../modules/logging-instance"
   provision         = var.sts_provision
   is_sts_instance   = true                //logging sts is required only if ATS instance is provisioned
@@ -81,7 +81,7 @@ module "activity_tracker_ats_instance" {
   //source = "terraform-ibm-modules/observability/ibm//modules/activity-tracker-logdna"
 
   source                 = "./../../modules/activity-tracker-instance"
-  provision              = var.ats_provision
+  provision              = var.is_supertenant_activity_tracker
   is_ats_instance        = var.is_ats_instance
   name                   = var.ats_name
   plan                   = var.ats_plan
@@ -106,7 +106,7 @@ module "activity_tracker_ats_instance" {
 
 | Name                      | Description                                                      | Type         | Default | Required |
 |---------------------------|------------------------------------------------------------------|:-------------|:------- |:---------|
-| is_ats_instance           | Set this to true to provision Activity tracker ATS instance      | bool         | false   | no       |
+| is_supertenant_activity_tracker  | Set this to true to provision Activity tracker ATS instance      | bool         | false   | no       |
 | use_existing_sts_crn      | Set this to true to use existing logging STS crn                 | string       | Empty   | no       |
 | ats_service_supertenant   | Name of service supertenant                                      | string       | Empty   | no       |
 | ats_provision_key         | Service provision key                                            | string       | Empty   | no       |

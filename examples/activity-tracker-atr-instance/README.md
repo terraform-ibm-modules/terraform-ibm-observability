@@ -48,6 +48,7 @@ module "activity_tracker_instance" {
 | Name                 | Description                                                      | Type         | Default | Required |
 |----------------------|------------------------------------------------------------------|:-------------|---------|----------|
 | name                 | Name of the service                                              | string       | n/a     | yes      |
+| is_provision_activity_tracker | Disable this to read the existing activity tracker instance | bool     | true    | no       |
 | plan                 | Type of plan the service instance should run under               | string       | n/a     | yes      |
 | region               | Location of the resource                                         | string       | n/a     | yes      |
 | tags                 | Tags that should be applied to the service                       | list(string) | n/a     | no       |
@@ -55,7 +56,7 @@ module "activity_tracker_instance" {
 | create_timeout       | Timeout duration for create                                      | string       | n/a     | no       |
 | update_timeout       | Timeout duration for update                                      | string       | n/a     | no       |
 | delete_timeout       | Timeout duration for delete                                      | string       | n/a     | no       |
-| bind_key             | Set this to attach key to instance                               | bool         | false   | no       |
+| is_bind_key          | Set this to attach key to instance                               | bool         | false   | no       |
 | key_name             | Name of the key                                                  | string       | n/a     | no       |
 | key_tags             | Tags that should be applied to the key                           | list(string) | n/a     | no       |
 

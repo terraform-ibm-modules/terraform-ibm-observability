@@ -14,7 +14,7 @@ func TestAccIBMObComplete(t *testing.T) {
 	// terraform testing.
 	terraformOptions := terraform.WithDefaultRetryableErrors(t, &terraform.Options{
 		// The path to where our Terraform code is located
-		TerraformDir: "../examples/obervability-complete",
+		TerraformDir: "../examples/observability-complete",
 
 		// Variables to pass to our Terraform code using -var options
 		Vars: map[string]interface{}{

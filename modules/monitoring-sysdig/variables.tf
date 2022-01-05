@@ -3,13 +3,13 @@
 # Copyright 2020 IBM
 #####################################################
 
-variable "provision" {
+variable "is_provision_monitoring" {
   type        = bool
   description = "Disable this to read the existing activity trcaker instance"
   default     = true
 }
 
-variable "bind_key" {
+variable "is_bind_key" {
   description = "Enable this to bind key to instance (true/false)"
   type        = bool
   default     = false
@@ -43,7 +43,7 @@ variable "delete_timeout" {
   default     = null
 }
 
-variable "enable_platform_metrics" {
+variable "is_enable_platform_metrics" {
   type        = bool
   description = "Receive platform metrics in Sysdig"
   default     = true
@@ -54,7 +54,7 @@ variable "region" {
   type        = string
 }
 
-variable "service_endpoints" {
+variable "visibility" {
   description = "Types of the service endpoints. Possible values are 'public', 'private', 'public-and-private'."
   type        = string
   default     = null

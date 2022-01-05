@@ -14,14 +14,13 @@ variable "plan" {
   default     = "7-day"
 }
 
-variable "make_default_receiver" {
+variable "is_activity_tracker_the_default_receiver" {
   type        = bool
-  description = "Enable this to make this instance as default receiver"
+  description = "Enable this to make this instance a sdefault receiver"
   default     = true
 }
 
-
-variable "provision" {
+variable "is_provision_activity_tracker" {
   type        = bool
   description = "Disable this to read the existing activity tracker instance"
   default     = true
@@ -62,7 +61,7 @@ variable "tags" {
   default     = null
 }
 
-variable "bind_key" {
+variable "is_bind_key" {
   description = "Enable this to bind key to instance (true/false)"
   type        = bool
   default     = false

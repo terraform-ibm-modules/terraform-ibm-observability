@@ -3,7 +3,7 @@
 # Copyright 2020 IBM
 #####################################################
 
-variable "ats_provision" {
+variable "is_provision_activity_tracker" {
   type        = bool
   description = "Disable this to read the existing activity tracker instance"
   default     = true
@@ -17,25 +17,19 @@ variable "ats_service_supertenant" {
   default     = "" //provide valid values here
 }
 
-variable "ats_provision_key" {
+variable "supertenant_activity_tracker_provision_key" {
   type        = string
   description = "ATS: activity_tracker Provision key"
   default     = "" //provide valid values here
 }
 
-variable "ats_associated_logging_crn" {
-  type        = string
-  description = "Logging: Enter the associated logging crn"
-  default     = "" //provide valid value here
-}
-
-variable "is_ats_instance" {
+variable "is_supertenant_activity_tracker" {
   type        = bool
   description = "Set this to provison ATS instance"
   default     = true
 }
 
-variable "use_existing_sts_crn" {
+variable "is_attach_existing_supertenant_logging_crn" {
   type        = bool
   description = "Enable this to attach existing logging STS instance to activity tracket ATS instance"
   default     = false
@@ -43,18 +37,18 @@ variable "use_existing_sts_crn" {
 
 ############# ATS specific parameters end ####################
 
-variable "ats_name" {
+variable "supertenant_activity_tracker_name" {
   type        = string
   description = "Enter The name of the activity tracker ATS instance"
 }
 
-variable "ats_plan" {
+variable "supertenant_activity_tracker_plan" {
   type        = string
   description = "The type of plan the service instance should run under (lite, 7-day, 14-day, or 30-day)"
   default     = "7-day"
 }
 
-variable "ats_region" {
+variable "supertenant_activity_tracker_region" {
   type        = string
   description = "Geographic location of the resource (e.g. us-south, us-east)"
   default     = "us-south"
@@ -78,25 +72,25 @@ variable "delete_timeout" {
   default     = null
 }
 
-variable "ats_tags" {
+variable "supertenant_activity_tracker_tags" {
   type        = list(string)
   description = "activity_tracker Tags that should be applied to the service"
   default     = null
 }
 
-variable "ats_bind_key" {
+variable "is_bind_key_to_supertenant_activity_tracker" {
   description = "activity_tracker Enable this to bind key to instance (true/false)"
   type        = bool
   default     = false
 }
 
-variable "ats_key_name" {
+variable "supertenant_activity_tracker_key_name" {
   description = "activity_tracker Name of the instance key"
   type        = string
   default     = null
 }
 
-variable "ats_key_tags" {
+variable "supertenant_activity_tracker_key_tags" {
   type        = list(string)
   description = "Tags that should be applied to the key"
   default     = null
@@ -106,7 +100,7 @@ variable "ats_key_tags" {
 # Logging STS instance
 ###############################################
 
-variable "sts_provision" {
+variable "is_provision_logging" {
   type        = bool
   description = "Disable this to read the existing activity tracker instance"
   default     = true
@@ -114,13 +108,19 @@ variable "sts_provision" {
 
 ############### STS Specific parameters start ##################
 
-variable "sts_service_supertenant" {
+variable "logging_service_supertenant" {
   type        = string
   description = "Logging: Name of your supertenant service"
   default     = "" //provide valid value here
 }
 
-variable "sts_provision_key" {
+variable "supertenant_activity_tracker_associated_logging_crn" {
+  type        = string
+  description = "Logging: Enter the associated logging crn"
+  default     = null //provide valid value here
+}
+
+variable "logging_provision_key" {
   type        = string
   description = "Logging: Provision key"
   default     = "" //provide valid value here
@@ -128,48 +128,48 @@ variable "sts_provision_key" {
 
 ############### STS Specific parameters end #####################
 
-variable "sts_bind_key" {
+variable "is_bind_key_to_logging_instance" {
   description = "Flag indicating that key should be bind to logdna hippa instance"
   type        = bool
   default     = false
 }
 
-variable "sts_name" {
+variable "logging_name" {
   description = "Name of the STS instance"
   type        = string
 }
 
-variable "sts_plan" {
+variable "logging_plan" {
   description = "plan type (14-day, 30-day, 7-day, hipaa-30-day and lite)"
   type        = string
   default     = "7-day"
 }
 
-variable "sts_region" {
+variable "logging_region" {
   description = "Provisioning Region"
   type        = string
   default     = "us-south"
 }
 
-variable "sts_service_endpoints" {
+variable "logging_visibility" {
   description = "Types of the service endpoints. Possible values are 'public', 'private', 'public-and-private'."
   type        = string
   default     = null
 }
 
-variable "sts_tags" {
+variable "logging_tags" {
   type        = list(string)
   description = "Tags that should be applied to the service"
   default     = null
 }
 
-variable "sts_key_tags" {
+variable "logging_key_tags" {
   type        = list(string)
   description = "Tags that should be applied to the key"
   default     = null
 }
 
-variable "sts_key_name" {
+variable "logging_key_name" {
   description = "Name of the instance key"
   type        = string
   default     = null
