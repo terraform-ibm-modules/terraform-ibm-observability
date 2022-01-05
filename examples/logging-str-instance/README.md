@@ -16,9 +16,9 @@ module "logging_instance" {
   //source = "terraform-ibm-modules/observability/ibm//modules/logging-logdna"
 
   source            = "./../../modules/logging-instance"
-  provision         = var.provision
+  is_provision_logging         = var.is_provision_logging
   is_sts_instance   = false
-  bind_key          = var.bind_key
+  is_bind_key          = var.is_bind_key
   name              = var.name
   resource_group_id = data.ibm_resource_group.logdna.id
   plan              = var.plan
@@ -42,13 +42,14 @@ module "logging_instance" {
 
 | Name               | Description                                                      | Type         | Default | Required |
 |--------------------|------------------------------------------------------------------|:-------------|:------- |:---------|
+| is_provision_logging | Disable this to read the existing logging instance             | bool         | true    | no       |
 | name               | A descriptive name used to identify the resource instance        | string       | n/a     | yes      |
-| bind_key           | Indicating that instance key should be bind to logging instance  | bool         | n/a     | no       |
+| is_bind_key        | Indicating that instance key should be bind to logging instance  | bool         | n/a     | no       |
 | key\_name          | A descriptive name used to identify the resource key             | string       | n/a     | yes      |
 | plan               | The name of the plan type supported by service.                  | string       | n/a     | yes      |
 | region             | Target location or environment to create the resource instance.  | string       | n/a     | yes      |
 | resource\_group    | Name of the resource group                                       | string       | n/a     | yes      |
-| service\_endpoints | Possible values are 'public', 'private', 'public-and-private'.   | string       | n/a     | no       |
+| visibility         | Possible values are 'public', 'private', 'public-and-private'.   | string       | n/a     | no       |
 | tags               | Tags that should be applied to the service                       | list(string) | n/a     | no       |
 | key_tags           | Tags that should be applied to the resource key                  | list(string) | n/a     | no       |
 | create_timeout     | Timeout duration for create                                      | string       | n/a     | no       |

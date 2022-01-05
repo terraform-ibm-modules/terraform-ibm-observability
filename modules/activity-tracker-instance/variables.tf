@@ -3,16 +3,16 @@
 # Copyright 2020 IBM
 #####################################################
 
-variable "provision" {
+variable "is_provision_activity_tracker" {
   type        = bool
   description = "Disable this to read the existing activity trcaker instance"
   default     = true
 }
 
-variable "is_ats_instance" {
+variable "is_supertenant_activity_tracker" {
   type        = bool
   description = "Set this to provison ATS instance"
-  default     = true
+  default     = false
 }
 
 variable "name" {
@@ -71,7 +71,7 @@ variable "provision_key" {
   default     = null
 }
 
-variable "make_default_receiver" {
+variable "is_activity_tracker_the_default_receiver" {
   type        = bool
   description = "Enable this to make this instance as default receiver"
   default     = true
@@ -83,7 +83,7 @@ variable "tags" {
   default     = null
 }
 
-variable "bind_key" {
+variable "is_bind_key" {
   description = "Enable this to bind key to instance (true/false)"
   type        = bool
   default     = false

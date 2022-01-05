@@ -36,7 +36,7 @@ root:
         regex: "^([a-z]|[a-z][-a-z0-9]*[a-z0-9])$"
         is_provision_controller: false
         is_count_controller: false
-      - name: "str_provision"
+      - name: "is_provision_logging"
         type: bool
         is_required: true
         description: "Controls the provisioning of logging STR instance"
@@ -48,7 +48,7 @@ root:
         is_force_new: true
         is_provision_controller: true
         is_count_controller: true
-      - name: "str_logging_bind_key"
+      - name: "is_bind_key_to_logging"
         type : bool
         is_required: false
         default_value: false
@@ -85,7 +85,7 @@ root:
         is_force_new: false
         is_provision_controller: false
         is_count_controller: false
-      - name: "str_logging_plan"
+      - name: "logging_plan"
         type : string
         is_required: true
         description: "Plan type should be one of the following (14-day, 30-day, 7-day, hipaa-30-day and lite)."
@@ -97,7 +97,7 @@ root:
         is_force_new: false
         is_provision_controller: false
         is_count_controller: false
-      - name: "str_logging_region"
+      - name: "logging_region"
         type : string
         is_required: true
         description: "The location where the instance available"
@@ -110,7 +110,7 @@ root:
         cloud_data_range: "resource_group_id"
         is_provision_controller: false
         is_count_controller: false
-      - name: "str_logging_service_endpoints"
+      - name: "logging_visbility"
         type : string
         is_required: false
         description: "Types of the service endpoints. Possible values are 'public', 'private', 'public-and-private'."
@@ -122,7 +122,7 @@ root:
         is_force_new: false
         is_provision_controller: false
         is_count_controller: false
-      - name: "str_logging_tags"
+      - name: "logging_tags"
         type : list(string)
         is_required: false
         description: "Tags to attach to str instance"
@@ -133,7 +133,7 @@ root:
         is_force_new: false
         is_provision_controller: false
         is_count_controller: false
-      - name: "str_logging_key_name"
+      - name: "logging_key_name"
         type : string
         is_required: true
         description: "Name of the instance key"
@@ -144,7 +144,7 @@ root:
         is_force_new: true
         is_provision_controller: false
         is_count_controller: false
-      - name: "str_logging_key_tags"
+      - name: "logging_key_tags"
         type : list(string)
         is_required: false
         description: "Tags that should be applied to the key"
@@ -191,7 +191,7 @@ root:
         ###################################
         # logging_sts_instance variables
         ###################################
-      - name: "sts_provision"
+      - name: "is_provision_supertenant_logging"
         type: bool
         is_required: true
         description: "Controls the provisioning of logging STS instance"
@@ -203,7 +203,7 @@ root:
         is_force_new: true
         is_provision_controller: true
         is_count_controller: true
-      - name: "use_existing_sts_crn"
+      - name: "is_attach_existing_supertenant_logging_crn"
         type : bool
         is_required: false
         default_value:  false
@@ -227,7 +227,7 @@ root:
         is_force_new: false
         is_provision_controller: false
         is_count_controller: false
-      - name: "sts_provision_key"
+      - name: "supertenant_logging_provision_key"
         type : string
         is_required: false
         description: "Provision key"
@@ -238,7 +238,7 @@ root:
         is_force_new: false
         is_provision_controller: false
         is_count_controller: false
-      - name: "sts_logging_bind_key"
+      - name: "is_bind_key_to_supertenant_logging"
         type : bool
         is_required: false
         default_value: false
@@ -251,7 +251,7 @@ root:
         is_force_new: false
         is_provision_controller: false
         is_count_controller: false
-      - name: "sts_logging_plan"
+      - name: "supertenant_logging_plan"
         type : string
         is_required: true
         description: "Plan type should be one of the following (14-day, 30-day, 7-day, hipaa-30-day and lite)."
@@ -263,7 +263,7 @@ root:
         is_force_new: false
         is_provision_controller: false
         is_count_controller: false
-      - name: "sts_logging_region"
+      - name: "supertenant_logging_region"
         type : string
         is_required: true
         description: "The location where the instance available"
@@ -276,7 +276,7 @@ root:
         cloud_data_range: "resource_group_id"
         is_provision_controller: false
         is_count_controller: false
-      - name: "sts_logging_service_endpoints"
+      - name: "supertenant_logging_visibility"
         type : string
         is_required: false
         description: "Types of the service endpoints. Possible values are 'public', 'private', 'public-and-private'."
@@ -288,7 +288,7 @@ root:
         is_force_new: false
         is_provision_controller: false
         is_count_controller: false
-      - name: "sts_logging_tags"
+      - name: "supertenant_logging_tags"
         type : list(string)
         is_required: false
         description: "Tags to attach to sts instance"
@@ -299,7 +299,7 @@ root:
         is_force_new: false
         is_provision_controller: false
         is_count_controller: false
-      - name: "sts_logging_key_name"
+      - name: "supertenant_logging_key_name"
         type : string
         is_required: true
         description: "Name of the instance key"
@@ -310,7 +310,7 @@ root:
         is_force_new: true
         is_provision_controller: false
         is_count_controller: false
-      - name: "sts_logging_key_tags"
+      - name: "supertenant_logging_key_tags"
         type : list(string)
         is_required: false
         description: "Tags that should be applied to the key"
@@ -336,7 +336,7 @@ root:
         regex: "^([a-z]|[a-z][-a-z0-9]*[a-z0-9])$"
         is_provision_controller: false
         is_count_controller: false
-      - name: "atr_provision"
+      - name: "is_provision_activity_tracker"
         type: bool
         is_required: true
         description: "Controls the provisioning of activity tracker ATR instance"
@@ -348,7 +348,7 @@ root:
         is_force_new: true
         is_provision_controller: true
         is_count_controller: true
-      - name: "atr_bind_key"
+      - name: "is_bind_key_to_activity_tracker"
         type : bool
         is_required: false
         default_value: false
@@ -361,7 +361,7 @@ root:
         is_force_new: false
         is_provision_controller: false
         is_count_controller: false
-      - name: "atr_make_default_receiver"
+      - name: "is_activity_tracker_the_default_receiver"
         type : bool
         is_required: false
         default_value: true
@@ -374,7 +374,7 @@ root:
         is_force_new: false
         is_provision_controller: false
         is_count_controller: false
-      - name: "atr_plan"
+      - name: "activity_tracker_plan"
         type : string
         is_required: true
         description: "Plan type should be one of the following (14-day, 30-day, 7-day, hipaa-30-day and lite)."
@@ -386,7 +386,7 @@ root:
         is_force_new: false
         is_provision_controller: false
         is_count_controller: false
-      - name: "atr_region"
+      - name: "activity_tracker_region"
         type : string
         is_required: true
         description: "The location where the instance available"
@@ -399,7 +399,7 @@ root:
         cloud_data_range: "resource_group_id"
         is_provision_controller: false
         is_count_controller: false
-      - name: "atr_tags"
+      - name: "activity_tracker_tags"
         type : list(string)
         is_required: false
         description: "Tags to attach to str instance"
@@ -410,7 +410,7 @@ root:
         is_force_new: false
         is_provision_controller: false
         is_count_controller: false
-      - name: "atr_key_name"
+      - name: "activity_tracker_key_name"
         type : string
         is_required: true
         description: "Name of the instance key"
@@ -421,7 +421,7 @@ root:
         is_force_new: true
         is_provision_controller: false
         is_count_controller: false
-      - name: "atr_key_tags"
+      - name: "activity_tracker_key_tags"
         type : list(string)
         is_required: false
         description: "Tags that should be applied to the key"
@@ -435,7 +435,7 @@ root:
       ###################################
       # activity-tracker-ats-instance
       ###################################
-      - name: "ats_provision"
+      - name: "is_provision_supertenant_activity_tracker"
         type: bool
         is_required: true
         description: "Controls the provisioning of activity tracker ATS instance"
@@ -447,7 +447,7 @@ root:
         is_force_new: true
         is_provision_controller: true
         is_count_controller: true
-      - name: "ats_service_supertenant"
+      - name: "supertenant_activity_tracker_name"
         type : string
         is_required: false
         description: "Name of your supertenant service"
@@ -458,7 +458,7 @@ root:
         is_force_new: false
         is_provision_controller: false
         is_count_controller: false
-      - name: "ats_provision_key"
+      - name: "supertenant_activity_tracker_provision_key"
         type : string
         is_required: false
         description: "Provision key"
@@ -469,7 +469,7 @@ root:
         is_force_new: false
         is_provision_controller: false
         is_count_controller: false
-      - name: "ats_associated_logging_crn"
+      - name: "supertenant_activity_tracker_associated_logging_crn"
         type : string
         is_required: false
         description: "associated logging crn"
@@ -479,7 +479,7 @@ root:
         is_force_new: false
         is_provision_controller: false
         is_count_controller: false
-      - name: "ats_bind_key"
+      - name: "is_bind_key_to_supertenant_activity_tracker"
         type : bool
         is_required: false
         default_value: false
@@ -492,7 +492,7 @@ root:
         is_force_new: false
         is_provision_controller: false
         is_count_controller: false
-      - name: "ats_plan"
+      - name: "supertenant_activity_tracker_plan"
         type : string
         is_required: true
         description: "Plan type should be one of the following (14-day, 30-day, 7-day, hipaa-30-day and lite)."
@@ -504,7 +504,7 @@ root:
         is_force_new: false
         is_provision_controller: false
         is_count_controller: false
-      - name: "ats_region"
+      - name: "supertenant_activity_tracker_region"
         type : string
         is_required: true
         description: "The location where the instance available"
@@ -517,7 +517,7 @@ root:
         cloud_data_range: "resource_group_id"
         is_provision_controller: false
         is_count_controller: false
-      - name: "ats_tags"
+      - name: "supertenant_activity_tracker_tags"
         type : list(string)
         is_required: false
         description: "Tags to attach to sts instance"
@@ -528,7 +528,7 @@ root:
         is_force_new: false
         is_provision_controller: false
         is_count_controller: false
-      - name: "ats_key_name"
+      - name: "supertenant_activity_tracker_key_name"
         type : string
         is_required: true
         description: "Name of the instance key"
@@ -539,7 +539,7 @@ root:
         is_force_new: true
         is_provision_controller: false
         is_count_controller: false
-      - name: "ats_key_tags"
+      - name: "supertenant_activity_tracker_key_tags"
         type : list(string)
         is_required: false
         description: "Tags that should be applied to the key"
@@ -565,7 +565,7 @@ root:
         regex: "^([a-z]|[a-z][-a-z0-9]*[a-z0-9])$"
         is_provision_controller: false
         is_count_controller: false
-      - name: "monitoring_provision"
+      - name: "is_provision_monitoring"
         type: bool
         is_required: true
         description: "Controls the provisioning of monitoring instance"
@@ -577,7 +577,7 @@ root:
         is_force_new: true
         is_provision_controller: true
         is_count_controller: true
-      - name: "monitoring_bind_key"
+      - name: "is_bind_key_to_monitoring"
         type : bool
         is_required: false
         default_value: false
@@ -590,7 +590,7 @@ root:
         is_force_new: false
         is_provision_controller: false
         is_count_controller: false
-      - name: "monitoring_enable_platform_metrics"
+      - name: "is_enable_platform_metrics"
         type : bool
         is_required: false
         default_value: true
@@ -628,7 +628,7 @@ root:
         cloud_data_range: "resource_group_id"
         is_provision_controller: false
         is_count_controller: false
-      - name: "monitoring_service_endpoints"
+      - name: "monitoring_visibility"
         type : string
         is_required: false
         description: "Types of the service endpoints. Possible values are 'public', 'private', 'public-and-private'."
@@ -674,118 +674,118 @@ root:
         is_provision_controller: false
         is_count_controller: false
     outputs:
-      - name: "atr_id"
+      - name: "activity_tracker_id"
         type : string
         description : "ID of Activity Tracker ATR instance"
         example: "crn-1734gd74"
         is_sensitive: false
         related_to: ["activity-tracker-atr-instance"]
-      - name: "ats_id"
+      - name: "supertenant_activity_tracker_id"
         type : string
         description : "ID of Activity Tracker ATS instance"
         example: "crn-1734gd74"
         is_sensitive: false
         related_to: ["activity-tracker-ats-instance"]
-      - name: "atr_guid"
+      - name: "activity_tracker_guid"
         type : string
         description : "The GUID of the activity tracker ATR instance"
         example: "1734gd74"
         is_sensitive: false
         related_to: ["activity-tracker-atr-instance"]
-      - name: "ats_guid"
+      - name: "supertenant_activity_tracker_guid"
         type : string
         description : "GUID of Activity Tracker ATS instance"
         example: "1734gd74"
         is_sensitive: false
         related_to: ["activity-tracker-ats-instance"]
-      - name: "atr_key_id"
+      - name: "activity_tracker_key_id"
         type : string
         description : "Activity Tracker ATR instance key id"
         example: "1734gd74"
         is_sensitive: false
         related_to: ["activity-tracker-atr-instance"]
-      - name: "ats_key_id"
+      - name: "supertenant_activity_tracker_key_id"
         type : string
         description : "Activity Tracker ATS key id"
         example: "1734gd74"
         is_sensitive: false
         related_to: ["activity-tracker-ats-instance"]
-      - name: "atr_key_guid"
+      - name: "activity_tracker_key_guid"
         type : string
         description : "GUID of Activity Tracker ATR key "
         example: "crn-1734gd74"
         is_sensitive: false
         related_to: ["activity-tracker-atr-instance"]
-      - name: "ats_key_guid"
+      - name: "supertenant_activity_tracker_key_guid"
         type : string
         description : "GUID of Activity Tracker ATS key"
         example: "crn-1734gd74"
         is_sensitive: false
         related_to: ["activity-tracker-ats-instance"]
-      - name: "atr_key_credentials"
+      - name: "activity_tracker_key_credentials"
         type : string
         description : "ATR instance key credentials"
         is_sensitive: false
         related_to: ["activity-tracker-atr-instance"]
-      - name: "ats_key_credentials"
+      - name: "supertenant_activity_tracker_key_credentials"
         type : string
         description : "ATS instance key credentials"
         is_sensitive: false
         related_to: ["activity-tracker-ats-instance"]
-      - name: "str_logdna_id"
+      - name: "logging_id"
         type : string
         description : "ID of STR logging instance"
         example: "crn-1734gd74"
         is_sensitive: false
         related_to: ["logging_str_instance"]
-      - name: "sts_logdna_id"
+      - name: "supertenant_logging_id"
         type : string
         description : "ID of STS logging instance"
         example: "crn-1734gd74"
         is_sensitive: false
         related_to: ["logging_sts_instance"]
-      - name: "str_logdna_guid"
+      - name: "logging_guid"
         type : string
         description : "GUID of STR logging instance"
         example: "1734gd74"
         is_sensitive: false
         related_to: ["logging_str_instance"]
-      - name: "sts_logdna_guid"
+      - name: "supertenant_logging_guid"
         type : string
         description : "GUID of STS logging instance"
         example: "1734gd74"
         is_sensitive: false
         related_to: ["logging_sts_instance"]
-      - name: "str_logdna_key_id"
+      - name: "logging_key_id"
         type : string
         description : "ID of logging STR instance key"
         example: "1734gd74"
         is_sensitive: false
         related_to: ["logging_str_instance"]
-      - name: "sts_logdna_key_id"
+      - name: "supertenant_logging_key_id"
         type : string
         description : "ID of logging STS instance key"
         example: "1734gd74"
         is_sensitive: false
         related_to: ["logging_sts_instance"]
-      - name: "str_logdna_key_guid"
+      - name: "logging_key_guid"
         type : string
         description : "GUID of logging STR instance key "
         example: "crn-1734gd74"
         is_sensitive: false
         related_to: ["logging_str_instance"]
-      - name: "sts_logdna_key_guid"
+      - name: "supertenant_logging_key_guid"
         type : string
         description : "GUID of logging STS instance key "
         example: "crn-1734gd74"
         is_sensitive: false
         related_to: ["logging_sts_instance"]
-      - name: "str_logdna_key_credentials"
+      - name: "logging_key_credentials"
         type : string
         description : "The credentials associated with the STR instance key."
         is_sensitive: false
         related_to: ["logging_str_instance"]
-      - name: "sts_logdna_key_credentials"
+      - name: "supertenant_logging_key_credentials"
         type : string
         description : "The credentials associated with the STS instance key."
         is_sensitive: false
@@ -852,7 +852,7 @@ submodules:
         source: "IBM-Cloud/ibm"
         version: ""
     inputs:
-      - name: "provision"
+      - name: "is_provision_logging"
         type : bool
         is_required: false
         default_value: true
@@ -920,7 +920,7 @@ submodules:
         is_force_new: false
         is_provision_controller: false
         is_count_controller: false
-      - name: "is_sts_instance"
+      - name: "is_supertenant_logging"
         type : bool
         is_required: false
         default_value: true
@@ -932,7 +932,7 @@ submodules:
         is_force_new: true
         is_provision_controller: false
         is_count_controller: false
-      - name: "service_endpoints"
+      - name: "visibility"
         type : string
         is_required: false
         description: "Types of the service endpoints. Possible values are 'public', 'private', 'public-and-private'."
@@ -999,7 +999,7 @@ submodules:
         is_force_new: false
         is_provision_controller: false
         is_count_controller: false
-      - name: "bind_key"
+      - name: "is_bind_key"
         type : bool
         is_required: false
         default_value: false
@@ -1079,14 +1079,14 @@ submodules:
         is_sensitive: false
         related_to: ["ibm_resource_key.logging_key"]
     locals:
-      - name: "sts_parameters"
+      - name: "supertenant_logging_parameters"
         type : map
         example: {"service_supertenant"    = var.service_supertenant}
         description : "List of parameters required to provision logging STS instance"
         is_hardcoded : false
         related_to: ["ibm_resource_instance.logging_instance"]
         derived_from: ["service_supertenant","associated_logging_crn","provision_key"]
-      - name: "str_parameters"
+      - name: "logging_parameters"
         type: map
         example: {"default_receiver" = var.enable_platform_logs"}
         description : "List of parameters required to provision logging STR instance"
@@ -1119,7 +1119,7 @@ submodules:
         source: "IBM-Cloud/ibm"
         version: ""
     inputs:
-      - name: "provision"
+      - name: "is_provision_activity_tracker"
         type : bool
         is_required: false
         default_value: true
@@ -1186,7 +1186,7 @@ submodules:
         is_force_new: false
         is_provision_controller: false
         is_count_controller: false
-      - name: "is_ats_instance"
+      - name: "is_supertenant_activity_tracker"
         type : bool
         is_required: false
         default_value: true
@@ -1276,7 +1276,7 @@ submodules:
         is_force_new: false
         is_provision_controller: false
         is_count_controller: false
-      - name: "bind_key"
+      - name: "is_bind_key"
         type : bool
         is_required: false
         default_value: false
@@ -1343,7 +1343,7 @@ submodules:
         is_sensitive: false
         related_to: ["ibm_resource_key.activity_tracker_key"]
     locals:
-      - name: "ats_parameters"
+      - name: "supertenant_activity_tracker_parameters"
         type : map
         example: "{
           "service_supertenant"    = var.service_supertenant
@@ -1353,7 +1353,7 @@ submodules:
         is_hardcoded : false
         related_to: ["ibm_resource_instance.activity_tracker"]
         derived_from: ["service_supertenant","associated_logging_crn","provision_key"]
-      - name: "atr_parameters"
+      - name: "activity_tracker_parameters"
         type: map
         example: "{
           "default_receiver" = var.make_default_receiver}"
@@ -1391,7 +1391,7 @@ submodules:
         source: "sysdiglabs/sysdig"
         version: "0.5.10"
     inputs:
-      - name: "provision"
+      - name: "is_provision_monitoring"
         type : bool
         is_required: false
         default_value: true
@@ -1459,7 +1459,7 @@ submodules:
         is_force_new: false
         is_provision_controller: false
         is_count_controller: false
-      - name: "service_endpoints"
+      - name: "visibility"
         type : string
         is_required: false
         description: "Types of the service endpoints. Possible values are 'public', 'private', 'public-and-private'."

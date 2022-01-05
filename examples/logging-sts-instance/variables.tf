@@ -3,19 +3,19 @@
 # Copyright 2020 IBM
 #####################################################
 
-variable "provision" {
+variable "is_provision_logging" {
   type        = bool
   description = "Disable this to read the existing logging sts instance"
   default     = true
 }
 
-variable "bind_key" {
+variable "is_bind_key" {
   description = "Flag indicating that key should be bind to logdna hippa instance"
   type        = bool
   default     = false
 }
 
-variable "is_sts_instance" {
+variable "is_supertenant_logging" {
   description = "Set this to provision (STS) logging instance"
   type        = bool
   default     = true
@@ -46,8 +46,8 @@ variable "provision_key" {
 
 variable "enable_platform_logs" {
   type        = bool
-  description = "Receive platform logs in LogDNA"
-  default     = true
+  description = "Enable this to make it default receiver of logs"
+  default     = false
 }
 
 variable "region" {
@@ -74,7 +74,7 @@ variable "delete_timeout" {
   default     = null
 }
 
-variable "service_endpoints" {
+variable "visibility" {
   description = "Types of the service endpoints. Possible values are 'public', 'private', 'public-and-private'."
   type        = string
   default     = null

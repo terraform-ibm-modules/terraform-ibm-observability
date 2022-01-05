@@ -3,13 +3,13 @@
 # Copyright 2020 IBM
 #####################################################
 
-variable "provision" {
+variable "is_provision_logging" {
   type        = bool
   description = "Disable this to read the existing activity trcaker instance"
   default     = true
 }
 
-variable "is_sts_instance" {
+variable "is_supertenant_logging" {
   description = "Set this to provision (STS) logging instance"
   type        = bool
   default     = false
@@ -67,7 +67,7 @@ variable "region" {
   type        = string
 }
 
-variable "service_endpoints" {
+variable "visibility" {
   description = "Types of the service endpoints. Possible values are 'public', 'private', 'public-and-private'."
   type        = string
   default     = null
@@ -79,7 +79,7 @@ variable "tags" {
   default     = null
 }
 
-variable "bind_key" {
+variable "is_bind_key" {
   description = "Enable this to bind key to instance (true/false)"
   type        = bool
   default     = false

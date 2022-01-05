@@ -3,13 +3,13 @@
 # Copyright 2020 IBM
 #####################################################
 
-variable "provision" {
+variable "is_provision_logging" {
   type        = bool
-  description = "Disable this to read the existing activity tracker instance"
+  description = "Disable this to read the existing logging instance"
   default     = true
 }
 
-variable "bind_key" {
+variable "is_bind_key" {
   description = "Flag indicating that key should be bind to logdna hippa instance"
   type        = bool
   default     = false
@@ -56,7 +56,7 @@ variable "delete_timeout" {
   default     = null
 }
 
-variable "service_endpoints" {
+variable "visibility" {
   description = "Types of the service endpoints. Possible values are 'public', 'private', 'public-and-private'."
   type        = string
   default     = null

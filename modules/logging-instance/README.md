@@ -40,26 +40,28 @@ module "logging_sts_instance" {
 
 | Name                      | Description                                                      | Type         | Default | Required |
 |---------------------------|------------------------------------------------------------------|:-------------|:------- |:---------|
-| is_sts_instance           | Set this to true to provision logging STS instance                 | bool         | false   | no       |
+| is_supertenant_logging    | Set this to true to provision logging STS instance                 | bool         | false   | no     |
+| is_provision_logging      | Disable this to read the existing activity trcaker instance      | string       | true    | no       |
 | service_supertenant       | Name of service supertenant                                      | string       | Empty   | no       |
 | provision_key             | Service Provision key                                            | string       | Empty   | no       |
 | name                      | Used as prefix to observability instances                        | string       | n/a     | yes      |
 | plan                      | Plan type                                                        | string       | n/a     | yes      |
 | region                    | Location to create the logging instance.                         | string       | n/a     | yes      |
 | resource_group_id         | ID of the resource group                                         | string       | n/a     | yes      |
-| bind_key                  | Indicating that instance key should be bind to logging           | bool         | false   | no       |
+| is_bind_key               | Indicating that instance key should be bind to logging           | bool         | false   | no       |
 | sts_provision             | Set this to provision logging instance                           | bool         | true    | yes      |
 | key_name                  | Name used to identify logging resource key                       | string       | empty   | no       |
 | tags                      | Tags that should be applied to the logging                       | list(string) | n/a     | no       |
 | key_tags                  | Tags that should be applied to the logging key                   | list(string) | n/a     | no       |
+| visibility                | Types of the service endpoints. Possible values are 'public', 'private', 'public-and-private' | string | public | no |
 
 
 ## Outputs
 
 | Name            | Description                            |
 |-----------------|----------------------------------------|
-| id              | ID of the logging instance              |
-| guid            | GUID of the logging instance            |
-| key_id          | ID of the logging instance key          |
-| key_guid        | ID of the logging instance key          |
-| key_credentials | ID of the logging instance key          |
+| id              | ID of the logging instance             |
+| guid            | GUID of the logging instance           |
+| key_id          | ID of the logging instance key         |
+| key_guid        | ID of the logging instance key         |
+| key_credentials | ID of the logging instance key         |

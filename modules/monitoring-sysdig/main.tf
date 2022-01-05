@@ -1,10 +1,10 @@
 #####################################################
-# Sysdig instance key
+# Monitoring service instance
 # Copyright 2020 IBM
 #####################################################
 
 data "ibm_resource_instance" "sysdig" {
-  count = var.provision ? 0 : 1
+  count = var.is_provision_monitoring ? 0 : 1
 
   name              = var.name
   location          = var.region
@@ -14,7 +14,7 @@ data "ibm_resource_instance" "sysdig" {
 
 resource "ibm_resource_instance" "sysdig_instance" {
 
-  count = var.provision ? 1 : 0
+  count = var.is_provision_monitoring ? 1 : 0
 
   name              = var.name
   service           = "sysdig-monitor"
@@ -22,9 +22,9 @@ resource "ibm_resource_instance" "sysdig_instance" {
   location          = var.region
   resource_group_id = var.resource_group_id
   tags              = (var.tags != null ? var.tags : [])
-  service_endpoints = (var.service_endpoints != "" ? var.service_endpoints : null)
+  service_endpoints = (var.visibility != "" ? var.visibility : null)
   parameters = {
-    "default_receiver" = var.enable_platform_metrics
+    "default_receiver" = var.is_enable_platform_metrics
   }
 
   timeouts {
@@ -35,10 +35,10 @@ resource "ibm_resource_instance" "sysdig_instance" {
 }
 
 resource "ibm_resource_key" "sysdigKey" {
-  count                = var.bind_key ? 1 : 0
+  count                = var.is_bind_key ? 1 : 0
   name                 = var.key_name
   role                 = "Manager"
-  resource_instance_id = var.provision ? ibm_resource_instance.sysdig_instance[0].id : data.ibm_resource_instance.sysdig[0].id
+  resource_instance_id = var.is_provision_monitoring ? ibm_resource_instance.sysdig_instance[0].id : data.ibm_resource_instance.sysdig[0].id
   tags                 = (var.key_tags != null ? var.key_tags : [])
 }
 

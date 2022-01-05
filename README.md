@@ -36,19 +36,19 @@ The following diagram illustrates the deployment architecture used by this autom
 
 ## Provision ATS activity tracker instance by creating logging STS insatnce
 ```
-  ats_provision              = true
+  is_provision_supertenant_activity_tracker  = true
   ats_service_supertenant    = <Name_of_ats_service_supertenant>
-  ats_provision_key          = <ats_provision_key>
-  ats_associated_logging_crn = <ats_associated_logging_crn>
+  supertenant_activity_tracker_provision_key          = <ats_provision_key>
+  supertenant_activity_tracker_associated_logging_crn = <ats_associated_logging_crn>
 ```
 
 ## Provision ATS instance with existing logging STS instance CRN then configure
 
 ```
-  ats_provision              = true
+  is_provision_supertenant_activity_tracker              = true
   ats_service_supertenant    = <Name_of_ats_service_supertenant>
-  ats_provision_key          = <ats_provision_key>
-  use_existing_sts_crn       = true
+  supertenant_activity_tracker_provision_key          = <ats_provision_key>
+  is_attach_existing_supertenant_logging_crn       = true
 ```
 
 ## Provision Logging STR instance
@@ -58,9 +58,9 @@ The following diagram illustrates the deployment architecture used by this autom
 ```
 ## Provision Logging STS instance
 ```
-  sts_provision           = true
+  is_provision_supertenant_logging           = true
   sts_service_supertenant = <sts_service_supertenant>
-  sts_provision_key       = <sts_provision_key>
+  supertenant_logging_provision_key       = <sts_provision_key>
 ```
 
 ## Monitoring
@@ -68,7 +68,7 @@ The following diagram illustrates the deployment architecture used by this autom
 To provision monitoring instance
 
 ```
-`monitoring_provision` = true
+`is_provision_monitoring` = true
 ```
 
 ## Example Usage
@@ -80,6 +80,11 @@ To provision monitoring instance
 
 
 ```hcl
+#####################################################
+# Observability
+# Copyright 2020 IBM
+#####################################################
+
 provider "ibm" {
 }
 
@@ -93,78 +98,81 @@ module "observability" {
 
   ################# Logging Super Tenant Receiver (STR) instance #######################
 
-  str_provision = var.str_provision
-  str_logging_bind_key  = var.str_logging_bind_key
-  str_logging_plan  = var.str_logging_plan
-  str_logging_region = var.str_logging_region
-  str_logging_service_endpoints = var.str_logging_service_endpoints
-  str_logging_tags = var.str_logging_tags
-  str_logging_key_name = var.str_logging_key_name
-  str_logging_key_tags = var.str_logging_key_tags
+  is_provision_logging      = var.is_provision_logging
+  is_bind_key_to_logging    = var.is_bind_key_to_logging
+  enable_platform_logs      = var.enable_platform_logs
+  logging_plan              = var.logging_plan
+  logging_region            = var.logging_region
+  logging_visbility         = var.logging_visbility
+  logging_tags              = var.logging_tags
+  logging_key_name          = var.logging_key_name
+  logging_key_tags          = var.logging_key_tags
 
   ################## Logging Super Tenant Sender (STS) Instance ########################
   //STS
-  sts_provision           = var.sts_provision
-  sts_service_supertenant = var.sts_service_supertenant
-  sts_provision_key       = var.sts_provision_key
+  is_provision_supertenant_logging    = var.is_provision_supertenant_logging
+  sts_service_supertenant             = var.sts_service_supertenant
+  supertenant_logging_provision_key   = var.supertenant_logging_provision_key
 
   //Logging
-  sts_logging_bind_key          = var.sts_logging_bind_key
-  sts_logging_plan              = var.sts_logging_plan
-  sts_logging_region            = var.sts_logging_region
-  sts_logging_service_endpoints = var.sts_logging_service_endpoints
-  sts_logging_tags              = var.sts_logging_tags
-  sts_logging_key_name          = var.sts_logging_key_name
-  sts_logging_key_tags          = var.sts_logging_key_tags
+  is_bind_key_to_supertenant_logging    = var.is_bind_key_to_supertenant_logging
+  supertenant_logging_plan              = var.supertenant_logging_plan
+  supertenant_logging_region            = var.supertenant_logging_region
+  supertenant_logging_visibility        = var.supertenant_logging_visibility
+  supertenant_logging_tags              = var.supertenant_logging_tags
+  supertenant_logging_key_name          = var.supertenant_logging_key_name
+  supertenant_logging_key_tags          = var.supertenant_logging_key_tags
 
   ################# Activity Tracker ATR instance ##########
 
-  atr_provision   = var.atr_provision
-  atr_plan = var.atr_plan
-  atr_region = var.atr_region
-  atr_bind_key = var.atr_bind_key
-  atr_key_name = var.atr_key_name
-  atr_key_tags = var.atr_key_tags
-  atr_tags = var.atr_tags
+  is_provision_activity_tracker = var.is_provision_activity_tracker
+  activity_tracker_plan         = var.activity_tracker_plan
+  activity_tracker_region       = var.activity_tracker_region
+  is_bind_key_to_activity_tracker  = var.is_bind_key_to_activity_tracker
+  is_activity_tracker_the_default_receiver = var.is_activity_tracker_the_default_receiver
+  activity_tracker_key_name     = var.activity_tracker_key_name
+  activity_tracker_key_tags     = var.activity_tracker_key_tags
+  activity_tracker_tags         = var.activity_tracker_tags
 
   ################# Activity Tracker ATS instance ##########
 
   //ATS
-  ats_provision              = var.ats_provision
-  ats_service_supertenant    = var.ats_service_supertenant
-  ats_provision_key          = var.ats_provision_key
-  ats_associated_logging_crn = var.ats_associated_logging_crn
-  use_existing_sts_crn       = var.use_existing_sts_crn
+  is_provision_supertenant_activity_tracker              = var.is_provision_supertenant_activity_tracker
+  supertenant_activity_tracker_name    = var.supertenant_activity_tracker_name
+  supertenant_activity_tracker_provision_key          = var.supertenant_activity_tracker_provision_key
+  is_attach_existing_supertenant_logging_crn = var.is_attach_existing_supertenant_logging_crn
 
   //Activity tracker
-  ats_plan      = var.ats_plan
-  ats_region    = var.ats_region
-  ats_bind_key  = var.ats_bind_key
-  ats_key_name  = var.ats_key_name
-  ats_key_tags  = var.ats_key_tags
-  ats_tags      = var.ats_tags
+  supertenant_activity_tracker_plan     = var.supertenant_activity_tracker_plan
+  supertenant_activity_tracker_region   = var.supertenant_activity_tracker_region
+  is_bind_key_to_supertenant_activity_tracker = var.is_bind_key_to_supertenant_activity_tracker
+  supertenant_activity_tracker_key_name = var.supertenant_activity_tracker_key_name
+  supertenant_activity_tracker_key_tags = var.supertenant_activity_tracker_key_tags
+  supertenant_activity_tracker_tags     = var.supertenant_activity_tracker_tags
 
   ################# Monitoring ############################
-  monitoring_provision               = var.monitoring_provision
-  monitoring_bind_key                = var.monitoring_bind_key
+  is_provision_monitoring               = var.is_provision_monitoring
+  is_bind_key_to_monitoring                = var.is_bind_key_to_monitoring
   monitoring_name                    = var.monitoring_name
   monitoring_plan                    = var.monitoring_plan
   monitoring_region                  = var.monitoring_region
-  monitoring_service_endpoints       = var.monitoring_service_endpoints
-  monitoring_enable_platform_metrics = var.monitoring_enable_platform_metrics
+  monitoring_visibility       = var.monitoring_visibility
+  is_enable_platform_metrics     = var.is_enable_platform_metrics
   monitoring_tags                    = var.monitoring_tags
   monitoring_key_name                = var.monitoring_key_name
   monitoring_key_tags                = var.monitoring_key_tags
 
 
   ################ Generic Parameters ######################
-  logging_name  = var.logging_name // common for STS and STR
+  logging_name          = var.logging_name          // common for STS and STR
   activity_tracker_name = var.activity_tracker_name //common for ATS and ATR
-  resource_group_id = data.ibm_resource_group.rg.id
-  create_timeout    = var.create_timeout
-  update_timeout    = var.update_timeout
-  delete_timeout    = var.delete_timeout
+  resource_group_id     = data.ibm_resource_group.rg.id
+  create_timeout        = var.create_timeout
+  update_timeout        = var.update_timeout
+  delete_timeout        = var.delete_timeout
 }
+
+
 
 
 
@@ -176,76 +184,76 @@ module "observability" {
 
 | Name                      | Description                                                      | Type         | Default | Required |
 |---------------------------|------------------------------------------------------------------|:-------------|:------- |:---------|
-| atr_provision             | Set this to true to provion Activity tracker ATR instance        | bool         | true    | yes      |
+| is_provision_activity_tracker             | Set this to true to provion Activity tracker ATR instance        | bool         | true    | yes      |
 | activity_tracker_name     | Name of the activity tracker instance                            | string       | true    | yes      |
-| atr_plan                  | Plan type                                                        | string       | n/a     | yes      |
-| atr_region                | Location to create the activity tracker instance.                | string       | n/a     | yes      |
-| atr_bind_key              | Indicating that  key should be bind to activity tracker instance | bool         | false   | no       |
-| atr_key_name              | Name used to identify activity tracker resource key              | string       | empty   | no       |
-| atr_tags                  | Tags that should be applied to the activity tracker              | list(string) | n/a     | no       |
-| atr_key_tags              | Tags that should be applied to the activity tracker key          | list(string) | n/a     | no       |
-| atr_make_default_receiver | Enable this to make this instance as default receiver            | bool         | true    | no       |
+| activity_tracker_plan                  | Plan type                                                        | string       | n/a     | yes      |
+| activity_tracker_region                | Location to create the activity tracker instance.                | string       | n/a     | yes      |
+| is_bind_key_to_activity_tracker              | Indicating that  key should be bind to activity tracker instance | bool         | false   | no       |
+| activity_tracker_key_name              | Name used to identify activity tracker resource key              | string       | empty   | no       |
+| activity_tracker_tags                  | Tags that should be applied to the activity tracker              | list(string) | n/a     | no       |
+| activity_tracker_key_tags              | Tags that should be applied to the activity tracker key          | list(string) | n/a     | no       |
+| is_activity_tracker_the_default_receiver | Enable this to make this instance as default receiver            | bool         | true    | no       |
 
 
 ##  Activity Tracker ATS Inputs
 
 | Name                      | Description                                                      | Type         | Default | Required |
 |---------------------------|------------------------------------------------------------------|:-------------|:------- |:---------|
-| ats_provision             | Set this to true to provion Activity tracker ATS instance        | bool         | true   | no       |
-| ats_service_supertenant   | Name of service supertenant                                      | string       | Empty   | no       |
-| ats_provision_key         | Service Provision key                                            | string       | Empty   | no       |
-| use_existing_sts_crn      | Make true to use existing logging STS crn to attach to ATS instance| string       | Empty   | no       |
-| ats_associated_logging_crn| CRN of STS logging instance                                      | string       | Empty   | no       |
-| activity_tracker_name     | Used as prefix to observability instances                        | string       | n/a     | yes      |
-| ats_plan                  | Plan type                                                        | string       | n/a     | yes      |
-| ats_region                | Location to create the activity tracker instance.                | string       | n/a     | yes      |
+| is_provision_supertenant_activity_tracker             | Set this to true to provion Activity tracker ATS instance        | bool         | true   | no       |
+| supertenant_activity_tracker_name   | Name of service supertenant                                      | string       | Empty   | no       |
+| supertenant_activity_tracker_provision_key         | Service Provision key                                            | string       | Empty   | no       |
+| is_attach_existing_supertenant_logging_crn      | Make true to use existing logging STS crn to attach to ATS instance| string       | Empty   | no       |
+| supertenant_activity_tracker_associated_logging_crn| CRN of STS logging instance                                      | string       | Empty   | no       |
+| supertenant_activity_tracker_name     | Used as prefix to observability instances                        | string       | n/a     | yes      |
+| supertenant_activity_tracker_plan                  | Plan type                                                        | string       | n/a     | yes      |
+| supertenant_activity_tracker_region                | Location to create the activity tracker instance.                | string       | n/a     | yes      |
 | resource_group_id            | ID of the resource group                                       | string       | n/a     | yes      |
-| ats_bind_key              | Indicating that instance key should be bind to activity tracker  | bool         | false   | no       |
-|ats_key_name               | Name used to identify activity tracker resource key              | string       | empty   | no       |
-| ats_tags                  | Tags that should be applied to the activity tracker              | list(string) | n/a     | no       |
-|ats_key_tags               | Tags that should be applied to the activity tracker key          | list(string) | n/a     | no       |
+| is_bind_key_to_supertenant_activity_tracker              | Indicating that instance key should be bind to activity tracker  | bool         | false   | no       |
+|supertenant_activity_tracker_key_name               | Name used to identify activity tracker resource key              | string       | empty   | no       |
+| supertenant_activity_tracker_tags                  | Tags that should be applied to the activity tracker              | list(string) | n/a     | no       |
+|supertenant_activity_tracker_key_tags               | Tags that should be applied to the activity tracker key          | list(string) | n/a     | no       |
 
 ##  Logging STR Inputs
 
 | Name                      | Description                                                      | Type         | Default | Required |
 |---------------------------|------------------------------------------------------------------|:-------------|:------- |:---------|
-| str_provision             | Set this to true to provion logging STR instance                 | bool         | true    | no       |
+| is_provision_logging             | Set this to true to provion logging STR instance                 | bool         | true    | no       |
 | logging_name              | Name of the logging instance                                     | string       | n/a     | yes      |
-| str_logging_plan          | The name of the plan type supported by logdna.                   | string       | n/a     | yes      |
-| str_logging_region        | Location to create the logdna instance.                          | string       | n/a     | yes      |
-| str_logging_bind_key      | Indicating that instance key should be bind to logdna            | bool         | false   | no       |
-| str_logging_service_endpoints| Type of service endpoint                                      | string       | n/a     | no       |
-| str_logging_key_name      | Name used to identify logdna resource key                        | string       | empty   | no       |
-| str_logging_tags          | Tags that should be applied to the logdna                        | list(string) | n/a     | no       |
-| str_logging_key_tags      | Tags that should be applied to the logdna key                    | list(string) | n/a     | no       |
+| logging_plan          | The name of the plan type supported by logdna.                   | string       | n/a     | yes      |
+| logging_region        | Location to create the logdna instance.                          | string       | n/a     | yes      |
+| is_bind_key_to_logging      | Indicating that instance key should be bind to logdna            | bool         | false   | no       |
+| logging_visbility| Type of service endpoint                                      | string       | n/a     | no       |
+| logging_key_name      | Name used to identify logdna resource key                        | string       | empty   | no       |
+| logging_tags          | Tags that should be applied to the logdna                        | list(string) | n/a     | no       |
+| logging_key_tags      | Tags that should be applied to the logdna key                    | list(string) | n/a     | no       |
 | enable_platform_logs      | Enable this to make this instace as default receiver             | bool         | true    | no       |
 
 ##  Logging STS Inputs
 
 | Name                          | Description                                                      | Type         | Default | Required |
 |-------------------------------|------------------------------------------------------------------|:-------------|:------- |:---------|
-| sts_provision                 | Set this to true to provion logging STS instance                 | bool         | false   | no       |
+| is_provision_supertenant_logging                 | Set this to true to provion logging STS instance                 | bool         | false   | no       |
 | sts_service_supertenant       | Name of service supertenant                                      | string       | Empty   | no       |
-| sts_provision_key             | Service Provision key                                            | string       | Empty   | no       |
+| supertenant_logging_provision_key             | Service Provision key                                            | string       | Empty   | no       |
 | logging_name                  | Name of the logging instance                                     | string       | n/a     | yes      |
-| sts_logging_plan              | The name of the plan type supported by logdna.                   | string       | n/a     | yes      |
-| sts_logging_region            | Location to create the logdna instance.                          | string       | n/a     | yes      |
-| sts_logging_bind_key          | Indicating that instance key should be bind to logdna            | bool         | false   | no       |
-| sts_logging_service_endpoints | Type of service endpoint                                         | string       | n/a     | no       |
-| sts_logging_key_name          | Name used to identify logdna resource key                        | string       | empty   | no       |
+| supertenant_logging_plan              | The name of the plan type supported by logdna.                   | string       | n/a     | yes      |
+| supertenant_logging_region            | Location to create the logdna instance.                          | string       | n/a     | yes      |
+| is_bind_key_to_supertenant_logging          | Indicating that instance key should be bind to logdna            | bool         | false   | no       |
+| supertenant_logging_visibility | Type of service endpoint                                         | string       | n/a     | no       |
+| supertenant_logging_key_name          | Name used to identify logdna resource key                        | string       | empty   | no       |
 | sts_logging_role              | Name of the user role for logdna key.                            | string       | empty   | no       |
-| sts_logging_tags              | Tags that should be applied to the logdna                        | list(string) | n/a     | no       |
-| sts_logging_key_tags          | Tags that should be applied to the logdna key                    | list(string) | n/a     | no       |
+| supertenant_logging_tags              | Tags that should be applied to the logdna                        | list(string) | n/a     | no       |
+| supertenant_logging_key_tags          | Tags that should be applied to the logdna key                    | list(string) | n/a     | no       |
 
 ##  Monitoring Inputs
 
 | Name                      | Description                                                      | Type         | Default | Required |
 |---------------------------|------------------------------------------------------------------|:-------------|:------- |:---------|
-| monitoring_provision      | Set this to true to provion monitoring instance                  | bool         | true    | no       |
-| name                      | Used as prefix to observability instances                        | string       | n/a     | yes      |
+| is_provision_monitoring      | Set this to true to provion monitoring instance                  | bool         | true    | no       |
+| monitoring_name                      | Used as prefix to observability instances                        | string       | n/a     | yes      |
 | monitoring_plan           | The name of the plan type supported by sysdig.                   | string       | n/a     | yes      |
 | monitoring_region         | Location to create the sysdig instance.                          | string       | n/a     | yes      |
-| monitoring_bind_key       | Indicating that instance key should be bind to sysdig            | bool         | false   | no       |
+| is_bind_key_to_monitoring       | Indicating that instance key should be bind to sysdig            | bool         | false   | no       |
 | monitoring_key_name       | Name used to identify sysdig resource key                        | string       | empty   | no       |
 | monitoring_tags           | Tags that should be applied to the sysdig                        | list(string) | n/a     | no       |
 | monitoring_key_tags       | Tags that should be applied to the sysdig key                    | list(string) | n/a     | no       |

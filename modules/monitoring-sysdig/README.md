@@ -39,13 +39,14 @@ module "monitoring_instance" {
 
 | Name               | Description                                                      | Type         | Default | Required |
 |--------------------|------------------------------------------------------------------|:-------------|:------- |:---------|
+| is_provision_monitoring | Disable this to read the existing activity trcaker instance | bool         | true    | no       |
 | name               | A descriptive name used to identify the resource instance        | string       | n/a     | yes      |
-| bind_key           | Indicating that instance key should be bind to logdna instance   | bool         | n/a     | no       |
+| is_bind_key        | Indicating that instance key should be bind to logdna instance   | bool         | n/a     | no       |
 | key\_name          | A descriptive name used to identify the resource key             | string       | n/a     | yes      |
 | plan               | The name of the plan type supported by service.                  | string       | n/a     | yes      |
 | region             | Target location or environment to create the resource instance.  | string       | n/a     | yes      |
 | resource_group_id    | ID of the resource group                                       | string       | n/a     | yes      |
-| service\_endpoints | Possible values are 'public', 'private', 'public-and-private'.   | string       | n/a     | no       |
+| visibility         | Possible values are 'public', 'private', 'public-and-private'.   | string       | public  | no       |
 | tags               | Tags that should be applied to the service                       | list(string) | n/a     | no       |
 | key_tags           | Tags that should be applied to the service key                   | list(string) | n/a     | no       |
 | create_timeout     | Timeout duration for create                                      | string       | n/a     | no       |

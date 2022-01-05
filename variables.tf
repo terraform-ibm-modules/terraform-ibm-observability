@@ -21,13 +21,13 @@ variable "activity_tracker_name" {
 # Copyright 2020 IBM
 #####################################################
 
-variable "str_provision" {
+variable "is_provision_logging" {
   type        = bool
   description = "Logging STR: Disable this, not to provision logging STR instance"
   default     = true
 }
 
-variable "str_logging_bind_key" {
+variable "is_bind_key_to_logging" {
   description = "Logging STR: Enable this flag to attach a key to STR instance."
   type        = bool
   default     = false
@@ -39,7 +39,7 @@ variable "enable_platform_logs" {
   default     = true
 }
 
-variable "str_logging_plan" {
+variable "logging_plan" {
   description = "Logging STR: plan type (14-day, 30-day, 7-day, hipaa-30-day and lite)"
   type        = string
   validation {
@@ -51,35 +51,35 @@ variable "str_logging_plan" {
         "7-day",
         "hipaa-30-day",
         "lite"
-      ], var.str_logging_plan)
+      ], var.logging_plan)
     )
   }
 }
 
-variable "str_logging_region" {
+variable "logging_region" {
   description = "Logging STR: Provisioning Region"
   type        = string
 }
 
-variable "str_logging_service_endpoints" {
+variable "logging_visbility" {
   description = "Logging STR: Types of the service endpoints. Possible values are 'public', 'private', 'public-and-private'."
   type        = string
   default     = null
 }
 
-variable "str_logging_tags" {
+variable "logging_tags" {
   type        = list(string)
   description = "Logging STR: Tags that should be applied to the service"
   default     = null
 }
 
-variable "str_logging_key_tags" {
+variable "logging_key_tags" {
   type        = list(string)
   description = "Logging STR: Tags that should be applied to the key"
   default     = null
 }
 
-variable "str_logging_key_name" {
+variable "logging_key_name" {
   description = "Logging STR: Name of the instance key"
   type        = string
   default     = null
@@ -90,13 +90,13 @@ variable "str_logging_key_name" {
 # Copyright 2020 IBM
 #####################################################
 
-variable "sts_provision" {
+variable "is_provision_supertenant_logging" {
   type        = bool
   description = "Logging STS: Disable this, not to create STS instance"
   default     = true
 }
 
-variable "sts_logging_bind_key" {
+variable "is_bind_key_to_supertenant_logging" {
   description = "Logging STS: Enable this flag to attach a key to STS instance."
   type        = bool
   default     = false
@@ -110,7 +110,7 @@ variable "sts_service_supertenant" {
   default     = "" //provide valid value here
 }
 
-variable "sts_provision_key" {
+variable "supertenant_logging_provision_key" {
   type        = string
   description = "Logging STS: Provision key"
   default     = "" //provide valid value here
@@ -118,7 +118,7 @@ variable "sts_provision_key" {
 
 ############## STS Parameters End ######################
 
-variable "sts_logging_plan" {
+variable "supertenant_logging_plan" {
   description = "Logging STS: plan type (14-day, 30-day, 7-day, hipaa-30-day and lite)"
   type        = string
   validation {
@@ -130,35 +130,35 @@ variable "sts_logging_plan" {
         "7-day",
         "hipaa-30-day",
         "lite"
-      ], var.sts_logging_plan)
+      ], var.supertenant_logging_plan)
     )
   }
 }
 
-variable "sts_logging_region" {
+variable "supertenant_logging_region" {
   description = "Logging STS: Provisioning Region"
   type        = string
 }
 
-variable "sts_logging_service_endpoints" {
+variable "supertenant_logging_visibility" {
   description = "Logging STS: Types of the service endpoints. Possible values are 'public', 'private', 'public-and-private'."
   type        = string
   default     = null
 }
 
-variable "sts_logging_tags" {
+variable "supertenant_logging_tags" {
   type        = list(string)
   description = "Logging STS: Tags that should be applied to the service"
   default     = null
 }
 
-variable "sts_logging_key_tags" {
+variable "supertenant_logging_key_tags" {
   type        = list(string)
   description = "Logging STS: Tags that should be applied to the key"
   default     = null
 }
 
-variable "sts_logging_key_name" {
+variable "supertenant_logging_key_name" {
   description = "Logging STS: Name of the instance key"
   type        = string
   default     = null
@@ -168,18 +168,18 @@ variable "sts_logging_key_name" {
 # Set up Activity Tracker Super Tenant Receiver (ATR) instance
 #####################################################
 
-variable "atr_provision" {
+variable "is_provision_activity_tracker" {
   type        = bool
   description = "Activity Tracker ATR: Disable this not provision ATR instance"
   default     = true
 }
 
-variable "atr_region" {
+variable "activity_tracker_region" {
   type        = string
   description = "Activity Tracker ATS: Geographic location of the resource (e.g. us-south, us-east)"
 }
 
-variable "atr_plan" {
+variable "activity_tracker_plan" {
   type        = string
   description = "Activity Tracker ATS: The type of plan the service instance should run under (lite, 7-day, 14-day, or 30-day)"
   validation {
@@ -191,36 +191,36 @@ variable "atr_plan" {
         "7-day",
         "hipaa-30-day",
         "lite"
-      ], var.atr_plan)
+      ], var.activity_tracker_plan)
     )
   }
 }
 
-variable "atr_make_default_receiver" {
+variable "is_activity_tracker_the_default_receiver" {
   type        = bool
   description = "Enable this to make this instance a sdefault receiver"
   default     = true
 }
 
-variable "atr_tags" {
+variable "activity_tracker_tags" {
   type        = list(string)
   description = "Activity Tracker ATS:  Tags that should be applied to the service"
   default     = null
 }
 
-variable "atr_bind_key" {
+variable "is_bind_key_to_activity_tracker" {
   description = "Activity Tracker ATS:  Enable this to bind key to instance (true/false)"
   type        = bool
   default     = false
 }
 
-variable "atr_key_name" {
+variable "activity_tracker_key_name" {
   description = "Activity Tracker ATS:  Name of the instance key"
   type        = string
   default     = null
 }
 
-variable "atr_key_tags" {
+variable "activity_tracker_key_tags" {
   type        = list(string)
   description = "Activity Tracker ATS: Tags that should be applied to the key"
   default     = null
@@ -233,31 +233,31 @@ variable "atr_key_tags" {
 
 ############## ATS Parameters Start ######################
 
-variable "use_existing_sts_crn" {
+variable "is_attach_existing_supertenant_logging_crn" {
   type        = bool
   description = "Enable this to attach existing logging STS instance to activity tracket ATS instance"
   default     = false
 }
 
-variable "ats_provision" {
+variable "is_provision_supertenant_activity_tracker" {
   type        = bool
   description = "Activity Tracker ATS: Disable this to read the existing activity tracker instance"
   default     = true
 }
 
-variable "ats_service_supertenant" {
+variable "supertenant_activity_tracker_name" {
   type        = string
   description = "Activity Tracker ATS: Name of your supertenant service"
   default     = "" //provide valid values here
 }
 
-variable "ats_provision_key" {
+variable "supertenant_activity_tracker_provision_key" {
   type        = string
   description = "Activity Tracker ATS: Provision key"
   default     = "" //provide valid values here
 }
 
-variable "ats_associated_logging_crn" {
+variable "supertenant_activity_tracker_associated_logging_crn" {
   type        = string
   description = "Logging: Enter the associated logging crn"
   default     = null //provide valid value here
@@ -266,12 +266,18 @@ variable "ats_associated_logging_crn" {
 ############## ATS Parameters End ######################
 
 
-variable "ats_region" {
+variable "supertenant_activity_tracker_region" {
   type        = string
   description = "Activity Tracker ATS: Geographic location of the resource (e.g. us-south, us-east)"
 }
 
-variable "ats_plan" {
+variable "use_existing_sts_crn" {
+  type        = bool
+  description = "Enable this to attach existing logging STS instance to activity tracket ATS instance"
+  default     = false
+}
+
+variable "supertenant_activity_tracker_plan" {
   type        = string
   description = "Activity Tracker ATS: The type of plan the service instance should run under (lite, 7-day, 14-day, or 30-day)"
   validation {
@@ -283,30 +289,30 @@ variable "ats_plan" {
         "7-day",
         "hipaa-30-day",
         "lite"
-      ], var.ats_plan)
+      ], var.supertenant_activity_tracker_plan)
     )
   }
 }
 
-variable "ats_tags" {
+variable "supertenant_activity_tracker_tags" {
   type        = list(string)
   description = "Activity Tracker ATS:  Tags that should be applied to the service"
   default     = null
 }
 
-variable "ats_bind_key" {
+variable "is_bind_key_to_supertenant_activity_tracker" {
   description = "Activity Tracker ATS:  Enable this to bind key to instance (true/false)"
   type        = bool
   default     = false
 }
 
-variable "ats_key_name" {
+variable "supertenant_activity_tracker_key_name" {
   description = "Activity Tracker ATS:  Name of the instance key"
   type        = string
   default     = null
 }
 
-variable "ats_key_tags" {
+variable "supertenant_activity_tracker_key_tags" {
   type        = list(string)
   description = "Activity Tracker ATS: Tags that should be applied to the key"
   default     = null
@@ -322,13 +328,13 @@ variable "monitoring_name" {
   type        = string
 }
 
-variable "monitoring_provision" {
+variable "is_provision_monitoring" {
   type        = bool
   description = "Monitoring: Disable this to read the existing activity tracker instance"
   default     = true
 }
 
-variable "monitoring_bind_key" {
+variable "is_bind_key_to_monitoring" {
   description = "Monitoring: Flag indicating that key should be bind to logdna hippa instance"
   type        = bool
   default     = false
@@ -339,7 +345,7 @@ variable "monitoring_plan" {
   type        = string
 }
 
-variable "monitoring_enable_platform_metrics" {
+variable "is_enable_platform_metrics" {
   type        = bool
   description = "Monitoring: Receive platform metrics in Sysdig"
   default     = true
@@ -351,7 +357,7 @@ variable "monitoring_region" {
 }
 
 
-variable "monitoring_service_endpoints" {
+variable "monitoring_visibility" {
   description = "Monitoring: Types of the service endpoints. Possible values are 'public', 'private', 'public-and-private'."
   type        = string
   default     = null

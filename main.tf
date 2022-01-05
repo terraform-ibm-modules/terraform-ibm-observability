@@ -6,24 +6,24 @@ module "logging_str_instance" {
   //Uncomment the following line to point the source to registry level
   //source  = "terraform-ibm-modules/observability/ibm//modules/logging-instance"
 
-  count  = var.str_provision ? 1 : 0
+  count  = var.is_provision_logging ? 1 : 0
   source = "./modules/logging-instance"
 
-  is_sts_instance      = false
-  provision            = var.str_provision
-  name                 = format("%s-logging-str", var.logging_name)
-  bind_key             = var.str_logging_bind_key
-  enable_platform_logs = var.enable_platform_logs
-  resource_group_id    = var.resource_group_id
-  plan                 = var.str_logging_plan
-  region               = var.str_logging_region
-  service_endpoints    = var.str_logging_service_endpoints
-  tags                 = var.str_logging_tags
-  key_name             = var.str_logging_key_name
-  key_tags             = var.str_logging_key_tags
-  create_timeout       = var.create_timeout
-  update_timeout       = var.update_timeout
-  delete_timeout       = var.delete_timeout
+  is_supertenant_logging = false
+  is_provision_logging   = var.is_provision_logging
+  name                   = format("%s-logging-str", var.logging_name)
+  is_bind_key            = var.is_bind_key_to_logging
+  enable_platform_logs   = var.enable_platform_logs
+  resource_group_id      = var.resource_group_id
+  plan                   = var.logging_plan
+  region                 = var.logging_region
+  visibility             = var.logging_visbility
+  tags                   = var.logging_tags
+  key_name               = var.logging_key_name
+  key_tags               = var.logging_key_tags
+  create_timeout         = var.create_timeout
+  update_timeout         = var.update_timeout
+  delete_timeout         = var.delete_timeout
 }
 
 ###################################################################
@@ -34,25 +34,25 @@ module "logging_sts_instance" {
   //Uncomment the following line to point the source to registry level
   //source  = "terraform-ibm-modules/observability/ibm//modules/logging-instance"
 
-  count     = (var.sts_provision || (var.ats_provision && var.use_existing_sts_crn == false)) ? 1 : 0
-  source    = "./modules/logging-instance"
-  provision = var.sts_provision
+  count                = (var.is_provision_supertenant_logging || (var.is_provision_supertenant_activity_tracker && var.is_attach_existing_supertenant_logging_crn == false)) ? 1 : 0
+  source               = "./modules/logging-instance"
+  is_provision_logging = var.is_provision_supertenant_logging
 
   //STS Specific parameters
-  is_sts_instance     = true
-  service_supertenant = var.sts_service_supertenant
-  provision_key       = var.sts_provision_key
+  is_supertenant_logging = true
+  service_supertenant    = var.sts_service_supertenant
+  provision_key          = var.supertenant_logging_provision_key
 
   //Logging instance parameters
   name              = format("%s-logging-sts", var.logging_name)
-  bind_key          = var.sts_logging_bind_key
+  is_bind_key       = var.is_bind_key_to_supertenant_logging
   resource_group_id = var.resource_group_id
-  plan              = var.sts_logging_plan
-  region            = var.sts_logging_region
-  service_endpoints = var.sts_logging_service_endpoints
-  tags              = var.sts_logging_tags
-  key_name          = var.sts_logging_key_name
-  key_tags          = var.sts_logging_key_tags
+  plan              = var.supertenant_logging_plan
+  region            = var.supertenant_logging_region
+  visibility        = var.supertenant_logging_visibility
+  tags              = var.supertenant_logging_tags
+  key_name          = var.supertenant_logging_key_name
+  key_tags          = var.supertenant_logging_key_tags
   create_timeout    = var.create_timeout
   update_timeout    = var.update_timeout
   delete_timeout    = var.delete_timeout
@@ -66,23 +66,23 @@ module "activity-tracker-atr-instance" {
   //Uncomment the following line to point the source to registry level
   //source  = "terraform-ibm-modules/observability/ibm//modules/activity-tracker-instance"
 
-  count = var.atr_provision ? 1 : 0
+  count = var.is_provision_activity_tracker ? 1 : 0
 
-  source                = "./modules/activity-tracker-instance"
-  provision             = var.atr_provision
-  is_ats_instance       = false
-  name                  = format("%s-monitoring-atr", var.activity_tracker_name)
-  plan                  = var.atr_plan
-  region                = var.atr_region
-  bind_key              = var.atr_bind_key
-  make_default_receiver = var.atr_make_default_receiver
-  key_name              = var.atr_key_name
-  key_tags              = var.atr_key_tags
-  resource_group_id     = var.resource_group_id
-  tags                  = var.atr_tags
-  create_timeout        = var.create_timeout
-  update_timeout        = var.update_timeout
-  delete_timeout        = var.delete_timeout
+  source                                   = "./modules/activity-tracker-instance"
+  is_provision_activity_tracker            = var.is_provision_activity_tracker
+  is_supertenant_activity_tracker          = false
+  name                                     = format("%s-monitoring-atr", var.activity_tracker_name)
+  plan                                     = var.activity_tracker_plan
+  region                                   = var.activity_tracker_region
+  is_bind_key                              = var.is_bind_key_to_activity_tracker
+  is_activity_tracker_the_default_receiver = var.is_activity_tracker_the_default_receiver
+  key_name                                 = var.activity_tracker_key_name
+  key_tags                                 = var.activity_tracker_key_tags
+  resource_group_id                        = var.resource_group_id
+  tags                                     = var.activity_tracker_tags
+  create_timeout                           = var.create_timeout
+  update_timeout                           = var.update_timeout
+  delete_timeout                           = var.delete_timeout
 }
 
 ###################################################################
@@ -93,26 +93,26 @@ module "activity-tracker-ats-instance" {
   //Uncomment the following line to point the source to registry level
   //source  = "terraform-ibm-modules/observability/ibm//modules/activity-tracker-instance"
 
-  count = var.ats_provision ? 1 : 0
+  count = var.is_provision_supertenant_activity_tracker ? 1 : 0
 
-  source    = "./modules/activity-tracker-instance"
-  provision = var.ats_provision
+  source                        = "./modules/activity-tracker-instance"
+  is_provision_activity_tracker = var.is_provision_supertenant_activity_tracker
 
   //ATS specific parameters
-  is_ats_instance        = true
-  service_supertenant    = var.ats_service_supertenant
-  associated_logging_crn = var.use_existing_sts_crn ? var.ats_associated_logging_crn : module.logging_sts_instance[0].id
-  provision_key          = var.ats_provision_key
-
+  is_supertenant_activity_tracker = true
+  service_supertenant             = var.supertenant_activity_tracker_name
+  associated_logging_crn          = var.is_attach_existing_supertenant_logging_crn ? var.supertenant_activity_tracker_associated_logging_crn : module.logging_sts_instance[0].id
+  provision_key                   = var.supertenant_activity_tracker_provision_key
+  //use_existing_sts_crn   = var.is_attach_existing_supertenant_logging_crn
   //Actvity tracker
   name              = format("%s-monitoring-ats", var.activity_tracker_name)
-  plan              = var.ats_plan
-  region            = var.ats_region
-  bind_key          = var.ats_bind_key
-  key_name          = var.ats_key_name
-  key_tags          = var.ats_key_tags
+  plan              = var.supertenant_activity_tracker_plan
+  region            = var.supertenant_activity_tracker_region
+  is_bind_key       = var.is_bind_key_to_supertenant_activity_tracker
+  key_name          = var.supertenant_activity_tracker_key_name
+  key_tags          = var.supertenant_activity_tracker_key_tags
   resource_group_id = var.resource_group_id
-  tags              = var.ats_tags
+  tags              = var.supertenant_activity_tracker_tags
   create_timeout    = var.create_timeout
   update_timeout    = var.update_timeout
   delete_timeout    = var.delete_timeout
@@ -126,22 +126,22 @@ module "monitoring_instance" {
   //Uncomment the following line to point the source to registry level
   //source = "terraform-ibm-modules/observability/ibm//modules/monitoring-sysdig"
 
-  count = var.monitoring_provision ? 1 : 0
+  count = var.is_provision_monitoring ? 1 : 0
 
-  source                  = "./modules/monitoring-sysdig"
-  provision               = var.monitoring_provision
-  bind_key                = var.monitoring_bind_key
-  name                    = format("%s-monitoring", var.monitoring_name)
-  resource_group_id       = var.resource_group_id
-  plan                    = var.monitoring_plan
-  region                  = var.monitoring_region
-  service_endpoints       = var.monitoring_service_endpoints
-  enable_platform_metrics = var.monitoring_enable_platform_metrics
-  tags                    = var.monitoring_tags
-  key_name                = var.monitoring_key_name
-  key_tags                = var.monitoring_key_tags
-  create_timeout          = var.create_timeout
-  update_timeout          = var.update_timeout
-  delete_timeout          = var.delete_timeout
+  source                     = "./modules/monitoring-sysdig"
+  is_provision_monitoring    = var.is_provision_monitoring
+  is_bind_key                = var.is_bind_key_to_monitoring
+  name                       = format("%s-monitoring", var.monitoring_name)
+  resource_group_id          = var.resource_group_id
+  plan                       = var.monitoring_plan
+  region                     = var.monitoring_region
+  visibility                 = var.monitoring_visibility
+  is_enable_platform_metrics = var.is_enable_platform_metrics
+  tags                       = var.monitoring_tags
+  key_name                   = var.monitoring_key_name
+  key_tags                   = var.monitoring_key_tags
+  create_timeout             = var.create_timeout
+  update_timeout             = var.update_timeout
+  delete_timeout             = var.delete_timeout
 }
 
