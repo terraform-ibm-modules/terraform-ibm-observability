@@ -11,7 +11,7 @@ terraform {
   required_providers {
     sysdig = {
       source = "sysdiglabs/sysdig"
-      version = "0.5.10"
+      version = "0.5.37"
     }
 
     ibm = {
@@ -29,7 +29,7 @@ terraform {
   required_providers {
     sysdig = {
       source  = "sysdiglabs/sysdig"
-      version = "0.5.10"
+      version = "0.5.37"
     }
 
     ibm = {
