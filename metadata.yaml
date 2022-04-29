@@ -1389,7 +1389,7 @@ submodules:
       - name: "sysdig"
         namespace: ""
         source: "sysdiglabs/sysdig"
-        version: "0.5.10"
+        version: "0.5.37"
     inputs:
       - name: "provision"
         type : bool
