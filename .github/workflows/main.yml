@@ -47,10 +47,7 @@ jobs:
 
       # Setup tools
       - name: Setup tools
-        run: |
-          pwd
-          ls -l
-          make
+        run: make
 
       # Pull CI Image
       - name: Pull CI Image
