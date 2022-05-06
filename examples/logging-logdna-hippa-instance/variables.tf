@@ -15,21 +15,10 @@ variable "bind_key" {
   default     = false
 }
 
-variable "is_sts_instance" {
-  description = "Set this to provision (STS) logging instance"
-  type        = bool
-  default     = false
-}
 
 variable "name" {
   description = "Name of the instance"
   type        = string
-}
-
-variable "plan" {
-  description = "plan type (14-day, 30-day, 7-day, hipaa-30-day and lite)"
-  type        = string
-  default     = "hipaa-30-day"
 }
 
 variable "enable_platform_logs" {
@@ -90,6 +79,3 @@ variable "resource_group" {
   type        = string
   description = "Name of the resource group"
 }
-
-
-

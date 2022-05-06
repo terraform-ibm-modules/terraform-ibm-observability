@@ -15,12 +15,6 @@ variable "bind_key" {
   default     = false
 }
 
-variable "is_sts_instance" {
-  description = "Set this to provision (STS) logging instance"
-  type        = bool
-  default     = true
-}
-
 variable "name" {
   description = "Name of the instance"
   type        = string
@@ -35,13 +29,13 @@ variable "plan" {
 variable "service_supertenant" {
   type        = string
   description = "Name of your supertenant service"
-  default     = "" //provide valid value here
+  default     = "" #provide valid value here
 }
 
 variable "provision_key" {
   type        = string
   description = "Provision key"
-  default     = "" //provide valid value here
+  default     = "" #provide valid value here
 }
 
 variable "enable_platform_logs" {
@@ -102,6 +96,3 @@ variable "resource_group" {
   type        = string
   description = "Name of the resource group"
 }
-
-
-

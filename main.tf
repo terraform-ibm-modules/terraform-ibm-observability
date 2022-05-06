@@ -3,8 +3,8 @@
 ###################################################################
 
 module "logging_str_instance" {
-  //Uncomment the following line to point the source to registry level
-  //source  = "terraform-ibm-modules/observability/ibm//modules/logging-instance"
+  #Uncomment the following line to point the source to registry level
+  #source  = "terraform-ibm-modules/observability/ibm//modules/logging-instance"
 
   count  = var.str_provision ? 1 : 0
   source = "./modules/logging-instance"
@@ -31,19 +31,19 @@ module "logging_str_instance" {
 ###################################################################
 
 module "logging_sts_instance" {
-  //Uncomment the following line to point the source to registry level
-  //source  = "terraform-ibm-modules/observability/ibm//modules/logging-instance"
+  #Uncomment the following line to point the source to registry level
+  #source  = "terraform-ibm-modules/observability/ibm#modules/logging-instance"
 
   count     = (var.sts_provision || (var.ats_provision && var.use_existing_sts_crn == false)) ? 1 : 0
   source    = "./modules/logging-instance"
   provision = var.sts_provision
 
-  //STS Specific parameters
+  #STS Specific parameters
   is_sts_instance     = true
   service_supertenant = var.sts_service_supertenant
   provision_key       = var.sts_provision_key
 
-  //Logging instance parameters
+  #Logging instance parameters
   name              = format("%s-logging-sts", var.logging_name)
   bind_key          = var.sts_logging_bind_key
   resource_group_id = var.resource_group_id
@@ -62,9 +62,9 @@ module "logging_sts_instance" {
 # Activity tracker ATR (Super Tenant Receiver) instance
 ###################################################################
 
-module "activity-tracker-atr-instance" {
-  //Uncomment the following line to point the source to registry level
-  //source  = "terraform-ibm-modules/observability/ibm//modules/activity-tracker-instance"
+module "activity_tracker_atr_instance" {
+  #Uncomment the following line to point the source to registry level
+  #source  = "terraform-ibm-modules/observability/ibm//modules/activity-tracker-instance"
 
   count = var.atr_provision ? 1 : 0
 
@@ -89,22 +89,22 @@ module "activity-tracker-atr-instance" {
 # Activity tracker ATS (Super Tenant Sender) instance
 ###################################################################
 
-module "activity-tracker-ats-instance" {
-  //Uncomment the following line to point the source to registry level
-  //source  = "terraform-ibm-modules/observability/ibm//modules/activity-tracker-instance"
+module "activity_tracker_ats_instance" {
+  #Uncomment the following line to point the source to registry level
+  #source  = "terraform-ibm-modules/observability/ibm//modules/activity-tracker-instance"
 
   count = var.ats_provision ? 1 : 0
 
   source    = "./modules/activity-tracker-instance"
   provision = var.ats_provision
 
-  //ATS specific parameters
+  #ATS specific parameters
   is_ats_instance        = true
   service_supertenant    = var.ats_service_supertenant
   associated_logging_crn = var.use_existing_sts_crn ? var.ats_associated_logging_crn : module.logging_sts_instance[0].id
   provision_key          = var.ats_provision_key
 
-  //Actvity tracker
+  #Actvity tracker
   name              = format("%s-monitoring-ats", var.activity_tracker_name)
   plan              = var.ats_plan
   region            = var.ats_region
@@ -123,8 +123,8 @@ module "activity-tracker-ats-instance" {
 #####################################################
 
 module "monitoring_instance" {
-  //Uncomment the following line to point the source to registry level
-  //source = "terraform-ibm-modules/observability/ibm//modules/monitoring-sysdig"
+  #Uncomment the following line to point the source to registry level
+  #source = "terraform-ibm-modules/observability/ibm//modules/monitoring-sysdig"
 
   count = var.monitoring_provision ? 1 : 0
 
@@ -144,4 +144,3 @@ module "monitoring_instance" {
   update_timeout          = var.update_timeout
   delete_timeout          = var.delete_timeout
 }
-

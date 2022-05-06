@@ -1,5 +1,5 @@
 variable "logging_name" {
-  description = "Logging Enter the instance name "
+  description = "Logging Enter the instance name"
   type        = string
   validation {
     error_message = "Logging instance name must begin and end with a letter and contain only letters, numbers, and - characters."
@@ -8,7 +8,7 @@ variable "logging_name" {
 }
 
 variable "activity_tracker_name" {
-  description = "activity tracker Enter the instance name "
+  description = "activity tracker Enter the instance name"
   type        = string
   validation {
     error_message = "Activity tracker instance name must begin and end with a letter and contain only letters, numbers, and - characters."
@@ -17,7 +17,7 @@ variable "activity_tracker_name" {
 }
 
 variable "monitoring_name" {
-  description = "monitoring Enter the instance name "
+  description = "monitoring Enter the instance name"
   type        = string
   validation {
     error_message = "Activity tracker instance name must begin and end with a letter and contain only letters, numbers, and - characters."
@@ -95,12 +95,6 @@ variable "str_logging_key_name" {
 # Copyright 2020 IBM
 #####################################################
 
-variable "sts_logging_provision" {
-  type        = bool
-  description = "Logging STS: Disable this to read the existing logging sts instance"
-  default     = true
-}
-
 variable "sts_logging_bind_key" {
   description = "Logging STS: Flag indicating that key should be bind to logdna sts instance"
   type        = bool
@@ -118,13 +112,13 @@ variable "sts_provision" {
 variable "sts_service_supertenant" {
   type        = string
   description = "Logging STS: Name of your supertenant service"
-  default     = "" //provide valid value here
+  default     = "" #provide valid value here
 }
 
 variable "sts_provision_key" {
   type        = string
   description = "Logging STS: Provision key"
-  default     = "" //provide valid value here
+  default     = "" #provide valid value here
 }
 
 ############## STS Parameters End ######################
@@ -245,19 +239,19 @@ variable "ats_provision" {
 variable "ats_service_supertenant" {
   type        = string
   description = "Activity Tracker ATS: Name of your supertenant service"
-  default     = "" //provide valid values here
+  default     = "" #provide valid values here
 }
 
 variable "ats_provision_key" {
   type        = string
   description = "Activity Tracker ATS: Provision key"
-  default     = "" //provide valid values here
+  default     = "" #provide valid values here
 }
 
 variable "ats_associated_logging_crn" {
   type        = string
   description = "Logging: Enter the associated logging crn"
-  default     = "" //provide valid value here
+  default     = "" #provide valid value here
 }
 
 ############## ATS Parameters End ######################
@@ -383,4 +377,3 @@ variable "delete_timeout" {
   description = "Timeout duration for delete."
   default     = null
 }
-

@@ -27,13 +27,9 @@ If we dont configure the version parameter, it fetched latest provider version.
 terraform {
   required_version = ">=0.13"
   required_providers {
-    sysdig = {
-      source  = "sysdiglabs/sysdig"
-      version = "0.5.10"
-    }
-
     ibm = {
-      source = "IBM-Cloud/ibm"
+      source  = "IBM-Cloud/ibm"
+      version = ">= 1.41.0"
     }
   }
 }
