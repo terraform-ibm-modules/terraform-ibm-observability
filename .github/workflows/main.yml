@@ -47,7 +47,7 @@ jobs:
 
       # Setup tools
       - name: Setup tools
-        run: make all
+        run: make
 
       # Pull CI Image
       - name: Pull CI Image
