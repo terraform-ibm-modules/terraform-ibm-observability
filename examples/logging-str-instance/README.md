@@ -37,43 +37,44 @@ module "logging_instance" {
 ```
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+## Requirements
+
+| Name | Version |
+|------|---------|
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >=0.13 |
+
+## Modules
+
+| Name | Source | Version |
+|------|--------|---------|
+| <a name="module_logging_instance"></a> [logging\_instance](#module\_logging\_instance) | ./../../modules/logging-instance | n/a |
+
+## Resources
+
+| Name | Type |
+|------|------|
+| [ibm_resource_group.logdna](https://registry.terraform.io/providers/IBM-Cloud/ibm/latest/docs/data-sources/resource_group) | data source |
+
 ## Inputs
 
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| <a name="input_bind_key"></a> [bind\_key](#input\_bind\_key) | Flag indicating that key should be bind to logdna hippa instance | `bool` | `false` | no |
+| <a name="input_create_timeout"></a> [create\_timeout](#input\_create\_timeout) | Timeout duration for create. | `string` | `null` | no |
+| <a name="input_delete_timeout"></a> [delete\_timeout](#input\_delete\_timeout) | Timeout duration for delete. | `string` | `null` | no |
+| <a name="input_enable_platform_logs"></a> [enable\_platform\_logs](#input\_enable\_platform\_logs) | Receive platform logs in LogDNA | `bool` | `true` | no |
+| <a name="input_key_name"></a> [key\_name](#input\_key\_name) | Name of the instance key | `string` | `null` | no |
+| <a name="input_key_tags"></a> [key\_tags](#input\_key\_tags) | Tags that should be applied to the key | `list(string)` | `null` | no |
+| <a name="input_name"></a> [name](#input\_name) | Name of the instance | `string` | n/a | yes |
+| <a name="input_plan"></a> [plan](#input\_plan) | plan type (14-day, 30-day, 7-day, hipaa-30-day and lite) | `string` | `"7-day"` | no |
+| <a name="input_provision"></a> [provision](#input\_provision) | Disable this to read the existing activity tracker instance | `bool` | `true` | no |
+| <a name="input_region"></a> [region](#input\_region) | Provisioning Region | `string` | `"us-south"` | no |
+| <a name="input_resource_group"></a> [resource\_group](#input\_resource\_group) | Name of the resource group | `string` | n/a | yes |
+| <a name="input_service_endpoints"></a> [service\_endpoints](#input\_service\_endpoints) | Types of the service endpoints. Possible values are 'public', 'private', 'public-and-private'. | `string` | `null` | no |
+| <a name="input_tags"></a> [tags](#input\_tags) | Tags that should be applied to the service | `list(string)` | `null` | no |
+| <a name="input_update_timeout"></a> [update\_timeout](#input\_update\_timeout) | Timeout duration for update. | `string` | `null` | no |
 
-| Name               | Description                                                      | Type         | Default | Required |
-|--------------------|------------------------------------------------------------------|:-------------|:------- |:---------|
-| name               | A descriptive name used to identify the resource instance        | string       | n/a     | yes      |
-| bind_key           | Indicating that instance key should be bind to logging instance  | bool         | n/a     | no       |
-| key\_name          | A descriptive name used to identify the resource key             | string       | n/a     | yes      |
-| plan               | The name of the plan type supported by service.                  | string       | n/a     | yes      |
-| region             | Target location or environment to create the resource instance.  | string       | n/a     | yes      |
-| resource\_group    | Name of the resource group                                       | string       | n/a     | yes      |
-| service\_endpoints | Possible values are 'public', 'private', 'public-and-private'.   | string       | n/a     | no       |
-| tags               | Tags that should be applied to the service                       | list(string) | n/a     | no       |
-| key_tags           | Tags that should be applied to the resource key                  | list(string) | n/a     | no       |
-| create_timeout     | Timeout duration for create                                      | string       | n/a     | no       |
-| update_timeout     | Timeout duration for update                                      | string       | n/a     | no       |
-| delete_timeout     | Timeout duration for delete                                      | string       | n/a     | no       |
-| service_supertenant| Name of your supertenant service                                 | string       | n/a     | no       |
-| provision_key      | Provision key                                                    | string       | n/a     | no       |
+## Outputs
 
-
-## NOTE
-
-To attach a key to logging instance enable it by setting `bind_key` argument to true (which is by default false). And set the `key_name` parameter accordingly (which are by deafult null) in variables.tf file.
-
-We can set the create, update and delete timeouts as string. For e.g say we want to set 15 minutes timeout then the value should be "15m".
-
-## Bind a key to logging instance
-
-To attach a key to logging instance enable it by setting `bind_key` argument to true (which is by default false). And set the `key_name` parameter accordingly (which is by default empty) in variables.tf file.
-
-## Usage
-
-To create an infrastructure run the following command
-
-  `terraform apply -var-file="input.tfvars"`
-
-Similarly to remove an infrastructure run the following command
-
-   `terraform destroy -var-file="input.tfvars"`
+No outputs.
+<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

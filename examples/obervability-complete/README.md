@@ -159,101 +159,83 @@ module "observability" {
 ```
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+## Requirements
 
-##  Activity Tracker ATR Inputs
+| Name | Version |
+|------|---------|
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >=0.13 |
 
-| Name                      | Description                                                      | Type         | Default | Required |
-|---------------------------|------------------------------------------------------------------|:-------------|:------- |:---------|
-| atr_provision             | Set this to true to provion Activity tracker ATR instance        | bool         | true    | yes      |
-| activity_tracker_name     | Name of the activity tracker instance                            | string       | true    | yes      |
-| atr_plan                  | Plan type                                                        | string       | n/a     | yes      |
-| atr_region                | Location to create the activity tracker instance.                | string       | n/a     | yes      |
-| atr_bind_key              | Indicating that  key should be bind to activity tracker instance | bool         | false   | no       |
-| atr_key_name              | Name used to identify activity tracker resource key              | string       | empty   | no       |
-| atr_tags                  | Tags that should be applied to the activity tracker              | list(string) | n/a     | no       |
-| atr_key_tags              | Tags that should be applied to the activity tracker key          | list(string) | n/a     | no       |
-| atr_make_default_receiver | Enable this to make this instance as default receiver            | bool         | true    | no       |
+## Modules
 
+| Name | Source | Version |
+|------|--------|---------|
+| <a name="module_observability"></a> [observability](#module\_observability) | ../../ | n/a |
 
-##  Activity Tracker ATS Inputs
+## Resources
 
-| Name                      | Description                                                      | Type         | Default | Required |
-|---------------------------|------------------------------------------------------------------|:-------------|:------- |:---------|
-| ats_provision             | Set this to true to provion Activity tracker ATS instance        | bool         | true   | no       |
-| ats_service_supertenant   | Name of service supertenant                                      | string       | Empty   | no       |
-| ats_provision_key         | Service Provision key                                            | string       | Empty   | no       |
-| use_existing_sts_crn      | Make true to use existing logging STS crn to attach to ATS instance| string       | Empty   | no       |
-| ats_associated_logging_crn| CRN of STS logging instance                                      | string       | Empty   | no       |
-| activity_tracker_name     | Used as prefix to observability instances                        | string       | n/a     | yes      |
-| ats_plan                  | Plan type                                                        | string       | n/a     | yes      |
-| ats_region                | Location to create the activity tracker instance.                | string       | n/a     | yes      |
-| resource_group            | Name of the resource group                                       | string       | n/a     | yes      |
-| ats_bind_key              | Indicating that instance key should be bind to activity tracker  | bool         | false   | no       |
-|ats_key_name               | Name used to identify activity tracker resource key              | string       | empty   | no       |
-| ats_tags                  | Tags that should be applied to the activity tracker              | list(string) | n/a     | no       |
-|ats_key_tags               | Tags that should be applied to the activity tracker key          | list(string) | n/a     | no       |
+| Name | Type |
+|------|------|
+| [ibm_resource_group.rg](https://registry.terraform.io/providers/IBM-Cloud/ibm/latest/docs/data-sources/resource_group) | data source |
 
-##  Logging STR Inputs
+## Inputs
 
-| Name                      | Description                                                      | Type         | Default | Required |
-|---------------------------|------------------------------------------------------------------|:-------------|:------- |:---------|
-| str_provision             | Set this to true to provion logging STR instance                 | bool         | true    | no       |
-| logging_name              | Name of the logging instance                                     | string       | n/a     | yes      |
-| str_logging_plan          | The name of the plan type supported by logdna.                   | string       | n/a     | yes      |
-| str_logging_region        | Location to create the logdna instance.                          | string       | n/a     | yes      |
-| str_logging_bind_key      | Indicating that instance key should be bind to logdna            | bool         | false   | no       |
-| str_logging_service_endpoints| Type of service endpoint                                      | string       | n/a     | no       |
-| str_logging_key_name      | Name used to identify logdna resource key                        | string       | empty   | no       |
-| str_logging_tags          | Tags that should be applied to the logdna                        | list(string) | n/a     | no       |
-| str_logging_key_tags      | Tags that should be applied to the logdna key                    | list(string) | n/a     | no       |
-| enable_platform_logs      | Enable this to make this instace as default receiver             | bool         | true    | no       |
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| <a name="input_activity_tracker_name"></a> [activity\_tracker\_name](#input\_activity\_tracker\_name) | activity tracker Enter the instance name | `string` | n/a | yes |
+| <a name="input_atr_bind_key"></a> [atr\_bind\_key](#input\_atr\_bind\_key) | Activity Tracker ATS:  Enable this to bind key to instance (true/false) | `bool` | `false` | no |
+| <a name="input_atr_key_name"></a> [atr\_key\_name](#input\_atr\_key\_name) | Activity Tracker ATS:  Name of the instance key | `string` | `null` | no |
+| <a name="input_atr_key_tags"></a> [atr\_key\_tags](#input\_atr\_key\_tags) | Activity Tracker ATS: Tags that should be applied to the key | `list(string)` | `null` | no |
+| <a name="input_atr_plan"></a> [atr\_plan](#input\_atr\_plan) | Activity Tracker ATS: The type of plan the service instance should run under (lite, 7-day, 14-day, or 30-day) | `string` | `"7-day"` | no |
+| <a name="input_atr_provision"></a> [atr\_provision](#input\_atr\_provision) | Activity Tracker ATR: Disable this not provision ATR instance | `bool` | `true` | no |
+| <a name="input_atr_region"></a> [atr\_region](#input\_atr\_region) | Activity Tracker ATS: Geographic location of the resource (e.g. us-south, us-east) | `string` | `"us-south"` | no |
+| <a name="input_atr_tags"></a> [atr\_tags](#input\_atr\_tags) | Activity Tracker ATS:  Tags that should be applied to the service | `list(string)` | `null` | no |
+| <a name="input_ats_associated_logging_crn"></a> [ats\_associated\_logging\_crn](#input\_ats\_associated\_logging\_crn) | Logging: Enter the associated logging crn | `string` | `""` | no |
+| <a name="input_ats_bind_key"></a> [ats\_bind\_key](#input\_ats\_bind\_key) | Activity Tracker ATS:  Enable this to bind key to instance (true/false) | `bool` | `false` | no |
+| <a name="input_ats_key_name"></a> [ats\_key\_name](#input\_ats\_key\_name) | Activity Tracker ATS:  Name of the instance key | `string` | `null` | no |
+| <a name="input_ats_key_tags"></a> [ats\_key\_tags](#input\_ats\_key\_tags) | Activity Tracker ATS: Tags that should be applied to the key | `list(string)` | `null` | no |
+| <a name="input_ats_plan"></a> [ats\_plan](#input\_ats\_plan) | Activity Tracker ATS: The type of plan the service instance should run under (lite, 7-day, 14-day, or 30-day) | `string` | `"7-day"` | no |
+| <a name="input_ats_provision"></a> [ats\_provision](#input\_ats\_provision) | Activity Tracker ATS: Disable this to read the existing activity tracker instance | `bool` | `true` | no |
+| <a name="input_ats_provision_key"></a> [ats\_provision\_key](#input\_ats\_provision\_key) | Activity Tracker ATS: Provision key | `string` | `""` | no |
+| <a name="input_ats_region"></a> [ats\_region](#input\_ats\_region) | Activity Tracker ATS: Geographic location of the resource (e.g. us-south, us-east) | `string` | `"us-east"` | no |
+| <a name="input_ats_service_supertenant"></a> [ats\_service\_supertenant](#input\_ats\_service\_supertenant) | Activity Tracker ATS: Name of your supertenant service | `string` | `""` | no |
+| <a name="input_ats_tags"></a> [ats\_tags](#input\_ats\_tags) | Activity Tracker ATS:  Tags that should be applied to the service | `list(string)` | `null` | no |
+| <a name="input_create_timeout"></a> [create\_timeout](#input\_create\_timeout) | Timeout duration for create. | `string` | `null` | no |
+| <a name="input_delete_timeout"></a> [delete\_timeout](#input\_delete\_timeout) | Timeout duration for delete. | `string` | `null` | no |
+| <a name="input_logging_name"></a> [logging\_name](#input\_logging\_name) | Logging Enter the instance name | `string` | n/a | yes |
+| <a name="input_monitoring_bind_key"></a> [monitoring\_bind\_key](#input\_monitoring\_bind\_key) | Monitoring: Flag indicating that key should be bind to logdna hippa instance | `bool` | `false` | no |
+| <a name="input_monitoring_enable_platform_metrics"></a> [monitoring\_enable\_platform\_metrics](#input\_monitoring\_enable\_platform\_metrics) | Monitoring: Receive platform metrics in Sysdig | `bool` | `true` | no |
+| <a name="input_monitoring_key_name"></a> [monitoring\_key\_name](#input\_monitoring\_key\_name) | Monitoring: Name of the instance key | `string` | `null` | no |
+| <a name="input_monitoring_key_tags"></a> [monitoring\_key\_tags](#input\_monitoring\_key\_tags) | Monitoring: Tags that should be applied to the key | `list(string)` | `null` | no |
+| <a name="input_monitoring_name"></a> [monitoring\_name](#input\_monitoring\_name) | monitoring Enter the instance name | `string` | n/a | yes |
+| <a name="input_monitoring_plan"></a> [monitoring\_plan](#input\_monitoring\_plan) | Monitoring: plan type (graduated-tier, graduated-tier-sysdig-secure-plus-monitor and lite) | `string` | `"graduated-tier"` | no |
+| <a name="input_monitoring_provision"></a> [monitoring\_provision](#input\_monitoring\_provision) | Monitoring: Disable this read the existing monitoring instance | `bool` | `true` | no |
+| <a name="input_monitoring_region"></a> [monitoring\_region](#input\_monitoring\_region) | Monitoring: Provisioning Region | `string` | `"us-south"` | no |
+| <a name="input_monitoring_service_endpoints"></a> [monitoring\_service\_endpoints](#input\_monitoring\_service\_endpoints) | Monitoring: Types of the service endpoints. Possible values are 'public', 'private', 'public-and-private'. | `string` | `null` | no |
+| <a name="input_monitoring_tags"></a> [monitoring\_tags](#input\_monitoring\_tags) | Monitoring: Tags that should be applied to the service | `list(string)` | `null` | no |
+| <a name="input_resource_group"></a> [resource\_group](#input\_resource\_group) | Name of the resource group | `string` | n/a | yes |
+| <a name="input_str_logging_bind_key"></a> [str\_logging\_bind\_key](#input\_str\_logging\_bind\_key) | Logging STR: Enable this flag to attach a key to STR instance. | `bool` | `false` | no |
+| <a name="input_str_logging_key_name"></a> [str\_logging\_key\_name](#input\_str\_logging\_key\_name) | Logging STR: Name of the instance key | `string` | `null` | no |
+| <a name="input_str_logging_key_tags"></a> [str\_logging\_key\_tags](#input\_str\_logging\_key\_tags) | Logging STR: Tags that should be applied to the key | `list(string)` | `null` | no |
+| <a name="input_str_logging_plan"></a> [str\_logging\_plan](#input\_str\_logging\_plan) | Logging STR: plan type (14-day, 30-day, 7-day, hipaa-30-day and lite) | `string` | `"7-day"` | no |
+| <a name="input_str_logging_region"></a> [str\_logging\_region](#input\_str\_logging\_region) | Logging STR: Provisioning Region | `string` | `"us-south"` | no |
+| <a name="input_str_logging_service_endpoints"></a> [str\_logging\_service\_endpoints](#input\_str\_logging\_service\_endpoints) | Logging STR: Types of the service endpoints. Possible values are 'public', 'private', 'public-and-private'. | `string` | `null` | no |
+| <a name="input_str_logging_tags"></a> [str\_logging\_tags](#input\_str\_logging\_tags) | Logging STR: Tags that should be applied to the service | `list(string)` | `null` | no |
+| <a name="input_str_provision"></a> [str\_provision](#input\_str\_provision) | Logging STR: Disable this, not to provision logging STR instance | `bool` | `true` | no |
+| <a name="input_sts_logging_bind_key"></a> [sts\_logging\_bind\_key](#input\_sts\_logging\_bind\_key) | Logging STS: Flag indicating that key should be bind to logdna sts instance | `bool` | `false` | no |
+| <a name="input_sts_logging_key_name"></a> [sts\_logging\_key\_name](#input\_sts\_logging\_key\_name) | Logging STS: Name of the instance key | `string` | `null` | no |
+| <a name="input_sts_logging_key_tags"></a> [sts\_logging\_key\_tags](#input\_sts\_logging\_key\_tags) | Logging STS: Tags that should be applied to the key | `list(string)` | `null` | no |
+| <a name="input_sts_logging_plan"></a> [sts\_logging\_plan](#input\_sts\_logging\_plan) | Logging STS: plan type (14-day, 30-day, 7-day, hipaa-30-day and lite) | `string` | `"7-day"` | no |
+| <a name="input_sts_logging_provision"></a> [sts\_logging\_provision](#input\_sts\_logging\_provision) | Logging STS: Disable this to read the existing logging sts instance | `bool` | `true` | no |
+| <a name="input_sts_logging_region"></a> [sts\_logging\_region](#input\_sts\_logging\_region) | Logging STS: Provisioning Region | `string` | `"us-south"` | no |
+| <a name="input_sts_logging_service_endpoints"></a> [sts\_logging\_service\_endpoints](#input\_sts\_logging\_service\_endpoints) | Logging STS: Types of the service endpoints. Possible values are 'public', 'private', 'public-and-private'. | `string` | `null` | no |
+| <a name="input_sts_logging_tags"></a> [sts\_logging\_tags](#input\_sts\_logging\_tags) | Logging STS: Tags that should be applied to the service | `list(string)` | `null` | no |
+| <a name="input_sts_provision"></a> [sts\_provision](#input\_sts\_provision) | Activity Tracker ATS: Disable this to read the existing activity tracker instance | `bool` | `true` | no |
+| <a name="input_sts_provision_key"></a> [sts\_provision\_key](#input\_sts\_provision\_key) | Logging STS: Provision key | `string` | `""` | no |
+| <a name="input_sts_service_supertenant"></a> [sts\_service\_supertenant](#input\_sts\_service\_supertenant) | Logging STS: Name of your supertenant service | `string` | `""` | no |
+| <a name="input_update_timeout"></a> [update\_timeout](#input\_update\_timeout) | Timeout duration for update. | `string` | `null` | no |
+| <a name="input_use_existing_sts_crn"></a> [use\_existing\_sts\_crn](#input\_use\_existing\_sts\_crn) | Enable this to attach existing logging STS instance to activity tracket ATS instance | `bool` | `false` | no |
 
-##  Logging STS Inputs
+## Outputs
 
-| Name                          | Description                                                      | Type         | Default | Required |
-|-------------------------------|------------------------------------------------------------------|:-------------|:------- |:---------|
-| sts_provision                 | Set this to true to provion logging STS instance                 | bool         | false   | no       |
-| sts_service_supertenant       | Name of service supertenant                                      | string       | Empty   | no       |
-| sts_provision_key             | Service Provision key                                            | string       | Empty   | no       |
-| logging_name                  | Name of the logging instance                                     | string       | n/a     | yes      |
-| sts_logging_plan              | The name of the plan type supported by logdna.                   | string       | n/a     | yes      |
-| sts_logging_region            | Location to create the logdna instance.                          | string       | n/a     | yes      |
-| sts_logging_bind_key          | Indicating that instance key should be bind to logdna            | bool         | false   | no       |
-| sts_logging_service_endpoints | Type of service endpoint                                         | string       | n/a     | no       |
-| sts_logging_key_name          | Name used to identify logdna resource key                        | string       | empty   | no       |
-| sts_logging_role              | Name of the user role for logdna key.                            | string       | empty   | no       |
-| sts_logging_tags              | Tags that should be applied to the logdna                        | list(string) | n/a     | no       |
-| sts_logging_key_tags          | Tags that should be applied to the logdna key                    | list(string) | n/a     | no       |
-
-##  Monitoring Inputs
-
-| Name                      | Description                                                      | Type         | Default | Required |
-|---------------------------|------------------------------------------------------------------|:-------------|:------- |:---------|
-| monitoring_provision      | Set this to true to provion monitoring instance                  | bool         | true    | no       |
-| name                      | Used as prefix to observability instances                        | string       | n/a     | yes      |
-| monitoring_plan           | The name of the plan type supported by sysdig.                   | string       | n/a     | yes      |
-| monitoring_region         | Location to create the sysdig instance.                          | string       | n/a     | yes      |
-| monitoring_bind_key       | Indicating that instance key should be bind to sysdig            | bool         | false   | no       |
-| monitoring_key_name       | Name used to identify sysdig resource key                        | string       | empty   | no       |
-| monitoring_tags           | Tags that should be applied to the sysdig                        | list(string) | n/a     | no       |
-| monitoring_key_tags       | Tags that should be applied to the sysdig key                    | list(string) | n/a     | no       |
-| create_timeout            | Timeout duration for create                                      | string       | n/a     | no       |
-| update_timeout            | Timeout duration for update                                      | string       | n/a     | no       |
-| delete_timeout            | Timeout duration for delete                                      | string       | n/a     | no       |
-
-
-## Usage
-
-To create an infrastructure run the following command
-
-  `terraform apply -var-file="input.tfvars"`
-
-Similarly to remove an infrastructure run the following command
-
-   `terraform destroy -var-file="input.tfvars"`
-
-## Timeout block
-
-Same set of timeout values (create, update & delete) are applicable to all the observability resources present in root module. For example, say we configure create timeout as 90 mins then for sysdig, logdna and activity tracker create time out will be 90 mins for each.
-
-We can set the create, update and delete timeouts as string. For e.g say we want to set 15 minutes timeout then the value should be "15m".
+No outputs.
+<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
