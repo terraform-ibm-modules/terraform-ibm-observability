@@ -41,4 +41,3 @@ resource "ibm_resource_key" "sysdigKey" {
   resource_instance_id = var.provision ? ibm_resource_instance.sysdig_instance[0].id : data.ibm_resource_instance.sysdig[0].id
   tags                 = (var.key_tags != null ? var.key_tags : [])
 }
-

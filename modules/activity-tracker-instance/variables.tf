@@ -100,9 +100,3 @@ variable "key_tags" {
   description = "Tags that should be applied to the service"
   default     = null
 }
-
-
-
-
-
-

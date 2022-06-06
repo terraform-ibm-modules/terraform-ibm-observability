@@ -88,4 +88,3 @@ module "observability" {
   update_timeout        = var.update_timeout
   delete_timeout        = var.delete_timeout
 }
-

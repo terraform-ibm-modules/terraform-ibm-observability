@@ -179,7 +179,3 @@ variable "resource_group" {
   type        = string
   description = "Name of the resource group"
 }
-
-
-
-
