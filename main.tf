@@ -62,7 +62,7 @@ module "logging_sts_instance" {
 # Activity tracker ATR (Super Tenant Receiver) instance
 ###################################################################
 
-module "activity-tracker-atr-instance" {
+module "activity_tracker_atr_instance" {
   # Uncomment the following line to point the source to registry level
   # source  = "terraform-ibm-modules/observability/ibm//modules/activity-tracker-instance"
 
@@ -89,7 +89,7 @@ module "activity-tracker-atr-instance" {
 # Activity tracker ATS (Super Tenant Sender) instance
 ###################################################################
 
-module "activity-tracker-ats-instance" {
+module "activity_tracker_ats_instance" {
   # Uncomment the following line to point the source to registry level
   # source  = "terraform-ibm-modules/observability/ibm//modules/activity-tracker-instance"
 
