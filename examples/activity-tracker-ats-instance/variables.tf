@@ -14,19 +14,19 @@ variable "ats_provision" {
 variable "ats_service_supertenant" {
   type        = string
   description = "ATS: Name of your supertenant service"
-  default     = "" //provide valid values here
+  default     = "" # provide valid values here
 }
 
 variable "ats_provision_key" {
   type        = string
   description = "ATS: activity_tracker Provision key"
-  default     = "" //provide valid values here
+  default     = "" # provide valid values here
 }
 
 variable "ats_associated_logging_crn" {
   type        = string
   description = "Logging: Enter the associated logging crn"
-  default     = "" //provide valid value here
+  default     = "" # provide valid value here
 }
 
 variable "is_ats_instance" {
@@ -117,13 +117,13 @@ variable "sts_provision" {
 variable "sts_service_supertenant" {
   type        = string
   description = "Logging: Name of your supertenant service"
-  default     = "" //provide valid value here
+  default     = "" # provide valid value here
 }
 
 variable "sts_provision_key" {
   type        = string
   description = "Logging: Provision key"
-  default     = "" //provide valid value here
+  default     = "" # provide valid value here
 }
 
 ############### STS Specific parameters end #####################

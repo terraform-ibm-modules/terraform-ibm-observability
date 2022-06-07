@@ -26,12 +26,12 @@ module "observability" {
   str_logging_key_tags          = var.str_logging_key_tags
 
   ################## Logging Super Tenant Sender (STS) Instance ########################
-  //STS
+  # STS
   sts_provision           = var.sts_provision
   sts_service_supertenant = var.sts_service_supertenant
   sts_provision_key       = var.sts_provision_key
 
-  //Logging
+  # Logging
   sts_logging_bind_key          = var.sts_logging_bind_key
   sts_logging_plan              = var.sts_logging_plan
   sts_logging_region            = var.sts_logging_region
@@ -52,14 +52,14 @@ module "observability" {
 
   ################# Activity Tracker ATS instance ##########
 
-  //ATS
+  # ATS
   ats_provision              = var.ats_provision
   ats_service_supertenant    = var.ats_service_supertenant
   ats_provision_key          = var.ats_provision_key
   ats_associated_logging_crn = var.ats_associated_logging_crn
   use_existing_sts_crn       = var.use_existing_sts_crn
 
-  //Activity tracker
+  # Activity tracker
   ats_plan     = var.ats_plan
   ats_region   = var.ats_region
   ats_bind_key = var.ats_bind_key
@@ -81,8 +81,8 @@ module "observability" {
 
 
   ################ Generic Parameters ######################
-  logging_name          = var.logging_name          // common for STS and STR
-  activity_tracker_name = var.activity_tracker_name //common for ATS and ATR
+  logging_name          = var.logging_name          #  common for STS and STR
+  activity_tracker_name = var.activity_tracker_name # common for ATS and ATR
   resource_group_id     = data.ibm_resource_group.rg.id
   create_timeout        = var.create_timeout
   update_timeout        = var.update_timeout

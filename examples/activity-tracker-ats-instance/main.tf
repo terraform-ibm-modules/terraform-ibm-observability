@@ -15,12 +15,12 @@ data "ibm_resource_group" "res_group" {
 ###################################################################
 
 module "logging_sts_instance" {
-  //Uncomment the following line to point the source to registry level
-  //source = "terraform-ibm-modules/observability/ibm//modules/logging-logdna"
+  # Uncomment the following line to point the source to registry level
+  # source = "terraform-ibm-modules/observability/ibm//modules/logging-logdna"
   count               = (var.is_ats_instance && var.use_existing_sts_crn == false) ? 1 : 0
   source              = "./../../modules/logging-instance"
   provision           = var.sts_provision
-  is_sts_instance     = true //logging sts is required only if ATS instance is provisioned
+  is_sts_instance     = true # logging sts is required only if ATS instance is provisioned
   bind_key            = var.sts_bind_key
   name                = var.sts_name
   resource_group_id   = data.ibm_resource_group.res_group.id

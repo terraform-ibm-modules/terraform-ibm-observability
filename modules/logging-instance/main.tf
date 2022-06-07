@@ -5,23 +5,23 @@
 
 locals {
 
-  //logging sts instance validation - 'service_supertenant' and 'provision_key' variables must be passed when 'provision = true'
+  # logging sts instance validation - 'service_supertenant' and 'provision_key' variables must be passed when 'provision = true'
   logging_sts_validate_condition = (var.is_sts_instance == true && (var.service_supertenant == null || var.provision_key == null))
   logging_sts_validate_msg       = "Values for 'service_supertenant' and 'provision_key' variables must be passed when 'is_sts_instance = true'"
   logging_sts_validate_check     = regex("^${local.logging_sts_validate_msg}$", (!local.logging_sts_validate_condition ? local.logging_sts_validate_msg : ""))
 
-  //bind key validation - 'key_name' variable must be passed when 'bind_key = true
+  # bind key validation - 'key_name' variable must be passed when 'bind_key = true
   bindkey_validate_condition = var.bind_key == true && (var.key_name == null)
   bindkey_validate_msg       = "Value for 'key_name' variable must be passed when 'bind_key = true'"
   bindkey_validate_check     = regex("^${local.bindkey_validate_msg}$", (!local.bindkey_validate_condition ? local.bindkey_validate_msg : ""))
 
-  //parameters for STS logging instance
+  # parameters for STS logging instance
   sts_parameters = {
     "service_supertenant" = var.service_supertenant
     "provision_key"       = var.provision_key
   }
 
-  //parameters for STR logging instance
+  # parameters for STR logging instance
   str_parameters = {
     "default_receiver" = var.enable_platform_logs
   }
