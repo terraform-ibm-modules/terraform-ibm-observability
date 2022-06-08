@@ -15,15 +15,15 @@ output "guid" {
 
 output "key_id" {
   description = "ID of the sysdig instance key"
-  value       = concat(ibm_resource_key.sysdigKey.*.id, [""])[0]
+  value       = concat(ibm_resource_key.sysdig_key.*.id, [""])[0]
 }
 
 output "key_guid" {
   description = "sysdig key guid"
-  value       = concat(ibm_resource_key.sysdigKey.*.guid, [""])[0]
+  value       = concat(ibm_resource_key.sysdig_key.*.guid, [""])[0]
 }
 
 output "key_credentials" {
   description = "sysdig key credentials"
-  value       = concat(ibm_resource_key.sysdigKey.*.credentials, [""])[0]
+  value       = concat(ibm_resource_key.sysdig_key.*.credentials, [""])[0]
 }
