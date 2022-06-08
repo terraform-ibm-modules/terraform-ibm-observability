@@ -95,12 +95,6 @@ variable "str_logging_key_name" {
 # Copyright 2020 IBM
 #####################################################
 
-variable "sts_logging_provision" {
-  type        = bool
-  description = "Logging STS: Disable this to read the existing logging sts instance"
-  default     = true
-}
-
 variable "sts_logging_bind_key" {
   description = "Logging STS: Flag indicating that key should be bind to logdna sts instance"
   type        = bool

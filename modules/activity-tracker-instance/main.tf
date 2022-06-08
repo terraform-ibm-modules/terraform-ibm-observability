@@ -7,12 +7,14 @@ locals {
   # when is_ats_instance is true, associated_logging_crn, service_supertenant and service_supertenant must be set
   ats_validate_condition = var.is_ats_instance == true && (var.service_supertenant == null || var.provision_key == null)
   ats_validate_msg       = "Values for 'service_supertenant' and 'provision_key' variables must be passed when 'is_ats_instance = true'"
-  ats_validate_check     = regex("^${local.ats_validate_msg}$", (!local.ats_validate_condition ? local.ats_validate_msg : ""))
+  # tflint-ignore: terraform_unused_declarations
+  ats_validate_check = regex("^${local.ats_validate_msg}$", (!local.ats_validate_condition ? local.ats_validate_msg : ""))
 
   # when bind_key is true, key_name has to be passed
   bindkey_validate_condition = var.bind_key == true && (var.key_name == null)
   bindkey_validate_msg       = "Values for 'key_name' variable must be passed when 'bind_key = true'"
-  bindkey_validate_check     = regex("^${local.bindkey_validate_msg}$", (!local.bindkey_validate_condition ? local.bindkey_validate_msg : ""))
+  # tflint-ignore: terraform_unused_declarations
+  bindkey_validate_check = regex("^${local.bindkey_validate_msg}$", (!local.bindkey_validate_condition ? local.bindkey_validate_msg : ""))
 
   # ATS parameter block
   ats_parameters = {

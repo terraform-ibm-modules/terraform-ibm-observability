@@ -15,12 +15,6 @@ variable "bind_key" {
   default     = false
 }
 
-variable "is_sts_instance" {
-  description = "Set this to provision (STS) logging instance"
-  type        = bool
-  default     = true
-}
-
 variable "name" {
   description = "Name of the instance"
   type        = string

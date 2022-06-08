@@ -181,8 +181,8 @@ module "observability" {
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_activity-tracker-atr-instance"></a> [activity-tracker-atr-instance](#module\_activity-tracker-atr-instance) | ./modules/activity-tracker-instance | n/a |
-| <a name="module_activity-tracker-ats-instance"></a> [activity-tracker-ats-instance](#module\_activity-tracker-ats-instance) | ./modules/activity-tracker-instance | n/a |
+| <a name="module_activity_tracker_atr_instance"></a> [activity\_tracker\_atr\_instance](#module\_activity\_tracker\_atr\_instance) | ./modules/activity-tracker-instance | n/a |
+| <a name="module_activity_tracker_ats_instance"></a> [activity\_tracker\_ats\_instance](#module\_activity\_tracker\_ats\_instance) | ./modules/activity-tracker-instance | n/a |
 | <a name="module_logging_str_instance"></a> [logging\_str\_instance](#module\_logging\_str\_instance) | ./modules/logging-instance | n/a |
 | <a name="module_logging_sts_instance"></a> [logging\_sts\_instance](#module\_logging\_sts\_instance) | ./modules/logging-instance | n/a |
 | <a name="module_monitoring_instance"></a> [monitoring\_instance](#module\_monitoring\_instance) | ./modules/monitoring-sysdig | n/a |

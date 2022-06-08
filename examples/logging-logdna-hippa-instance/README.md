@@ -63,11 +63,9 @@ module "logging_instance" {
 | <a name="input_create_timeout"></a> [create\_timeout](#input\_create\_timeout) | Timeout duration for create. | `string` | `null` | no |
 | <a name="input_delete_timeout"></a> [delete\_timeout](#input\_delete\_timeout) | Timeout duration for delete. | `string` | `null` | no |
 | <a name="input_enable_platform_logs"></a> [enable\_platform\_logs](#input\_enable\_platform\_logs) | Receive platform logs in LogDNA | `bool` | `true` | no |
-| <a name="input_is_sts_instance"></a> [is\_sts\_instance](#input\_is\_sts\_instance) | Set this to provision (STS) logging instance | `bool` | `false` | no |
 | <a name="input_key_name"></a> [key\_name](#input\_key\_name) | Name of the instance key | `string` | `null` | no |
 | <a name="input_key_tags"></a> [key\_tags](#input\_key\_tags) | Tags that should be applied to the key | `list(string)` | `null` | no |
 | <a name="input_name"></a> [name](#input\_name) | Name of the instance | `string` | n/a | yes |
-| <a name="input_plan"></a> [plan](#input\_plan) | plan type (14-day, 30-day, 7-day, hipaa-30-day and lite) | `string` | `"hipaa-30-day"` | no |
 | <a name="input_provision"></a> [provision](#input\_provision) | Disable this to read the existing activity tracker instance | `bool` | `true` | no |
 | <a name="input_region"></a> [region](#input\_region) | Provisioning Region | `string` | `"us-south"` | no |
 | <a name="input_resource_group"></a> [resource\_group](#input\_resource\_group) | Name of the resource group | `string` | n/a | yes |

@@ -79,7 +79,6 @@ module "logging_sts_instance" {
 | <a name="input_create_timeout"></a> [create\_timeout](#input\_create\_timeout) | Timeout duration for create. | `string` | `null` | no |
 | <a name="input_delete_timeout"></a> [delete\_timeout](#input\_delete\_timeout) | Timeout duration for delete. | `string` | `null` | no |
 | <a name="input_enable_platform_logs"></a> [enable\_platform\_logs](#input\_enable\_platform\_logs) | Receive platform logs in LogDNA | `bool` | `true` | no |
-| <a name="input_is_sts_instance"></a> [is\_sts\_instance](#input\_is\_sts\_instance) | Set this to provision (STS) logging instance | `bool` | `true` | no |
 | <a name="input_key_name"></a> [key\_name](#input\_key\_name) | Name of the instance key | `string` | `null` | no |
 | <a name="input_key_tags"></a> [key\_tags](#input\_key\_tags) | Tags that should be applied to the key | `list(string)` | `null` | no |
 | <a name="input_name"></a> [name](#input\_name) | Name of the instance | `string` | n/a | yes |
