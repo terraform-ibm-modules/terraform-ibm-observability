@@ -12,7 +12,7 @@ import (
 const basicExampleTerraformDir = "examples/observability-complete"
 const resourceGroup = "geretain-test-observability-instances"
 
-func setupOptions(t *testing.T, prefix string, region string) *testhelper.TestOptions {
+func setupOptions(t *testing.T, prefix string, region1 string, region2 string) *testhelper.TestOptions {
 
 	/********************************
 	This section is here until we figure out what options we want to give to
@@ -40,7 +40,7 @@ func setupOptions(t *testing.T, prefix string, region string) *testhelper.TestOp
 		TerraformDir:  basicExampleTerraformDir,
 		Prefix:        prefix,
 		ResourceGroup: resourceGroup,
-		Region:        region,
+		Region:        region1,
 	})
 
 	options.TerraformVars = map[string]interface{}{
@@ -49,9 +49,9 @@ func setupOptions(t *testing.T, prefix string, region string) *testhelper.TestOp
 		"monitoring_name":       fmt.Sprintf("%s-%s", options.Prefix, "sysdig"),
 		"resource_group":        options.ResourceGroup,
 		"str_logging_region":    options.Region,
-		"sts_logging_region":    options.Region,
+		"sts_logging_region":    region2,
 		"atr_region":            options.Region,
-		"ats_region":            options.Region,
+		"ats_region":            region2,
 		"monitoring_region":     options.Region,
 	}
 
@@ -61,7 +61,7 @@ func setupOptions(t *testing.T, prefix string, region string) *testhelper.TestOp
 func TestRunBasicExample(t *testing.T) {
 	t.Parallel()
 
-	options := setupOptions(t, "ibm-obs-all", "us-south")
+	options := setupOptions(t, "ibm-obs-all", "eu-gb", "eu-de")
 
 	output, err := options.RunTestConsistency()
 	assert.Nil(t, err, "This should not have errored")
