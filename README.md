@@ -1,12 +1,12 @@
-# Module Support for Observability Service.
+# Module support for observability services
 
-Observability services - gives you the visibility into the performance and health of your resources on IBM Cloud.  You can use these services to troubleshoot your apps and services, identify threats, detect performance issues, trigger alerts and more.  IBM Cloud offers the following observabilty services, to solve you logging and monitoring needs:
+Observability services give you visibility into the performance and health of your resources on IBM Cloud. You can use these services to troubleshoot your apps and services, identify threats, detect performance issues, trigger alerts, and more. IBM Cloud offers the following observability services to solve you logging and monitoring needs:
 
-* _IBM Cloud Activity Tracker_ - to gain insights on actions that change the state of a service in the IBM Cloud.
-* _IBM Log Analysis_ - to gain insights into your system and application logs.
-* _IBM Cloud Monitoring_ - to monitor the health of services and applications in IBM Cloud.
+* IBM Cloud Activity Tracker: Gain insights on actions that change the state of a service in the IBM Cloud.
+* IBM Log Analysis: Gain insights into your system and application logs.
+* IBM Cloud Monitoring: Monitor the health of services and applications in IBM Cloud.
 
-This module is used to provision following observability instances
+This module provisions the following observability instances:
 
 * Activity Tracker Super Tenant Receiver (ATR)
 * Activity Tracker Super Tenant Sender (ATS)
@@ -14,7 +14,7 @@ This module is used to provision following observability instances
 * Logging Super Tenant Sender (STS)
 * Monitoring instance
 
-##  Acronyms
+## Acronyms
 
 | Acronym         | Full form                               |
 |-----------------|-----------------------------------------|
@@ -24,8 +24,8 @@ This module is used to provision following observability instances
 | STR             | Logging Super Tenant Receiver           |
 | OB              | Observability
 
+The following diagram illustrates the deployment architecture that is used by this automation.
 
-The following diagram illustrates the deployment architecture used by this automation.
 ![Observability design](diagrams/observability.png)                          |
 
 ## Provision activity tracker ATR instance
@@ -34,7 +34,8 @@ The following diagram illustrates the deployment architecture used by this autom
 `atr_provision` = true
 ```
 
-## Provision ATS activity tracker instance by creating logging STS insatnce
+## Provision ATS activity tracker instance by creating logging STS instance
+
 ```
   ats_provision              = true
   ats_service_supertenant    = <Name_of_ats_service_supertenant>
@@ -42,7 +43,7 @@ The following diagram illustrates the deployment architecture used by this autom
   ats_associated_logging_crn = <ats_associated_logging_crn>
 ```
 
-## Provision ATS instance with existing logging STS instance CRN then configure
+## Provision ATS instance with existing logging STS instance CRN and configure
 
 ```
   ats_provision              = true
@@ -51,12 +52,14 @@ The following diagram illustrates the deployment architecture used by this autom
   use_existing_sts_crn       = true
 ```
 
-## Provision Logging STR instance
+## Provision logging STR instance
 
 ```
   str_provision = true
 ```
-## Provision Logging STS instance
+
+## Provision logging STS instance
+
 ```
   sts_provision           = true
   sts_service_supertenant = <sts_service_supertenant>
@@ -65,13 +68,14 @@ The following diagram illustrates the deployment architecture used by this autom
 
 ## Monitoring
 
-To provision monitoring instance
+Provision a monitoring instance.
 
 ```
 `monitoring_provision` = true
 ```
 
 ## Example Usage
+
 ```
 #####################################################
 # Observability
@@ -165,9 +169,6 @@ module "observability" {
   update_timeout    = var.update_timeout
   delete_timeout    = var.delete_timeout
 }
-
-
-
 ```
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
@@ -280,3 +281,9 @@ No resources.
 | <a name="output_sts_logdna_key_guid"></a> [sts\_logdna\_key\_guid](#output\_sts\_logdna\_key\_guid) | logdna key guid |
 | <a name="output_sts_logdna_key_id"></a> [sts\_logdna\_key\_id](#output\_sts\_logdna\_key\_id) | logdna key id |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+
+## Contributing
+
+You can report issues and request features for this module in the [terraform-ibm-issue-tracker](https://github.com/terraform-ibm-modules/terraform-ibm-issue-tracker/issues) repo. See [Report an issue or request a feature](https://github.com/terraform-ibm-modules/.github/blob/main/.github/SUPPORT.md).
+
+To set up your local development environment, see [Local development setup](https://terraform-ibm-modules.github.io/documentation/#/local-dev-setup) in the project documentation.
