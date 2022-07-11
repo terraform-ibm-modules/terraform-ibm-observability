@@ -2,7 +2,6 @@ package test
 
 import (
 	"fmt"
-	"os"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -12,28 +11,14 @@ import (
 const basicExampleTerraformDir = "examples/observability-complete"
 const resourceGroup = "geretain-test-observability-instances"
 
+/**********************************************
+NOTE: this private function "setupOptions" is not required.
+It helps if you have several tests that will all use a very similar
+set of options.
+If you have a test that uses a different set of options you can set those
+up in the individual test.
+************************************************/
 func setupOptions(t *testing.T, prefix string, region1 string, region2 string) *testhelper.TestOptions {
-
-	/********************************
-	This section is here until we figure out what options we want to give to
-	set an api key.
-	Right now the examples are meant to set IC_API_KEY, but Goldeneye
-	automation is meant to use an input variable TF_VAR_ibmcloud_api_key.
-	This section will take care of fixing one or the other, depending which
-	is set for the test.
-	********************************/
-	tf_key, tf_present := os.LookupEnv("TF_VAR_ibmcloud_api_key")
-	ic_key, ic_present := os.LookupEnv("IC_API_KEY")
-	// set terraform env var so that testhelper validates correctly
-	if !tf_present && ic_present {
-		t.Log("IC_API_KEY provided and used for TF_VAR_ibmcloud_api_key")
-		os.Setenv("TF_VAR_ibmcloud_api_key", ic_key)
-	}
-	// test relies on ic_api_key being set, so if terraform variable passed, use that
-	if !ic_present && tf_present {
-		t.Log("TF_VAR_ibmcloud_api_key provided and used for IC_API_KEY")
-		os.Setenv("IC_API_KEY", tf_key)
-	}
 
 	options := testhelper.TestOptionsDefault(&testhelper.TestOptions{
 		Testing:       t,
@@ -58,6 +43,12 @@ func setupOptions(t *testing.T, prefix string, region1 string, region2 string) *
 	return options
 }
 
+/*******************************************************
+This will run the basic example using two different regions for AT
+(one for std and one for sts).
+The test will apply the example, then an immediate plan and check
+if there are no further changes to apply (idempotent check).
+********************************************************/
 func TestRunBasicExample(t *testing.T) {
 	t.Parallel()
 
@@ -66,4 +57,30 @@ func TestRunBasicExample(t *testing.T) {
 	output, err := options.RunTestConsistency()
 	assert.Nil(t, err, "This should not have errored")
 	assert.NotNil(t, output, "Expected some output")
+}
+
+/*******************************************************
+This will run an UPGRADE test on the basic example using two
+different regions for AT (one for std and one for sts) and
+also different than the standard test to avoid region conflicts.
+
+The upgrade test will check out the "main" branch, run apply,
+then check out the PR branch and run a plan. If there are any
+changes that would result in destruction of resources it will fail,
+warning the developers that the PR may contain a breaking change.
+
+NOTE: This upgrade test will be skipped if the go test is run with
+the "-short" option, or if any commit messages in the PR branch contain
+the "BREAKING CHANGE" text.
+********************************************************/
+func TestRunUpgradeExample(t *testing.T) {
+	t.Parallel()
+
+	options := setupOptions(t, "ibm-obs-upg", "us-east", "ca-tor")
+
+	output, err := options.RunTestUpgrade()
+	if !options.UpgradeTestSkipped {
+		assert.Nil(t, err, "This should not have errored")
+		assert.NotNil(t, output, "Expected some output")
+	}
 }
