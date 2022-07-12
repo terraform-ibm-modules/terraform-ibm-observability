@@ -76,9 +76,6 @@ the "BREAKING CHANGE" text.
 func TestRunUpgradeExample(t *testing.T) {
 	t.Parallel()
 
-	// TODO: remove this skip when ready to perform upgrade tests
-	t.Skip("Skipping upgrade test temporarily")
-
 	options := setupOptions(t, "ibm-obs-upg", "us-east", "ca-tor")
 
 	output, err := options.RunTestUpgrade()
