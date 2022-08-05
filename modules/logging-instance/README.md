@@ -35,31 +35,54 @@ module "logging_sts_instance" {
 ```
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+## Requirements
+
+| Name | Version |
+|------|---------|
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.0.0 |
+| <a name="requirement_ibm"></a> [ibm](#requirement\_ibm) | >= 1.41.1 |
+
+## Modules
+
+No modules.
+
+## Resources
+
+| Name | Type |
+|------|------|
+| [ibm_resource_instance.logging_instance](https://registry.terraform.io/providers/IBM-Cloud/ibm/latest/docs/resources/resource_instance) | resource |
+| [ibm_resource_key.logging_key](https://registry.terraform.io/providers/IBM-Cloud/ibm/latest/docs/resources/resource_key) | resource |
+| [ibm_resource_instance.logging_instance](https://registry.terraform.io/providers/IBM-Cloud/ibm/latest/docs/data-sources/resource_instance) | data source |
+
 ## Inputs
 
-
-| Name                      | Description                                                      | Type         | Default | Required |
-|---------------------------|------------------------------------------------------------------|:-------------|:------- |:---------|
-| is_sts_instance           | Set this to true to provision logging STS instance                 | bool         | false   | no       |
-| service_supertenant       | Name of service supertenant                                      | string       | Empty   | no       |
-| provision_key             | Service Provision key                                            | string       | Empty   | no       |
-| name                      | Used as prefix to observability instances                        | string       | n/a     | yes      |
-| plan                      | Plan type                                                        | string       | n/a     | yes      |
-| region                    | Location to create the logging instance.                         | string       | n/a     | yes      |
-| resource_group_id         | ID of the resource group                                         | string       | n/a     | yes      |
-| bind_key                  | Indicating that instance key should be bind to logging           | bool         | false   | no       |
-| sts_provision             | Set this to provision logging instance                           | bool         | true    | yes      |
-| key_name                  | Name used to identify logging resource key                       | string       | empty   | no       |
-| tags                      | Tags that should be applied to the logging                       | list(string) | n/a     | no       |
-| key_tags                  | Tags that should be applied to the logging key                   | list(string) | n/a     | no       |
-
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| <a name="input_bind_key"></a> [bind\_key](#input\_bind\_key) | Enable this to bind key to instance (true/false) | `bool` | `false` | no |
+| <a name="input_create_timeout"></a> [create\_timeout](#input\_create\_timeout) | Timeout duration for create. | `string` | `null` | no |
+| <a name="input_delete_timeout"></a> [delete\_timeout](#input\_delete\_timeout) | Timeout duration for delete. | `string` | `null` | no |
+| <a name="input_enable_platform_logs"></a> [enable\_platform\_logs](#input\_enable\_platform\_logs) | Receive platform logs in LogDNA | `bool` | `true` | no |
+| <a name="input_is_sts_instance"></a> [is\_sts\_instance](#input\_is\_sts\_instance) | Set this to provision (STS) logging instance | `bool` | `false` | no |
+| <a name="input_key_name"></a> [key\_name](#input\_key\_name) | Name of the instance key | `string` | `""` | no |
+| <a name="input_key_tags"></a> [key\_tags](#input\_key\_tags) | Tags that should be applied to the service | `list(string)` | `null` | no |
+| <a name="input_name"></a> [name](#input\_name) | Name of the instance | `string` | n/a | yes |
+| <a name="input_plan"></a> [plan](#input\_plan) | plan type | `string` | n/a | yes |
+| <a name="input_provision"></a> [provision](#input\_provision) | Disable this to read the existing activity trcaker instance | `bool` | `true` | no |
+| <a name="input_provision_key"></a> [provision\_key](#input\_provision\_key) | Provision key | `string` | `null` | no |
+| <a name="input_region"></a> [region](#input\_region) | Provisioning Region | `string` | n/a | yes |
+| <a name="input_resource_group_id"></a> [resource\_group\_id](#input\_resource\_group\_id) | ID of the resource group | `string` | n/a | yes |
+| <a name="input_service_endpoints"></a> [service\_endpoints](#input\_service\_endpoints) | Types of the service endpoints. Possible values are 'public', 'private', 'public-and-private'. | `string` | `null` | no |
+| <a name="input_service_supertenant"></a> [service\_supertenant](#input\_service\_supertenant) | Name of your supertenant service | `string` | `null` | no |
+| <a name="input_tags"></a> [tags](#input\_tags) | Tags that should be applied to the service | `list(string)` | `null` | no |
+| <a name="input_update_timeout"></a> [update\_timeout](#input\_update\_timeout) | Timeout duration for update. | `string` | `null` | no |
 
 ## Outputs
 
-| Name            | Description                            |
-|-----------------|----------------------------------------|
-| id              | ID of the logging instance              |
-| guid            | GUID of the logging instance            |
-| key_id          | ID of the logging instance key          |
-| key_guid        | ID of the logging instance key          |
-| key_credentials | ID of the logging instance key          |
+| Name | Description |
+|------|-------------|
+| <a name="output_guid"></a> [guid](#output\_guid) | The GUID of the logging STS instance |
+| <a name="output_id"></a> [id](#output\_id) | The ID of the logging STS instance |
+| <a name="output_key_credentials"></a> [key\_credentials](#output\_key\_credentials) | logging STS key credentials |
+| <a name="output_key_guid"></a> [key\_guid](#output\_key\_guid) | logging STS key guid |
+| <a name="output_key_id"></a> [key\_id](#output\_key\_id) | ID of the logging STS instance key |
+<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

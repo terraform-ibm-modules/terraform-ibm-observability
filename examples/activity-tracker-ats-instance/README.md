@@ -102,57 +102,60 @@ module "activity_tracker_ats_instance" {
 ```
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
-##  Activity Tracker Inputs
+## Requirements
 
-| Name                      | Description                                                      | Type         | Default | Required |
-|---------------------------|------------------------------------------------------------------|:-------------|:------- |:---------|
-| is_ats_instance           | Set this to true to provision Activity tracker ATS instance      | bool         | false   | no       |
-| use_existing_sts_crn      | Set this to true to use existing logging STS crn                 | string       | Empty   | no       |
-| ats_service_supertenant   | Name of service supertenant                                      | string       | Empty   | no       |
-| ats_provision_key         | Service provision key                                            | string       | Empty   | no       |
-| ats_associated_logging_crn| CRN of STS logging instance                                      | string       | Empty   | no       |
-| name                      | Used as prefix to observability instances                        | string       | n/a     | yes      |
-| ats_plan                  | Plan type                                                        | string       | n/a     | yes      |
-| ats_region                | Location to create the activity tracker instance.                | string       | n/a     | yes      |
-| resource_group            | Name of the resource group                                       | string       | n/a     | yes      |
-| ats_bind_key              | Indicating that instance key should be bind to activity tracker  | bool         | false   | no       |
-| ats_provision             | Set this to provision activity tracker instance                  | bool         | true    | yes      |
-|ats_key_name               | Name used to identify activity tracker resource key              | string       | empty   | no       |
-| ats_tags                  | Tags that should be applied to the activity tracker              | list(string) | n/a     | no       |
-|ats_key_tags               | Tags that should be applied to the activity tracker key          | list(string) | n/a     | no       |
+| Name | Version |
+|------|---------|
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.0.0 |
+| <a name="requirement_ibm"></a> [ibm](#requirement\_ibm) | 1.41.1 |
 
-##  Logging Inputs
+## Modules
 
-| Name                      | Description                                                      | Type         | Default | Required |
-|---------------------------|------------------------------------------------------------------|:-------------|:------- |:---------|
-| sts_provision             | Set this to true to provision logging STS instance               | bool         | false   | no       |
-| sts_service_supertenant   | Name of service supertenant                                      | string       | Empty   | no       |
-| sts_provision_key         | Service Provision key                                            | string       | Empty   | no       |
-| name                      | Used as prefix to observability instances                        | string       | n/a     | yes      |
-| sts_plan                  | The name of the plan type supported by logging.                  | string       | n/a     | yes      |
-| sts_region                | Location to create the logging instance.                          | string       | n/a     | yes      |
-| sts_bind_key              | Indicating that instance key should be bind to logging            | bool         | false   | no       |
-| sts_provision             | Controls if creation of logging insatnce                          | bool         | true    | yes      |
-| sts_key_name              | Name used to identify logging resource key                        | string       | empty   | no       |
-| sts_tags                  | Tags that should be applied to the logging instance               | list(string) | n/a     | no       |
-| sts_key_tags              | Tags that should be applied to the logging key                    | list(string) | n/a     | no       |
+| Name | Source | Version |
+|------|--------|---------|
+| <a name="module_activity_tracker_ats_instance"></a> [activity\_tracker\_ats\_instance](#module\_activity\_tracker\_ats\_instance) | ./../../modules/activity-tracker-instance | n/a |
+| <a name="module_logging_sts_instance"></a> [logging\_sts\_instance](#module\_logging\_sts\_instance) | ./../../modules/logging-instance | n/a |
 
+## Resources
 
-## NOTE:
+| Name | Type |
+|------|------|
+| [ibm_resource_group.res_group](https://registry.terraform.io/providers/IBM-Cloud/ibm/1.41.1/docs/data-sources/resource_group) | data source |
 
- We can set the create, update and delete timeouts as string. For e.g say we want to set 15 minutes timeout then the value should be "15m".
+## Inputs
 
-## Bind a key to activity tracker instance
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| <a name="input_ats_associated_logging_crn"></a> [ats\_associated\_logging\_crn](#input\_ats\_associated\_logging\_crn) | Logging: Enter the associated logging crn | `string` | `""` | no |
+| <a name="input_ats_bind_key"></a> [ats\_bind\_key](#input\_ats\_bind\_key) | activity\_tracker Enable this to bind key to instance (true/false) | `bool` | `false` | no |
+| <a name="input_ats_key_name"></a> [ats\_key\_name](#input\_ats\_key\_name) | activity\_tracker Name of the instance key | `string` | `null` | no |
+| <a name="input_ats_key_tags"></a> [ats\_key\_tags](#input\_ats\_key\_tags) | Tags that should be applied to the key | `list(string)` | `null` | no |
+| <a name="input_ats_name"></a> [ats\_name](#input\_ats\_name) | Enter The name of the activity tracker ATS instance | `string` | n/a | yes |
+| <a name="input_ats_plan"></a> [ats\_plan](#input\_ats\_plan) | The type of plan the service instance should run under (lite, 7-day, 14-day, or 30-day) | `string` | `"7-day"` | no |
+| <a name="input_ats_provision"></a> [ats\_provision](#input\_ats\_provision) | Disable this to read the existing activity tracker instance | `bool` | `true` | no |
+| <a name="input_ats_provision_key"></a> [ats\_provision\_key](#input\_ats\_provision\_key) | ATS: activity\_tracker Provision key | `string` | `""` | no |
+| <a name="input_ats_region"></a> [ats\_region](#input\_ats\_region) | Geographic location of the resource (e.g. us-south, us-east) | `string` | `"us-south"` | no |
+| <a name="input_ats_service_supertenant"></a> [ats\_service\_supertenant](#input\_ats\_service\_supertenant) | ATS: Name of your supertenant service | `string` | `""` | no |
+| <a name="input_ats_tags"></a> [ats\_tags](#input\_ats\_tags) | activity\_tracker Tags that should be applied to the service | `list(string)` | `null` | no |
+| <a name="input_create_timeout"></a> [create\_timeout](#input\_create\_timeout) | Timeout duration for create. | `string` | `null` | no |
+| <a name="input_delete_timeout"></a> [delete\_timeout](#input\_delete\_timeout) | Timeout duration for delete. | `string` | `null` | no |
+| <a name="input_is_ats_instance"></a> [is\_ats\_instance](#input\_is\_ats\_instance) | Set this to provison ATS instance | `bool` | `true` | no |
+| <a name="input_resource_group"></a> [resource\_group](#input\_resource\_group) | Name of the resource group | `string` | n/a | yes |
+| <a name="input_sts_bind_key"></a> [sts\_bind\_key](#input\_sts\_bind\_key) | Flag indicating that key should be bind to logdna hippa instance | `bool` | `false` | no |
+| <a name="input_sts_key_name"></a> [sts\_key\_name](#input\_sts\_key\_name) | Name of the instance key | `string` | `null` | no |
+| <a name="input_sts_key_tags"></a> [sts\_key\_tags](#input\_sts\_key\_tags) | Tags that should be applied to the key | `list(string)` | `null` | no |
+| <a name="input_sts_name"></a> [sts\_name](#input\_sts\_name) | Name of the STS instance | `string` | n/a | yes |
+| <a name="input_sts_plan"></a> [sts\_plan](#input\_sts\_plan) | plan type (14-day, 30-day, 7-day, hipaa-30-day and lite) | `string` | `"7-day"` | no |
+| <a name="input_sts_provision"></a> [sts\_provision](#input\_sts\_provision) | Disable this to read the existing activity tracker instance | `bool` | `true` | no |
+| <a name="input_sts_provision_key"></a> [sts\_provision\_key](#input\_sts\_provision\_key) | Logging: Provision key | `string` | `""` | no |
+| <a name="input_sts_region"></a> [sts\_region](#input\_sts\_region) | Provisioning Region | `string` | `"us-south"` | no |
+| <a name="input_sts_service_endpoints"></a> [sts\_service\_endpoints](#input\_sts\_service\_endpoints) | Types of the service endpoints. Possible values are 'public', 'private', 'public-and-private'. | `string` | `null` | no |
+| <a name="input_sts_service_supertenant"></a> [sts\_service\_supertenant](#input\_sts\_service\_supertenant) | Logging: Name of your supertenant service | `string` | `""` | no |
+| <a name="input_sts_tags"></a> [sts\_tags](#input\_sts\_tags) | Tags that should be applied to the service | `list(string)` | `null` | no |
+| <a name="input_update_timeout"></a> [update\_timeout](#input\_update\_timeout) | Timeout duration for update. | `string` | `null` | no |
+| <a name="input_use_existing_sts_crn"></a> [use\_existing\_sts\_crn](#input\_use\_existing\_sts\_crn) | Enable this to attach existing logging STS instance to activity tracket ATS instance | `bool` | `false` | no |
 
-To attach a key to activity tracker instance enable it by setting `bind_key` argument to true (which is by default false). And set the `key_name` parameter accordingly (which is by default empty) in variables.tf file.
+## Outputs
 
-
-## Usage
-
-To create an infrastructure run the following command
-
-  `terraform apply -var-file="input.tfvars"`
-
-Similarly to remove an infrastructure run the following command
-
-   `terraform destroy -var-file="input.tfvars"`
+No outputs.
+<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

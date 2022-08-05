@@ -32,4 +32,3 @@ module "activity_tracker_instance" {
   update_timeout        = var.update_timeout
   delete_timeout        = var.delete_timeout
 }
-

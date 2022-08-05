@@ -34,30 +34,51 @@ module "monitoring_instance" {
 ```
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+## Requirements
+
+| Name | Version |
+|------|---------|
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >=1.0.0 |
+| <a name="requirement_ibm"></a> [ibm](#requirement\_ibm) | >= 1.41.1 |
+
+## Modules
+
+No modules.
+
+## Resources
+
+| Name | Type |
+|------|------|
+| [ibm_resource_instance.sysdig_instance](https://registry.terraform.io/providers/IBM-Cloud/ibm/latest/docs/resources/resource_instance) | resource |
+| [ibm_resource_key.sysdig_key](https://registry.terraform.io/providers/IBM-Cloud/ibm/latest/docs/resources/resource_key) | resource |
+| [ibm_resource_instance.sysdig](https://registry.terraform.io/providers/IBM-Cloud/ibm/latest/docs/data-sources/resource_instance) | data source |
+
 ## Inputs
 
-
-| Name               | Description                                                      | Type         | Default | Required |
-|--------------------|------------------------------------------------------------------|:-------------|:------- |:---------|
-| name               | A descriptive name used to identify the resource instance        | string       | n/a     | yes      |
-| bind_key           | Indicating that instance key should be bind to logdna instance   | bool         | n/a     | no       |
-| key\_name          | A descriptive name used to identify the resource key             | string       | n/a     | yes      |
-| plan               | The name of the plan type supported by service.                  | string       | n/a     | yes      |
-| region             | Target location or environment to create the resource instance.  | string       | n/a     | yes      |
-| resource_group_id    | ID of the resource group                                       | string       | n/a     | yes      |
-| service\_endpoints | Possible values are 'public', 'private', 'public-and-private'.   | string       | n/a     | no       |
-| tags               | Tags that should be applied to the service                       | list(string) | n/a     | no       |
-| key_tags           | Tags that should be applied to the service key                   | list(string) | n/a     | no       |
-| create_timeout     | Timeout duration for create                                      | string       | n/a     | no       |
-| update_timeout     | Timeout duration for update                                      | string       | n/a     | no       |
-| delete_timeout     | Timeout duration for delete                                      | string       | n/a     | no       |
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| <a name="input_bind_key"></a> [bind\_key](#input\_bind\_key) | Enable this to bind key to instance (true/false) | `bool` | `false` | no |
+| <a name="input_create_timeout"></a> [create\_timeout](#input\_create\_timeout) | Timeout duration for create. | `string` | `null` | no |
+| <a name="input_delete_timeout"></a> [delete\_timeout](#input\_delete\_timeout) | Timeout duration for delete. | `string` | `null` | no |
+| <a name="input_enable_platform_metrics"></a> [enable\_platform\_metrics](#input\_enable\_platform\_metrics) | Receive platform metrics in Sysdig | `bool` | `true` | no |
+| <a name="input_key_name"></a> [key\_name](#input\_key\_name) | Name of the instance key | `string` | n/a | yes |
+| <a name="input_key_tags"></a> [key\_tags](#input\_key\_tags) | Tags that should be applied to the service | `list(string)` | `null` | no |
+| <a name="input_name"></a> [name](#input\_name) | Name of the instance | `string` | n/a | yes |
+| <a name="input_plan"></a> [plan](#input\_plan) | plan type | `string` | n/a | yes |
+| <a name="input_provision"></a> [provision](#input\_provision) | Disable this to read the existing activity trcaker instance | `bool` | `true` | no |
+| <a name="input_region"></a> [region](#input\_region) | Provisioning Region | `string` | n/a | yes |
+| <a name="input_resource_group_id"></a> [resource\_group\_id](#input\_resource\_group\_id) | ID of the resource group | `string` | n/a | yes |
+| <a name="input_service_endpoints"></a> [service\_endpoints](#input\_service\_endpoints) | Types of the service endpoints. Possible values are 'public', 'private', 'public-and-private'. | `string` | `null` | no |
+| <a name="input_tags"></a> [tags](#input\_tags) | Tags that should be applied to the service | `list(string)` | `null` | no |
+| <a name="input_update_timeout"></a> [update\_timeout](#input\_update\_timeout) | Timeout duration for update. | `string` | `null` | no |
 
 ## Outputs
 
-| Name            | Description                                |
-|-----------------|--------------------------------------------|
-| id              | ID of the monitoring instance              |
-| guid            | GUID of the monitoring instance            |
-| key_id          | ID of the monitoring instance key          |
-| key_guid        | ID of the monitoring instance key          |
-| key_credentials | ID of the monitoring instance key          |
+| Name | Description |
+|------|-------------|
+| <a name="output_guid"></a> [guid](#output\_guid) | The GUID of the sysdig instance |
+| <a name="output_id"></a> [id](#output\_id) | The ID of the sysdig instance |
+| <a name="output_key_credentials"></a> [key\_credentials](#output\_key\_credentials) | sysdig key credentials |
+| <a name="output_key_guid"></a> [key\_guid](#output\_key\_guid) | sysdig key guid |
+| <a name="output_key_id"></a> [key\_id](#output\_key\_id) | ID of the sysdig instance key |
+<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
