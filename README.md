@@ -175,6 +175,18 @@ module "observability" {
 }
 ```
 
+<!-- BEGIN EXAMPLES HOOK -->
+## Examples
+
+- [ Module activity_tracker](examples/activity-tracker-atr-instance)
+- [ Module activity tracker ATS instance](examples/activity-tracker-ats-instance)
+- [ Module logging-logdna-hippa-instance](examples/logging-logdna-hippa-instance)
+- [ Module logging-logdna](examples/logging-str-instance)
+- [ Module logging-logdna](examples/logging-sts-instance)
+- [ Module sysdig monitor instance](examples/monitoring-instance)
+- [ Module - Support for Observability Service.](examples/observability-complete)
+<!-- END EXAMPLES HOOK -->
+
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
 
@@ -291,15 +303,3 @@ No resources.
 You can report issues and request features for this module in the [terraform-ibm-issue-tracker](https://github.com/terraform-ibm-modules/terraform-ibm-issue-tracker/issues) repo. See [Report an issue or request a feature](https://github.com/terraform-ibm-modules/.github/blob/main/.github/SUPPORT.md).
 
 To set up your local development environment, see [Local development setup](https://terraform-ibm-modules.github.io/documentation/#/local-dev-setup) in the project documentation.
-
-<!-- BEGIN EXAMPLES HOOK -->
-## Examples
-
-- [ Module activity_tracker](examples/activity-tracker-atr-instance)
-- [ Module activity tracker ATS instance](examples/activity-tracker-ats-instance)
-- [ Module logging-logdna-hippa-instance](examples/logging-logdna-hippa-instance)
-- [ Module logging-logdna](examples/logging-str-instance)
-- [ Module logging-logdna](examples/logging-sts-instance)
-- [ Module sysdig monitor instance](examples/monitoring-instance)
-- [ Module - Support for Observability Service.](examples/observability-complete)
-<!-- END EXAMPLES HOOK -->
