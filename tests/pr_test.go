@@ -11,13 +11,15 @@ import (
 const basicExampleTerraformDir = "examples/observability-complete"
 const resourceGroup = "geretain-test-observability-instances"
 
-/**********************************************
+/*
+*********************************************
 NOTE: this private function "setupOptions" is not required.
 It helps if you have several tests that will all use a very similar
 set of options.
 If you have a test that uses a different set of options you can set those
 up in the individual test.
-************************************************/
+***********************************************
+*/
 func setupOptions(t *testing.T, prefix string, region1 string, region2 string) *testhelper.TestOptions {
 
 	options := testhelper.TestOptionsDefault(&testhelper.TestOptions{
@@ -43,12 +45,14 @@ func setupOptions(t *testing.T, prefix string, region1 string, region2 string) *
 	return options
 }
 
-/*******************************************************
+/*
+******************************************************
 This will run the basic example using two different regions for AT
 (one for std and one for sts).
 The test will apply the example, then an immediate plan and check
 if there are no further changes to apply (idempotent check).
-********************************************************/
+*******************************************************
+*/
 func TestRunBasicExample(t *testing.T) {
 	t.Parallel()
 
@@ -59,7 +63,8 @@ func TestRunBasicExample(t *testing.T) {
 	assert.NotNil(t, output, "Expected some output")
 }
 
-/*******************************************************
+/*
+******************************************************
 This will run an UPGRADE test on the basic example using two
 different regions for AT (one for std and one for sts) and
 also different than the standard test to avoid region conflicts.
@@ -72,7 +77,8 @@ warning the developers that the PR may contain a breaking change.
 NOTE: This upgrade test will be skipped if the go test is run with
 the "-short" option, or if any commit messages in the PR branch contain
 the "BREAKING CHANGE" text.
-********************************************************/
+*******************************************************
+*/
 func TestRunUpgradeExample(t *testing.T) {
 	t.Parallel()
 
