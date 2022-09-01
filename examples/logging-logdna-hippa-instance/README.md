@@ -42,7 +42,7 @@ module "logging_instance" {
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.0.0 |
-| <a name="requirement_ibm"></a> [ibm](#requirement\_ibm) | 1.41.1 |
+| <a name="requirement_ibm"></a> [ibm](#requirement\_ibm) | 1.44.3 |
 
 ## Modules
 
@@ -54,7 +54,7 @@ module "logging_instance" {
 
 | Name | Type |
 |------|------|
-| [ibm_resource_group.logdna](https://registry.terraform.io/providers/IBM-Cloud/ibm/1.41.1/docs/data-sources/resource_group) | data source |
+| [ibm_resource_group.logdna](https://registry.terraform.io/providers/IBM-Cloud/ibm/1.44.3/docs/data-sources/resource_group) | data source |
 
 ## Inputs
 
