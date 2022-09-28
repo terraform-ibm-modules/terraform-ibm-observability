@@ -748,6 +748,8 @@
         "tags": "atr_tags",
         "update_timeout": "update_timeout"
       },
+      "managed_resources": null,
+      "data_resources": null,
       "pos": {
         "filename": "main.tf",
         "line": 65
@@ -774,6 +776,8 @@
         "tags": "ats_tags",
         "update_timeout": "update_timeout"
       },
+      "managed_resources": null,
+      "data_resources": null,
       "pos": {
         "filename": "main.tf",
         "line": 92
@@ -799,6 +803,8 @@
         "tags": "str_logging_tags",
         "update_timeout": "update_timeout"
       },
+      "managed_resources": null,
+      "data_resources": null,
       "pos": {
         "filename": "main.tf",
         "line": 5
@@ -825,6 +831,8 @@
         "tags": "sts_logging_tags",
         "update_timeout": "update_timeout"
       },
+      "managed_resources": null,
+      "data_resources": null,
       "pos": {
         "filename": "main.tf",
         "line": 33
@@ -850,6 +858,8 @@
         "tags": "monitoring_tags",
         "update_timeout": "update_timeout"
       },
+      "managed_resources": null,
+      "data_resources": null,
       "pos": {
         "filename": "main.tf",
         "line": 125
