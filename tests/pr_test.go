@@ -56,7 +56,7 @@ if there are no further changes to apply (idempotent check).
 func TestRunBasicExample(t *testing.T) {
 	t.Parallel()
 
-	options := setupOptions(t, "ibm-obs-all", "au-syd", "eu-de")
+	options := setupOptions(t, "ibm-obs-all", "eu-gb", "eu-de")
 
 	output, err := options.RunTestConsistency()
 	assert.Nil(t, err, "This should not have errored")
