@@ -31,15 +31,17 @@ func setupOptions(t *testing.T, prefix string, region1 string, region2 string) *
 	})
 
 	options.TerraformVars = map[string]interface{}{
-		"logging_name":          fmt.Sprintf("%s-%s", options.Prefix, "logging"),
-		"activity_tracker_name": fmt.Sprintf("%s-%s", options.Prefix, "at"),
-		"monitoring_name":       fmt.Sprintf("%s-%s", options.Prefix, "sysdig"),
-		"resource_group":        options.ResourceGroup,
-		"str_logging_region":    options.Region,
-		"sts_logging_region":    region2,
-		"atr_region":            options.Region,
-		"ats_region":            region2,
-		"monitoring_region":     options.Region,
+		"logging_name":                       fmt.Sprintf("%s-%s", options.Prefix, "logging"),
+		"activity_tracker_name":              fmt.Sprintf("%s-%s", options.Prefix, "at"),
+		"monitoring_name":                    fmt.Sprintf("%s-%s", options.Prefix, "sysdig"),
+		"resource_group":                     options.ResourceGroup,
+		"str_logging_region":                 options.Region,
+		"sts_logging_region":                 region2,
+		"atr_region":                         options.Region,
+		"ats_region":                         region2,
+		"monitoring_region":                  options.Region,
+		"monitoring_enable_platform_metrics": false,
+		"enable_platform_logs"                false,
 	}
 
 	return options
