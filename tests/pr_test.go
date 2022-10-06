@@ -31,15 +31,16 @@ func setupOptions(t *testing.T, prefix string, region1 string, region2 string) *
 	})
 
 	options.TerraformVars = map[string]interface{}{
-		"logging_name":          fmt.Sprintf("%s-%s", options.Prefix, "logging"),
-		"activity_tracker_name": fmt.Sprintf("%s-%s", options.Prefix, "at"),
-		"monitoring_name":       fmt.Sprintf("%s-%s", options.Prefix, "sysdig"),
-		"resource_group":        options.ResourceGroup,
-		"str_logging_region":    options.Region,
-		"sts_logging_region":    region2,
-		"atr_region":            options.Region,
-		"ats_region":            region2,
-		"monitoring_region":     options.Region,
+		"logging_name":                       fmt.Sprintf("%s-%s", options.Prefix, "logging"),
+		"activity_tracker_name":              fmt.Sprintf("%s-%s", options.Prefix, "at"),
+		"monitoring_name":                    fmt.Sprintf("%s-%s", options.Prefix, "sysdig"),
+		"resource_group":                     options.ResourceGroup,
+		"str_logging_region":                 options.Region,
+		"sts_logging_region":                 region2,
+		"atr_region":                         options.Region,
+		"ats_region":                         region2,
+		"monitoring_region":                  options.Region,
+		"monitoring_enable_platform_metrics": false,
 	}
 
 	return options
@@ -56,7 +57,7 @@ if there are no further changes to apply (idempotent check).
 func TestRunBasicExample(t *testing.T) {
 	t.Parallel()
 
-	options := setupOptions(t, "ibm-obs-all", "au-syd", "eu-de")
+	options := setupOptions(t, "ibm-obs-all", "eu-gb", "eu-de")
 
 	output, err := options.RunTestConsistency()
 	assert.Nil(t, err, "This should not have errored")
