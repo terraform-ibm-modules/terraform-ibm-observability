@@ -41,7 +41,6 @@ func setupOptions(t *testing.T, prefix string, region1 string, region2 string) *
 		"ats_region":                         region2,
 		"monitoring_region":                  options.Region,
 		"monitoring_enable_platform_metrics": false,
-		"enable_platform_logs"                false,
 	}
 
 	return options
