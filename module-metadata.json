@@ -6,6 +6,12 @@
       "type": "string",
       "description": "activity tracker Enter the instance name ",
       "required": true,
+      "source": [
+        "module.activity_tracker_atr_instance.data.ibm_resource_instance.activity_tracker.name",
+        "module.activity_tracker_atr_instance.ibm_resource_instance.activity_tracker.name",
+        "module.activity_tracker_ats_instance.data.ibm_resource_instance.activity_tracker.name",
+        "module.activity_tracker_ats_instance.ibm_resource_instance.activity_tracker.name"
+      ],
       "pos": {
         "filename": "variables.tf",
         "line": 10
@@ -16,6 +22,9 @@
       "type": "bool",
       "description": "Activity Tracker ATS:  Enable this to bind key to instance (true/false)",
       "default": false,
+      "source": [
+        "module.activity_tracker_atr_instance.ibm_resource_key.activity_tracker_key.count"
+      ],
       "pos": {
         "filename": "variables.tf",
         "line": 211
@@ -25,18 +34,31 @@
       "name": "atr_key_name",
       "type": "string",
       "description": "Activity Tracker ATS:  Name of the instance key",
+      "default": "",
+      "required": true,
+      "source": [
+        "module.activity_tracker_atr_instance.ibm_resource_key.activity_tracker_key.name"
+      ],
       "pos": {
         "filename": "variables.tf",
         "line": 217
-      }
+      },
+      "immutable": true
     },
     "atr_key_tags": {
       "name": "atr_key_tags",
       "type": "list(string)",
       "description": "Activity Tracker ATS: Tags that should be applied to the key",
+      "source": [
+        "module.activity_tracker_atr_instance.ibm_resource_key.activity_tracker_key.tags"
+      ],
       "pos": {
         "filename": "variables.tf",
         "line": 223
+      },
+      "cloud_data_type": "tags",
+      "elem": {
+        "type": "TypeString"
       }
     },
     "atr_make_default_receiver": {
@@ -44,6 +66,9 @@
       "type": "bool",
       "description": "Enable this to make this instance a sdefault receiver",
       "default": true,
+      "source": [
+        "module.activity_tracker_atr_instance"
+      ],
       "pos": {
         "filename": "variables.tf",
         "line": 199
@@ -54,6 +79,9 @@
       "type": "string",
       "description": "Activity Tracker ATS: The type of plan the service instance should run under (lite, 7-day, 14-day, or 30-day)",
       "required": true,
+      "source": [
+        "module.activity_tracker_atr_instance.ibm_resource_instance.activity_tracker.plan"
+      ],
       "pos": {
         "filename": "variables.tf",
         "line": 182
@@ -64,28 +92,56 @@
       "type": "bool",
       "description": "Activity Tracker ATR: Disable this not provision ATR instance",
       "default": true,
+      "source": [
+        "module.activity_tracker_atr_instance",
+        "module.activity_tracker_atr_instance.data.ibm_resource_instance.activity_tracker.count",
+        "module.activity_tracker_atr_instance.ibm_resource_instance.activity_tracker.count",
+        "module.activity_tracker_atr_instance.ibm_resource_key.activity_tracker_key.resource_instance_id"
+      ],
       "pos": {
         "filename": "variables.tf",
         "line": 171
-      }
+      },
+      "cloud_data_type": "resource_instance",
+      "immutable": true,
+      "cloud_data_range": [
+        "service:%s"
+      ]
     },
     "atr_region": {
       "name": "atr_region",
       "type": "string",
       "description": "Activity Tracker ATS: Geographic location of the resource (e.g. us-south, us-east)",
       "required": true,
+      "source": [
+        "module.activity_tracker_atr_instance.data.ibm_resource_instance.activity_tracker.location",
+        "module.activity_tracker_atr_instance.ibm_resource_instance.activity_tracker.location"
+      ],
       "pos": {
         "filename": "variables.tf",
         "line": 177
-      }
+      },
+      "cloud_data_type": "region",
+      "immutable": true,
+      "computed": true
     },
     "atr_tags": {
       "name": "atr_tags",
       "type": "list(string)",
       "description": "Activity Tracker ATS:  Tags that should be applied to the service",
+      "source": [
+        "module.activity_tracker_atr_instance.ibm_resource_instance.activity_tracker.tags"
+      ],
       "pos": {
         "filename": "variables.tf",
         "line": 205
+      },
+      "min_length": 1,
+      "max_length": 128,
+      "matches": "^[A-Za-z0-9:_ .-]+$",
+      "computed": true,
+      "elem": {
+        "type": "TypeString"
       }
     },
     "ats_associated_logging_crn": {
@@ -102,6 +158,9 @@
       "type": "bool",
       "description": "Activity Tracker ATS:  Enable this to bind key to instance (true/false)",
       "default": false,
+      "source": [
+        "module.activity_tracker_ats_instance.ibm_resource_key.activity_tracker_key.count"
+      ],
       "pos": {
         "filename": "variables.tf",
         "line": 297
@@ -111,18 +170,31 @@
       "name": "ats_key_name",
       "type": "string",
       "description": "Activity Tracker ATS:  Name of the instance key",
+      "default": "",
+      "required": true,
+      "source": [
+        "module.activity_tracker_ats_instance.ibm_resource_key.activity_tracker_key.name"
+      ],
       "pos": {
         "filename": "variables.tf",
         "line": 303
-      }
+      },
+      "immutable": true
     },
     "ats_key_tags": {
       "name": "ats_key_tags",
       "type": "list(string)",
       "description": "Activity Tracker ATS: Tags that should be applied to the key",
+      "source": [
+        "module.activity_tracker_ats_instance.ibm_resource_key.activity_tracker_key.tags"
+      ],
       "pos": {
         "filename": "variables.tf",
         "line": 309
+      },
+      "cloud_data_type": "tags",
+      "elem": {
+        "type": "TypeString"
       }
     },
     "ats_plan": {
@@ -130,6 +202,9 @@
       "type": "string",
       "description": "Activity Tracker ATS: The type of plan the service instance should run under (lite, 7-day, 14-day, or 30-day)",
       "required": true,
+      "source": [
+        "module.activity_tracker_ats_instance.ibm_resource_instance.activity_tracker.plan"
+      ],
       "pos": {
         "filename": "variables.tf",
         "line": 274
@@ -140,16 +215,30 @@
       "type": "bool",
       "description": "Activity Tracker ATS: Disable this to read the existing activity tracker instance",
       "default": true,
+      "source": [
+        "module.activity_tracker_ats_instance",
+        "module.activity_tracker_ats_instance.data.ibm_resource_instance.activity_tracker.count",
+        "module.activity_tracker_ats_instance.ibm_resource_instance.activity_tracker.count",
+        "module.activity_tracker_ats_instance.ibm_resource_key.activity_tracker_key.resource_instance_id"
+      ],
       "pos": {
         "filename": "variables.tf",
         "line": 242
-      }
+      },
+      "cloud_data_type": "resource_instance",
+      "immutable": true,
+      "cloud_data_range": [
+        "service:%s"
+      ]
     },
     "ats_provision_key": {
       "name": "ats_provision_key",
       "type": "string",
       "description": "Activity Tracker ATS: Provision key",
       "default": "",
+      "source": [
+        "module.activity_tracker_ats_instance"
+      ],
       "pos": {
         "filename": "variables.tf",
         "line": 254
@@ -160,16 +249,26 @@
       "type": "string",
       "description": "Activity Tracker ATS: Geographic location of the resource (e.g. us-south, us-east)",
       "required": true,
+      "source": [
+        "module.activity_tracker_ats_instance.data.ibm_resource_instance.activity_tracker.location",
+        "module.activity_tracker_ats_instance.ibm_resource_instance.activity_tracker.location"
+      ],
       "pos": {
         "filename": "variables.tf",
         "line": 269
-      }
+      },
+      "cloud_data_type": "region",
+      "immutable": true,
+      "computed": true
     },
     "ats_service_supertenant": {
       "name": "ats_service_supertenant",
       "type": "string",
       "description": "Activity Tracker ATS: Name of your supertenant service",
       "default": "",
+      "source": [
+        "module.activity_tracker_ats_instance"
+      ],
       "pos": {
         "filename": "variables.tf",
         "line": 248
@@ -179,15 +278,32 @@
       "name": "ats_tags",
       "type": "list(string)",
       "description": "Activity Tracker ATS:  Tags that should be applied to the service",
+      "source": [
+        "module.activity_tracker_ats_instance.ibm_resource_instance.activity_tracker.tags"
+      ],
       "pos": {
         "filename": "variables.tf",
         "line": 291
+      },
+      "min_length": 1,
+      "max_length": 128,
+      "matches": "^[A-Za-z0-9:_ .-]+$",
+      "computed": true,
+      "elem": {
+        "type": "TypeString"
       }
     },
     "create_timeout": {
       "name": "create_timeout",
       "type": "string",
       "description": "Timeout duration for create.",
+      "source": [
+        "module.activity_tracker_atr_instance",
+        "module.activity_tracker_ats_instance",
+        "module.logging_str_instance",
+        "module.logging_sts_instance",
+        "module.monitoring_instance"
+      ],
       "pos": {
         "filename": "variables.tf",
         "line": 386
@@ -197,6 +313,13 @@
       "name": "delete_timeout",
       "type": "string",
       "description": "Timeout duration for delete.",
+      "source": [
+        "module.activity_tracker_atr_instance",
+        "module.activity_tracker_ats_instance",
+        "module.logging_str_instance",
+        "module.logging_sts_instance",
+        "module.monitoring_instance"
+      ],
       "pos": {
         "filename": "variables.tf",
         "line": 398
@@ -207,6 +330,9 @@
       "type": "bool",
       "description": "Receive platform logs in LogDNA",
       "default": true,
+      "source": [
+        "module.logging_str_instance"
+      ],
       "pos": {
         "filename": "variables.tf",
         "line": 36
@@ -217,6 +343,12 @@
       "type": "string",
       "description": "Logging Enter the instance name ",
       "required": true,
+      "source": [
+        "module.logging_str_instance.data.ibm_resource_instance.logging_instance.name",
+        "module.logging_str_instance.ibm_resource_instance.logging_instance.name",
+        "module.logging_sts_instance.data.ibm_resource_instance.logging_instance.name",
+        "module.logging_sts_instance.ibm_resource_instance.logging_instance.name"
+      ],
       "pos": {
         "filename": "variables.tf",
         "line": 1
@@ -227,6 +359,9 @@
       "type": "bool",
       "description": "Monitoring: Flag indicating that key should be bind to logdna hippa instance",
       "default": false,
+      "source": [
+        "module.monitoring_instance.ibm_resource_key.sysdig_key.count"
+      ],
       "pos": {
         "filename": "variables.tf",
         "line": 331
@@ -237,6 +372,9 @@
       "type": "bool",
       "description": "Monitoring: Receive platform metrics in Sysdig",
       "default": true,
+      "source": [
+        "module.monitoring_instance.ibm_resource_instance.sysdig_instance.parameters"
+      ],
       "pos": {
         "filename": "variables.tf",
         "line": 342
@@ -246,18 +384,30 @@
       "name": "monitoring_key_name",
       "type": "string",
       "description": "Monitoring: Name of the instance key",
+      "required": true,
+      "source": [
+        "module.monitoring_instance.ibm_resource_key.sysdig_key.name"
+      ],
       "pos": {
         "filename": "variables.tf",
         "line": 366
-      }
+      },
+      "immutable": true
     },
     "monitoring_key_tags": {
       "name": "monitoring_key_tags",
       "type": "list(string)",
       "description": "Monitoring: Tags that should be applied to the key",
+      "source": [
+        "module.monitoring_instance.ibm_resource_key.sysdig_key.tags"
+      ],
       "pos": {
         "filename": "variables.tf",
         "line": 372
+      },
+      "cloud_data_type": "tags",
+      "elem": {
+        "type": "TypeString"
       }
     },
     "monitoring_name": {
@@ -265,6 +415,10 @@
       "type": "string",
       "description": "Monitoring Enter the instance name ",
       "required": true,
+      "source": [
+        "module.monitoring_instance.data.ibm_resource_instance.sysdig.name",
+        "module.monitoring_instance.ibm_resource_instance.sysdig_instance.name"
+      ],
       "pos": {
         "filename": "variables.tf",
         "line": 320
@@ -275,6 +429,9 @@
       "type": "string",
       "description": "Monitoring: plan type (graduated-tier, graduated-tier-sysdig-secure-plus-monitor and lite)",
       "required": true,
+      "source": [
+        "module.monitoring_instance.ibm_resource_instance.sysdig_instance.plan"
+      ],
       "pos": {
         "filename": "variables.tf",
         "line": 337
@@ -285,37 +442,69 @@
       "type": "bool",
       "description": "Monitoring: Disable this to read the existing activity tracker instance",
       "default": true,
+      "source": [
+        "module.monitoring_instance",
+        "module.monitoring_instance.data.ibm_resource_instance.sysdig.count",
+        "module.monitoring_instance.ibm_resource_instance.sysdig_instance.count",
+        "module.monitoring_instance.ibm_resource_key.sysdig_key.resource_instance_id"
+      ],
       "pos": {
         "filename": "variables.tf",
         "line": 325
-      }
+      },
+      "cloud_data_type": "resource_instance",
+      "immutable": true,
+      "cloud_data_range": [
+        "service:%s"
+      ]
     },
     "monitoring_region": {
       "name": "monitoring_region",
       "type": "string",
       "description": "Monitoring: Provisioning Region",
       "required": true,
+      "source": [
+        "module.monitoring_instance.data.ibm_resource_instance.sysdig.location",
+        "module.monitoring_instance.ibm_resource_instance.sysdig_instance.location"
+      ],
       "pos": {
         "filename": "variables.tf",
         "line": 348
-      }
+      },
+      "cloud_data_type": "region",
+      "immutable": true,
+      "computed": true
     },
     "monitoring_service_endpoints": {
       "name": "monitoring_service_endpoints",
       "type": "string",
       "description": "Monitoring: Types of the service endpoints. Possible values are 'public', 'private', 'public-and-private'.",
+      "source": [
+        "module.monitoring_instance.ibm_resource_instance.sysdig_instance.service_endpoints"
+      ],
       "pos": {
         "filename": "variables.tf",
         "line": 354
-      }
+      },
+      "computed": true
     },
     "monitoring_tags": {
       "name": "monitoring_tags",
       "type": "list(string)",
       "description": "Monitoring: Tags that should be applied to the service",
+      "source": [
+        "module.monitoring_instance.ibm_resource_instance.sysdig_instance.tags"
+      ],
       "pos": {
         "filename": "variables.tf",
         "line": 360
+      },
+      "min_length": 1,
+      "max_length": 128,
+      "matches": "^[A-Za-z0-9:_ .-]+$",
+      "computed": true,
+      "elem": {
+        "type": "TypeString"
       }
     },
     "resource_group_id": {
@@ -323,16 +512,37 @@
       "type": "string",
       "description": "Name of the resource group",
       "required": true,
+      "source": [
+        "module.activity_tracker_atr_instance.data.ibm_resource_instance.activity_tracker.resource_group_id",
+        "module.activity_tracker_atr_instance.ibm_resource_instance.activity_tracker.resource_group_id",
+        "module.activity_tracker_ats_instance.data.ibm_resource_instance.activity_tracker.resource_group_id",
+        "module.activity_tracker_ats_instance.ibm_resource_instance.activity_tracker.resource_group_id",
+        "module.logging_str_instance.data.ibm_resource_instance.logging_instance.resource_group_id",
+        "module.logging_str_instance.ibm_resource_instance.logging_instance.resource_group_id",
+        "module.logging_sts_instance.data.ibm_resource_instance.logging_instance.resource_group_id",
+        "module.logging_sts_instance.ibm_resource_instance.logging_instance.resource_group_id",
+        "module.monitoring_instance.data.ibm_resource_instance.sysdig.resource_group_id",
+        "module.monitoring_instance.ibm_resource_instance.sysdig_instance.resource_group_id"
+      ],
       "pos": {
         "filename": "variables.tf",
         "line": 380
-      }
+      },
+      "cloud_data_type": "resource_group",
+      "immutable": true,
+      "computed": true,
+      "cloud_data_range": [
+        "resolved_to:id"
+      ]
     },
     "str_logging_bind_key": {
       "name": "str_logging_bind_key",
       "type": "bool",
       "description": "Logging STR: Enable this flag to attach a key to STR instance.",
       "default": false,
+      "source": [
+        "module.logging_str_instance.ibm_resource_key.logging_key.count"
+      ],
       "pos": {
         "filename": "variables.tf",
         "line": 30
@@ -342,18 +552,31 @@
       "name": "str_logging_key_name",
       "type": "string",
       "description": "Logging STR: Name of the instance key",
+      "default": "",
+      "required": true,
+      "source": [
+        "module.logging_str_instance.ibm_resource_key.logging_key.name"
+      ],
       "pos": {
         "filename": "variables.tf",
         "line": 82
-      }
+      },
+      "immutable": true
     },
     "str_logging_key_tags": {
       "name": "str_logging_key_tags",
       "type": "list(string)",
       "description": "Logging STR: Tags that should be applied to the key",
+      "source": [
+        "module.logging_str_instance.ibm_resource_key.logging_key.tags"
+      ],
       "pos": {
         "filename": "variables.tf",
         "line": 76
+      },
+      "cloud_data_type": "tags",
+      "elem": {
+        "type": "TypeString"
       }
     },
     "str_logging_plan": {
@@ -361,6 +584,9 @@
       "type": "string",
       "description": "Logging STR: plan type (14-day, 30-day, 7-day, hipaa-30-day and lite)",
       "required": true,
+      "source": [
+        "module.logging_str_instance.ibm_resource_instance.logging_instance.plan"
+      ],
       "pos": {
         "filename": "variables.tf",
         "line": 42
@@ -371,27 +597,48 @@
       "type": "string",
       "description": "Logging STR: Provisioning Region",
       "required": true,
+      "source": [
+        "module.logging_str_instance.data.ibm_resource_instance.logging_instance.location",
+        "module.logging_str_instance.ibm_resource_instance.logging_instance.location"
+      ],
       "pos": {
         "filename": "variables.tf",
         "line": 59
-      }
+      },
+      "cloud_data_type": "region",
+      "immutable": true,
+      "computed": true
     },
     "str_logging_service_endpoints": {
       "name": "str_logging_service_endpoints",
       "type": "string",
       "description": "Logging STR: Types of the service endpoints. Possible values are 'public', 'private', 'public-and-private'.",
+      "source": [
+        "module.logging_str_instance.ibm_resource_instance.logging_instance.service_endpoints"
+      ],
       "pos": {
         "filename": "variables.tf",
         "line": 64
-      }
+      },
+      "computed": true
     },
     "str_logging_tags": {
       "name": "str_logging_tags",
       "type": "list(string)",
       "description": "Logging STR: Tags that should be applied to the service",
+      "source": [
+        "module.logging_str_instance.ibm_resource_instance.logging_instance.tags"
+      ],
       "pos": {
         "filename": "variables.tf",
         "line": 70
+      },
+      "min_length": 1,
+      "max_length": 128,
+      "matches": "^[A-Za-z0-9:_ .-]+$",
+      "computed": true,
+      "elem": {
+        "type": "TypeString"
       }
     },
     "str_provision": {
@@ -399,16 +646,30 @@
       "type": "bool",
       "description": "Logging STR: Disable this, not to provision logging STR instance",
       "default": true,
+      "source": [
+        "module.logging_str_instance",
+        "module.logging_str_instance.data.ibm_resource_instance.logging_instance.count",
+        "module.logging_str_instance.ibm_resource_instance.logging_instance.count",
+        "module.logging_str_instance.ibm_resource_key.logging_key.resource_instance_id"
+      ],
       "pos": {
         "filename": "variables.tf",
         "line": 24
-      }
+      },
+      "cloud_data_type": "resource_instance",
+      "immutable": true,
+      "cloud_data_range": [
+        "service:%s"
+      ]
     },
     "sts_logging_bind_key": {
       "name": "sts_logging_bind_key",
       "type": "bool",
       "description": "Logging STS: Enable this flag to attach a key to STS instance.",
       "default": false,
+      "source": [
+        "module.logging_sts_instance.ibm_resource_key.logging_key.count"
+      ],
       "pos": {
         "filename": "variables.tf",
         "line": 99
@@ -418,18 +679,31 @@
       "name": "sts_logging_key_name",
       "type": "string",
       "description": "Logging STS: Name of the instance key",
+      "default": "",
+      "required": true,
+      "source": [
+        "module.logging_sts_instance.ibm_resource_key.logging_key.name"
+      ],
       "pos": {
         "filename": "variables.tf",
         "line": 161
-      }
+      },
+      "immutable": true
     },
     "sts_logging_key_tags": {
       "name": "sts_logging_key_tags",
       "type": "list(string)",
       "description": "Logging STS: Tags that should be applied to the key",
+      "source": [
+        "module.logging_sts_instance.ibm_resource_key.logging_key.tags"
+      ],
       "pos": {
         "filename": "variables.tf",
         "line": 155
+      },
+      "cloud_data_type": "tags",
+      "elem": {
+        "type": "TypeString"
       }
     },
     "sts_logging_plan": {
@@ -437,6 +711,9 @@
       "type": "string",
       "description": "Logging STS: plan type (14-day, 30-day, 7-day, hipaa-30-day and lite)",
       "required": true,
+      "source": [
+        "module.logging_sts_instance.ibm_resource_instance.logging_instance.plan"
+      ],
       "pos": {
         "filename": "variables.tf",
         "line": 121
@@ -447,27 +724,48 @@
       "type": "string",
       "description": "Logging STS: Provisioning Region",
       "required": true,
+      "source": [
+        "module.logging_sts_instance.data.ibm_resource_instance.logging_instance.location",
+        "module.logging_sts_instance.ibm_resource_instance.logging_instance.location"
+      ],
       "pos": {
         "filename": "variables.tf",
         "line": 138
-      }
+      },
+      "cloud_data_type": "region",
+      "immutable": true,
+      "computed": true
     },
     "sts_logging_service_endpoints": {
       "name": "sts_logging_service_endpoints",
       "type": "string",
       "description": "Logging STS: Types of the service endpoints. Possible values are 'public', 'private', 'public-and-private'.",
+      "source": [
+        "module.logging_sts_instance.ibm_resource_instance.logging_instance.service_endpoints"
+      ],
       "pos": {
         "filename": "variables.tf",
         "line": 143
-      }
+      },
+      "computed": true
     },
     "sts_logging_tags": {
       "name": "sts_logging_tags",
       "type": "list(string)",
       "description": "Logging STS: Tags that should be applied to the service",
+      "source": [
+        "module.logging_sts_instance.ibm_resource_instance.logging_instance.tags"
+      ],
       "pos": {
         "filename": "variables.tf",
         "line": 149
+      },
+      "min_length": 1,
+      "max_length": 128,
+      "matches": "^[A-Za-z0-9:_ .-]+$",
+      "computed": true,
+      "elem": {
+        "type": "TypeString"
       }
     },
     "sts_provision": {
@@ -475,16 +773,30 @@
       "type": "bool",
       "description": "Logging STS: Disable this, not to create STS instance",
       "default": true,
+      "source": [
+        "module.logging_sts_instance",
+        "module.logging_sts_instance.data.ibm_resource_instance.logging_instance.count",
+        "module.logging_sts_instance.ibm_resource_instance.logging_instance.count",
+        "module.logging_sts_instance.ibm_resource_key.logging_key.resource_instance_id"
+      ],
       "pos": {
         "filename": "variables.tf",
         "line": 93
-      }
+      },
+      "cloud_data_type": "resource_instance",
+      "immutable": true,
+      "cloud_data_range": [
+        "service:%s"
+      ]
     },
     "sts_provision_key": {
       "name": "sts_provision_key",
       "type": "string",
       "description": "Logging STS: Provision key",
       "default": "",
+      "source": [
+        "module.logging_sts_instance"
+      ],
       "pos": {
         "filename": "variables.tf",
         "line": 113
@@ -495,6 +807,9 @@
       "type": "string",
       "description": "Logging STS: Name of your supertenant service",
       "default": "",
+      "source": [
+        "module.logging_sts_instance"
+      ],
       "pos": {
         "filename": "variables.tf",
         "line": 107
@@ -504,6 +819,13 @@
       "name": "update_timeout",
       "type": "string",
       "description": "Timeout duration for update.",
+      "source": [
+        "module.activity_tracker_atr_instance",
+        "module.activity_tracker_ats_instance",
+        "module.logging_str_instance",
+        "module.logging_sts_instance",
+        "module.monitoring_instance"
+      ],
       "pos": {
         "filename": "variables.tf",
         "line": 392
@@ -514,6 +836,9 @@
       "type": "bool",
       "description": "Enable this to attach existing logging STS instance to activity tracket ATS instance",
       "default": false,
+      "source": [
+        "module.activity_tracker_ats_instance"
+      ],
       "pos": {
         "filename": "variables.tf",
         "line": 236
@@ -748,8 +1073,109 @@
         "tags": "atr_tags",
         "update_timeout": "update_timeout"
       },
-      "managed_resources": null,
-      "data_resources": null,
+      "managed_resources": {
+        "ibm_resource_instance.activity_tracker": {
+          "mode": "managed",
+          "type": "ibm_resource_instance",
+          "name": "activity_tracker",
+          "attributes": {
+            "count": "provision",
+            "location": "region",
+            "name": "name",
+            "parameters": "is_ats_instance",
+            "plan": "plan",
+            "resource_group_id": "resource_group_id",
+            "tags": "tags"
+          },
+          "provider": {
+            "name": "ibm"
+          },
+          "pos": {
+            "filename": "modules/activity-tracker-instance/main.tf",
+            "line": 42
+          }
+        },
+        "ibm_resource_key.activity_tracker_key": {
+          "mode": "managed",
+          "type": "ibm_resource_key",
+          "name": "activity_tracker_key",
+          "attributes": {
+            "count": "bind_key",
+            "name": "key_name",
+            "resource_instance_id": "provision",
+            "tags": "key_tags"
+          },
+          "provider": {
+            "name": "ibm"
+          },
+          "pos": {
+            "filename": "modules/activity-tracker-instance/main.tf",
+            "line": 66
+          }
+        }
+      },
+      "data_resources": {
+        "data.ibm_resource_instance.activity_tracker": {
+          "mode": "data",
+          "type": "ibm_resource_instance",
+          "name": "activity_tracker",
+          "attributes": {
+            "count": "provision",
+            "location": "region",
+            "name": "name",
+            "resource_group_id": "resource_group_id"
+          },
+          "provider": {
+            "name": "ibm"
+          },
+          "pos": {
+            "filename": "modules/activity-tracker-instance/main.tf",
+            "line": 33
+          }
+        }
+      },
+      "outputs": {
+        "guid": {
+          "name": "guid",
+          "description": "The GUID of the activity tracker",
+          "pos": {
+            "filename": "modules/activity-tracker-instance/outputs.tf",
+            "line": 11
+          }
+        },
+        "id": {
+          "name": "id",
+          "description": "ID of Activity Tracker ATS",
+          "pos": {
+            "filename": "modules/activity-tracker-instance/outputs.tf",
+            "line": 6
+          }
+        },
+        "key_credentials": {
+          "name": "key_credentials",
+          "description": "Activity Tracker ATS key credentials",
+          "pos": {
+            "filename": "modules/activity-tracker-instance/outputs.tf",
+            "line": 26
+          }
+        },
+        "key_guid": {
+          "name": "key_guid",
+          "description": "Activity Tracker ATS key guid",
+          "pos": {
+            "filename": "modules/activity-tracker-instance/outputs.tf",
+            "line": 21
+          }
+        },
+        "key_id": {
+          "name": "key_id",
+          "description": "Activity Tracker ATS key id",
+          "pos": {
+            "filename": "modules/activity-tracker-instance/outputs.tf",
+            "line": 16
+          }
+        }
+      },
       "pos": {
         "filename": "main.tf",
         "line": 65
@@ -776,8 +1202,109 @@
         "tags": "ats_tags",
         "update_timeout": "update_timeout"
       },
-      "managed_resources": null,
-      "data_resources": null,
+      "managed_resources": {
+        "ibm_resource_instance.activity_tracker": {
+          "mode": "managed",
+          "type": "ibm_resource_instance",
+          "name": "activity_tracker",
+          "attributes": {
+            "count": "provision",
+            "location": "region",
+            "name": "name",
+            "parameters": "is_ats_instance",
+            "plan": "plan",
+            "resource_group_id": "resource_group_id",
+            "tags": "tags"
+          },
+          "provider": {
+            "name": "ibm"
+          },
+          "pos": {
+            "filename": "modules/activity-tracker-instance/main.tf",
+            "line": 42
+          }
+        },
+        "ibm_resource_key.activity_tracker_key": {
+          "mode": "managed",
+          "type": "ibm_resource_key",
+          "name": "activity_tracker_key",
+          "attributes": {
+            "count": "bind_key",
+            "name": "key_name",
+            "resource_instance_id": "provision",
+            "tags": "key_tags"
+          },
+          "provider": {
+            "name": "ibm"
+          },
+          "pos": {
+            "filename": "modules/activity-tracker-instance/main.tf",
+            "line": 66
+          }
+        }
+      },
+      "data_resources": {
+        "data.ibm_resource_instance.activity_tracker": {
+          "mode": "data",
+          "type": "ibm_resource_instance",
+          "name": "activity_tracker",
+          "attributes": {
+            "count": "provision",
+            "location": "region",
+            "name": "name",
+            "resource_group_id": "resource_group_id"
+          },
+          "provider": {
+            "name": "ibm"
+          },
+          "pos": {
+            "filename": "modules/activity-tracker-instance/main.tf",
+            "line": 33
+          }
+        }
+      },
+      "outputs": {
+        "guid": {
+          "name": "guid",
+          "description": "The GUID of the activity tracker",
+          "pos": {
+            "filename": "modules/activity-tracker-instance/outputs.tf",
+            "line": 11
+          }
+        },
+        "id": {
+          "name": "id",
+          "description": "ID of Activity Tracker ATS",
+          "pos": {
+            "filename": "modules/activity-tracker-instance/outputs.tf",
+            "line": 6
+          }
+        },
+        "key_credentials": {
+          "name": "key_credentials",
+          "description": "Activity Tracker ATS key credentials",
+          "pos": {
+            "filename": "modules/activity-tracker-instance/outputs.tf",
+            "line": 26
+          }
+        },
+        "key_guid": {
+          "name": "key_guid",
+          "description": "Activity Tracker ATS key guid",
+          "pos": {
+            "filename": "modules/activity-tracker-instance/outputs.tf",
+            "line": 21
+          }
+        },
+        "key_id": {
+          "name": "key_id",
+          "description": "Activity Tracker ATS key id",
+          "pos": {
+            "filename": "modules/activity-tracker-instance/outputs.tf",
+            "line": 16
+          }
+        }
+      },
       "pos": {
         "filename": "main.tf",
         "line": 92
@@ -803,8 +1330,110 @@
         "tags": "str_logging_tags",
         "update_timeout": "update_timeout"
       },
-      "managed_resources": null,
-      "data_resources": null,
+      "managed_resources": {
+        "ibm_resource_instance.logging_instance": {
+          "mode": "managed",
+          "type": "ibm_resource_instance",
+          "name": "logging_instance",
+          "attributes": {
+            "count": "provision",
+            "location": "region",
+            "name": "name",
+            "parameters": "is_sts_instance",
+            "plan": "plan",
+            "resource_group_id": "resource_group_id",
+            "service_endpoints": "service_endpoints",
+            "tags": "tags"
+          },
+          "provider": {
+            "name": "ibm"
+          },
+          "pos": {
+            "filename": "modules/logging-instance/main.tf",
+            "line": 41
+          }
+        },
+        "ibm_resource_key.logging_key": {
+          "mode": "managed",
+          "type": "ibm_resource_key",
+          "name": "logging_key",
+          "attributes": {
+            "count": "bind_key",
+            "name": "key_name",
+            "resource_instance_id": "provision",
+            "tags": "key_tags"
+          },
+          "provider": {
+            "name": "ibm"
+          },
+          "pos": {
+            "filename": "modules/logging-instance/main.tf",
+            "line": 65
+          }
+        }
+      },
+      "data_resources": {
+        "data.ibm_resource_instance.logging_instance": {
+          "mode": "data",
+          "type": "ibm_resource_instance",
+          "name": "logging_instance",
+          "attributes": {
+            "count": "provision",
+            "location": "region",
+            "name": "name",
+            "resource_group_id": "resource_group_id"
+          },
+          "provider": {
+            "name": "ibm"
+          },
+          "pos": {
+            "filename": "modules/logging-instance/main.tf",
+            "line": 32
+          }
+        }
+      },
+      "outputs": {
+        "guid": {
+          "name": "guid",
+          "description": "The GUID of the logging STS instance",
+          "pos": {
+            "filename": "modules/logging-instance/outputs.tf",
+            "line": 11
+          }
+        },
+        "id": {
+          "name": "id",
+          "description": "The ID of the logging STS instance",
+          "pos": {
+            "filename": "modules/logging-instance/outputs.tf",
+            "line": 6
+          }
+        },
+        "key_credentials": {
+          "name": "key_credentials",
+          "description": "logging STS key credentials",
+          "pos": {
+            "filename": "modules/logging-instance/outputs.tf",
+            "line": 26
+          }
+        },
+        "key_guid": {
+          "name": "key_guid",
+          "description": "logging STS key guid",
+          "pos": {
+            "filename": "modules/logging-instance/outputs.tf",
+            "line": 21
+          }
+        },
+        "key_id": {
+          "name": "key_id",
+          "description": "ID of the logging STS instance key",
+          "pos": {
+            "filename": "modules/logging-instance/outputs.tf",
+            "line": 16
+          }
+        }
+      },
       "pos": {
         "filename": "main.tf",
         "line": 5
@@ -831,8 +1460,110 @@
         "tags": "sts_logging_tags",
         "update_timeout": "update_timeout"
       },
-      "managed_resources": null,
-      "data_resources": null,
+      "managed_resources": {
+        "ibm_resource_instance.logging_instance": {
+          "mode": "managed",
+          "type": "ibm_resource_instance",
+          "name": "logging_instance",
+          "attributes": {
+            "count": "provision",
+            "location": "region",
+            "name": "name",
+            "parameters": "is_sts_instance",
+            "plan": "plan",
+            "resource_group_id": "resource_group_id",
+            "service_endpoints": "service_endpoints",
+            "tags": "tags"
+          },
+          "provider": {
+            "name": "ibm"
+          },
+          "pos": {
+            "filename": "modules/logging-instance/main.tf",
+            "line": 41
+          }
+        },
+        "ibm_resource_key.logging_key": {
+          "mode": "managed",
+          "type": "ibm_resource_key",
+          "name": "logging_key",
+          "attributes": {
+            "count": "bind_key",
+            "name": "key_name",
+            "resource_instance_id": "provision",
+            "tags": "key_tags"
+          },
+          "provider": {
+            "name": "ibm"
+          },
+          "pos": {
+            "filename": "modules/logging-instance/main.tf",
+            "line": 65
+          }
+        }
+      },
+      "data_resources": {
+        "data.ibm_resource_instance.logging_instance": {
+          "mode": "data",
+          "type": "ibm_resource_instance",
+          "name": "logging_instance",
+          "attributes": {
+            "count": "provision",
+            "location": "region",
+            "name": "name",
+            "resource_group_id": "resource_group_id"
+          },
+          "provider": {
+            "name": "ibm"
+          },
+          "pos": {
+            "filename": "modules/logging-instance/main.tf",
+            "line": 32
+          }
+        }
+      },
+      "outputs": {
+        "guid": {
+          "name": "guid",
+          "description": "The GUID of the logging STS instance",
+          "pos": {
+            "filename": "modules/logging-instance/outputs.tf",
+            "line": 11
+          }
+        },
+        "id": {
+          "name": "id",
+          "description": "The ID of the logging STS instance",
+          "pos": {
+            "filename": "modules/logging-instance/outputs.tf",
+            "line": 6
+          }
+        },
+        "key_credentials": {
+          "name": "key_credentials",
+          "description": "logging STS key credentials",
+          "pos": {
+            "filename": "modules/logging-instance/outputs.tf",
+            "line": 26
+          }
+        },
+        "key_guid": {
+          "name": "key_guid",
+          "description": "logging STS key guid",
+          "pos": {
+            "filename": "modules/logging-instance/outputs.tf",
+            "line": 21
+          }
+        },
+        "key_id": {
+          "name": "key_id",
+          "description": "ID of the logging STS instance key",
+          "pos": {
+            "filename": "modules/logging-instance/outputs.tf",
+            "line": 16
+          }
+        }
+      },
       "pos": {
         "filename": "main.tf",
         "line": 33
@@ -858,8 +1589,110 @@
         "tags": "monitoring_tags",
         "update_timeout": "update_timeout"
       },
-      "managed_resources": null,
-      "data_resources": null,
+      "managed_resources": {
+        "ibm_resource_instance.sysdig_instance": {
+          "mode": "managed",
+          "type": "ibm_resource_instance",
+          "name": "sysdig_instance",
+          "attributes": {
+            "count": "provision",
+            "location": "region",
+            "name": "name",
+            "parameters": "enable_platform_metrics",
+            "plan": "plan",
+            "resource_group_id": "resource_group_id",
+            "service_endpoints": "service_endpoints",
+            "tags": "tags"
+          },
+          "provider": {
+            "name": "ibm"
+          },
+          "pos": {
+            "filename": "modules/monitoring-sysdig/main.tf",
+            "line": 15
+          }
+        },
+        "ibm_resource_key.sysdig_key": {
+          "mode": "managed",
+          "type": "ibm_resource_key",
+          "name": "sysdig_key",
+          "attributes": {
+            "count": "bind_key",
+            "name": "key_name",
+            "resource_instance_id": "provision",
+            "tags": "key_tags"
+          },
+          "provider": {
+            "name": "ibm"
+          },
+          "pos": {
+            "filename": "modules/monitoring-sysdig/main.tf",
+            "line": 37
+          }
+        }
+      },
+      "data_resources": {
+        "data.ibm_resource_instance.sysdig": {
+          "mode": "data",
+          "type": "ibm_resource_instance",
+          "name": "sysdig",
+          "attributes": {
+            "count": "provision",
+            "location": "region",
+            "name": "name",
+            "resource_group_id": "resource_group_id"
+          },
+          "provider": {
+            "name": "ibm"
+          },
+          "pos": {
+            "filename": "modules/monitoring-sysdig/main.tf",
+            "line": 6
+          }
+        }
+      },
+      "outputs": {
+        "guid": {
+          "name": "guid",
+          "description": "The GUID of the sysdig instance",
+          "pos": {
+            "filename": "modules/monitoring-sysdig/outputs.tf",
+            "line": 11
+          }
+        },
+        "id": {
+          "name": "id",
+          "description": "The ID of the sysdig instance",
+          "pos": {
+            "filename": "modules/monitoring-sysdig/outputs.tf",
+            "line": 6
+          }
+        },
+        "key_credentials": {
+          "name": "key_credentials",
+          "description": "sysdig key credentials",
+          "pos": {
+            "filename": "modules/monitoring-sysdig/outputs.tf",
+            "line": 26
+          }
+        },
+        "key_guid": {
+          "name": "key_guid",
+          "description": "sysdig key guid",
+          "pos": {
+            "filename": "modules/monitoring-sysdig/outputs.tf",
+            "line": 21
+          }
+        },
+        "key_id": {
+          "name": "key_id",
+          "description": "ID of the sysdig instance key",
+          "pos": {
+            "filename": "modules/monitoring-sysdig/outputs.tf",
+            "line": 16
+          }
+        }
+      },
       "pos": {
         "filename": "main.tf",
         "line": 125
