@@ -2,7 +2,9 @@
 
 ---
 
-:spider_web: **Archived**: This repo is no longer maintained and is archived. Please use the following public module: https://github.com/terraform-ibm-modules/terraform-ibm-observability-instances
+## :spider_web: **Archived**: This repo is no longer maintained and is archived. Please use the following public module if consuming from github: [terraform-ibm-observability-instances](https://github.com/terraform-ibm-modules/terraform-ibm-observability-instances)
+
+## :warning: This module will be deleted from the Hashicorp registry on the 1st August 2023. If consuming from Hashicorp, please use [observability-instances](https://registry.terraform.io/modules/terraform-ibm-modules/observability-instances/ibm/latest) instead.
 
 ---
 
