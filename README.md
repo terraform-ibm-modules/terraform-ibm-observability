@@ -102,6 +102,7 @@ Provision a monitoring instance.
 #####################################################
 
 
+
 ```hcl
 provider "ibm" {
 }
